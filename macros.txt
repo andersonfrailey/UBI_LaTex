@@ -1,0 +1,15 @@
+\newcommand{\axaa}{116.23 }
+\newcommand{\axab}{1047.26 }
+\newcommand{\axac}{1103.75 }
+\newcommand{\axad}{1186.53 }
+\newcommand{\axae}{73.18 }
+\newcommand{\axaf}{97.75 }
+\newcommand{\axag}{2.24 }
+\newcommand{\dxaa}{9874.76 }
+\newcommand{\dxab}{4937.38 }
+\newcommand{\exaa}{11666.43 }
+\newcommand{\fxaa}{12068.06 }
+\newcommand{\gxaa}{9885.10 }
+\newcommand{\gxab}{4942.55 }
+\newcommand{\hxaa}{11678.65 }
+\newcommand{\ixaa}{12325.70 }
