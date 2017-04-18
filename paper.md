@@ -55,15 +55,10 @@
 
 \section{Introduction}
 
-%\input{introduction.txt}
-
 Widening inequality and increasing job disruption due to technology have increased discussion of an universal basic income (UBI) in academic circles. The concept of an UBI is simple -- every person, above a certain age, receives a lump sum of cash from the government regardless of income, employment status, or any other requirement typically used in welfare programs. This income is then taxed, along with any additional earnings, as normal income. To fund the UBI, we propose removing all welfare and transfer programs and eliminating all tax credits, loopholes, and deductions (excluding the charitable deduction). Using the American Enterprise Institute's Open Source Policy Center's (OSPC) modeling suite, this report simulates the repeal of major welfare and transfer programs, the elimination of tax provisions and deductions to broaden the tax base, and three potential UBI policies that would neutralize the revenue impact of the aforementioned reforms on a static and dynamic basis. The paper also evaluates the welfare consequences of these reforms, accounting for the inefficiency costs of welfare programs. Analysis is performed by separating tax units by percentiles of average gross income (AGI). All calculations are performed using 2014 data.
 
 \section{Welfare/Transfer Program Repeal}
-We begin by repealing all welfare and transfer programs including Medicare, Medicaid, SSI, SNAP, Social Security, and Veterans Benefits.\footnote{Program payments imputed using OSPC C-TAM model. A full description of the model can be found in the appendix.} We also repealed unemployment insurance, housing assistance, and student aid; related public assistance; and most other individual payment programs.\footnote{A full list of the programs repealed and their costs can be found in the appendix.} We account for decreased tax revenue from the repeal of Social Security benefits, which are taxed under the current system. Repealing these programs yields \axag{}trillion dollars in funds that can be used to fund the UBI.\footnote{Author's calculations using C-TAM, Tax-Calculator, and \href{https://obamawhitehouse.archives.gov/omb/budget/Historicals}{Office of Management and Budget data (\textit{Table 3.2—Outlays by Function and Subfunction: 1962–2021} and \textit{Table 11.3—Outlays for Payments for Individuals by Category and Major Program: 1940–2021).}}}
-
-Most of this revenue is taken from the lowest earners -- $20.47\%$ of the burden falls on the bottom $20\%$ of earners while the top $20\%$ account for only 
-Most of this is taken from lower earners — 34 percent of the burden falls on the bottom 20 percent of earners while the top 20 percent account for only 10 percent of the loss.\footnote{C-TAM only models Medicare, Medicaid, SSI, SNAP, Social Security, and Veterans Benefits. The distribution of all non-modeled programs was assumed to reflect the distribution of the modeled benefits.}
+We begin by repealing all welfare and transfer programs including Medicare, Medicaid, SSI, SNAP, Social Security, and Veterans Benefits.\footnote{Program payments imputed using OSPC C-TAM model. A full description of the model can be found in the appendix.} We also repealed unemployment insurance, housing assistance, and student aid; related public assistance; and most other individual payment programs.\footnote{A full list of the programs repealed and their costs can be found in the appendix.} We account for decreased tax revenue from the repeal of Social Security benefits, which are taxed under the current system. Repealing these programs yields \axag{}trillion dollars in funds that can be used to fund the UBI.\footnote{Author's calculations using C-TAM, Tax-Calculator, and \href{https://obamawhitehouse.archives.gov/omb/budget/Historicals}{Office of Management and Budget data (\textit{Table 3.2—Outlays by Function and Subfunction: 1962–2021} and \textit{Table 11.3—Outlays for Payments for Individuals by Category and Major Program: 1940–2021).}}} The effects of repealing the welfare and transfer programs are shown in the following table. 
 
 \begin{table}[H]
 \caption{Welfare and Transfer Program Repeal Effect on Benefits}
@@ -74,6 +69,9 @@ Most of this is taken from lower earners — 34 percent of the burden falls on t
 \end{center}
 \floatfoot{Source: Author's calculations using OSPC calculator.}
 \end{table}
+
+The repeal of benefit and transfer programs appears to have a homogenous effect across AGI percentiles due to the inclusion of Social Security and Medicaid.\footnote{As a result of these reforms, the bottom $20$ percent of income earners lose $20.47$ percent of the benefits, while the top $20$ percent of earners lose $23.74$ percent of the benefits.} Social Security disbursments are tied to an individual's income, compensating for the larger recipt of other benefit and transfer programs by low income earners.
+\footnote{C-TAM only models Medicare, Medicaid, SSI, SNAP, Social Security, and Veterans Benefits. The distribution of all non-modeled programs was assumed to reflect the distribution of the modeled benefits.}
 
 \begin{figure}[H]
 %\centering
@@ -90,8 +88,6 @@ Most of this is taken from lower earners — 34 percent of the burden falls on t
 \includegraphics[scale=0.650]{a2}
 %\floatfoot{A note}
 \end{figure}
-
-These reforms have similar effects for both primary and secondary earners, raising the MTR for those with lower income and lowering the MTR for those with middle incomes. Those with higher incomes are unaffected by the repeal of welfare and transfer programs. One benefit of the reforms is it removes the disincentive to work associated with welfare "notches." These form when the MTR is such that the additional income from an extra dollar earned through work will result in the loss of significant welfare benefits.
 
 \section{Tax Exemption and Deduction Repeal}
 The current tax code is littered with numerous provisions, exemptions, and deductions designed to give certain segments of the population tax breaks. These carve outs are applied and various stages of calculating total tax liabilities and will benefit segments of the population differently. As an additional source of funding for the UBI, we have repealed all above-the-line, standard, and itemized deductions excluding the charitable deduction; all tax credits; the personal exemption; and the earned income tax credit.
