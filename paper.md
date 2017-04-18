@@ -140,8 +140,10 @@ The reforms lead to almost across the board marginal tax rate (MTR) increases, t
 %\floatfoot{A note}
 \end{figure}
 
+% Section 4
 \section{Tax and Welfare/Transfer Repeal}
-Combining the welfare repeals and tax reform, the burden of the changes is still largely progressive. Coupling the loss in welfare benefits and increase in tax liabilities, the top ten percent of earners see and average negative impact of just over $\$30,000$ compared to slightly more than $\$15,000$ in the bottom $10$ percent.
+
+This section combines the welfare and transfer repeal from section two and tax reform from section three to examine the joint distributional impact. The top ten percent of earners see an average negative impact of just over $\$30,000$ compared to slightly more than $\$15,000$ in the bottom ten percent. The top $20$ percent experiences $30.21$ percent of the increase in tax liabilities, while the lowest $20$ percent pay $16.28$ percent of the increase in tax liabilities. 
 
 \begin{table}[H]
 \caption{Revenue Effect of Benefit and Tax Repeal}
@@ -153,7 +155,7 @@ Combining the welfare repeals and tax reform, the burden of the changes is still
 \floatfoot{Source: Author's calculations using OSPC calculator.}
 \end{table}
 
-In total, reforming the tax code to remove deductions, exemptions, and other provisions that narrow the base as well as repealing most programs that distribute payment to individuals, $\$2.9$ trillion was freed to apply to a UBI.
+Reforming the tax code to remove deductions, exemptions, and other provisions that narrow the base as well as repealing most programs that distribute payment to individuals, $\$2.9$ trillion was freed to apply to a UBI.
 
 \begin{figure}[H]
 \centering
@@ -168,6 +170,8 @@ In total, reforming the tax code to remove deductions, exemptions, and other pro
 \includegraphics[scale=0.650]{c2}
 %\floatfoot{A note}
 \end{figure}
+
+These reforms result in $\$2.9$ trillion that can be used to fund a UBI.  
 
 % the following tables DO NOT EXIST as of 4-11-2017
 %\begin{figure}[H]
