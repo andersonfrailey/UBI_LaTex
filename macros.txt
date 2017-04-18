@@ -1,15 +1,16 @@
-\newcommand{\axaa}{116.23 }
-\newcommand{\axab}{1047.26 }
-\newcommand{\axac}{1103.75 }
-\newcommand{\axad}{1186.53 }
-\newcommand{\axae}{73.18 }
-\newcommand{\axaf}{97.75 }
-\newcommand{\axag}{2.24 }
-\newcommand{\dxaa}{9874.76 }
-\newcommand{\dxab}{4937.38 }
-\newcommand{\exaa}{11666.43 }
-\newcommand{\fxaa}{12068.06 }
-\newcommand{\gxaa}{9885.10 }
-\newcommand{\gxab}{4942.55 }
-\newcommand{\hxaa}{11678.65 }
-\newcommand{\ixaa}{12325.70 }
+description,                                  macro id,   value
+baseline above-the line deductions,           axaa,       116.23
+baseline stadard deduction,                   axab,       1047.26 
+baseline itemized deductions,                 axac,       1103.75 
+baseline personal exemptions,                 axad,       1186.53 
+baseline nonrefundable tax credits,           axae,       73.18 
+baseline refundable credits,                  axaf,       97.75 
+welfare/transfer program repeal (trillions),  axag,       2.24 
+UBI for those above 18 (part D),              dxaa,       9874.76 
+UBI for those bellow 18 (part D),             dxab,       4937.38 
+UBI for those above 18 (part E),              exaa,       11666.43
+UBI for those above 21 (part F),              fxaa,       12068.06 
+UBI for those above 18 (part G),              gxaa,       9885.10 
+UBI for those below 18 (part G),              gxab,       4942.55 
+UBI for those above 18 (part H),              hxaa,       11678.65 
+UBI for those above 21 (part I),              ixaa,       12325.70
