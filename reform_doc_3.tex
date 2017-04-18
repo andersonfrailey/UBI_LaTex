@@ -55,15 +55,18 @@
 
 \section{Introduction}
 
-Widening inequality and increasing job disruption due to automation have given the idea of an universal basic income (UBI) new life. The concept of an UBI is simple -- every person, above a certain age, receives a lump sum of cash from the government regardless of income, employment status, or any other requirement typically used in welfare programs. To fund the UBI, we propose removing all welfare and transfer programs and eliminating all tax credits, loopholes, and deductions (excluding the charitable deduction). Using the American Enterprise Institute's Open Source Policy Center's (OSPC) modeling suite, this report simulates the repeal of major welfare and transfer programs, the elimination of tax provisions and deductions which narrow the tax base, and three potential UBI policies that would neutralize the revenue impact of the aforementioned reforms on a static and dynamic basis. The paper also evaluates the welfare consequences of these reforms, accounting for the inefficiency costs of welfare programs. All calculations in this paper are for the 2014.
+%\input{introduction.txt}
 
-\section{Part A: Welfare and Transfer Program Repeal}
-We begin by repealing all welfare and transfer programs to examine the distributional impact. This includes repealing Medicare, Medicaid, SSI, SNAP, Social Security, and Veterans Benefits.\footnote{Program payments imputed using OSPC \textit{C-TAM} model. A full description of the model can be found in the appendix.} We also repealed unemployment, housing, and student assistance; related public assistance; and most other individual payment programs. A full list of the programs repealed and their costs can be found in the appendix. In total, after accounting for the loss in tax revenue from repealing Social Security benefits (thus reducing taxable income for those receiving Social Security) we found $2.2$ trillion dollars in funds available for the UBI.\footnote{Author's calculations using \textit{C-TAM}, Tax-Calculator, and \href{https://obamawhitehouse.archives.gov/omb/budget/Historicals}{Office of Management and Budget data (\textit{Table 3.2—Outlays by Function and Subfunction: 1962–2021} and \textit{Table 11.3—Outlays for Payments for Individuals by Category and Major Program: 1940–2021).}}}
+Widening inequality and increasing job disruption due to technology have increased discussion of an universal basic income (UBI) in academic circles. The concept of an UBI is simple -- every person, above a certain age, receives a lump sum of cash from the government regardless of income, employment status, or any other requirement typically used in welfare programs. This income is then taxed, along with any additional earnings, as normal income. To fund the UBI, we propose removing all welfare and transfer programs and eliminating all tax credits, loopholes, and deductions (excluding the charitable deduction). Using the American Enterprise Institute's Open Source Policy Center's (OSPC) modeling suite, this report simulates the repeal of major welfare and transfer programs, the elimination of tax provisions and deductions to broaden the tax base, and three potential UBI policies that would neutralize the revenue impact of the aforementioned reforms on a static and dynamic basis. The paper also evaluates the welfare consequences of these reforms, accounting for the inefficiency costs of welfare programs. Analysis is performed by separating tax units by percentiles of average gross income (AGI). All calculations are performed using 2014 data.
 
-Most of this is taken from lower earners — 34 percent of the burden falls on the bottom 20 percent of earners while the top 20 percent account for only 10 percent of the loss.\footnote{\textit{C-TAM} only modeled Medicare, Medicaid, SSI, SNAP, Social Security, and Veterans Benefits. The distribution of all non-modeled programs was assumed to reflect the distribution of the modeled benefits.}
+\section{Welfare/Transfer Program Repeal}
+We begin by repealing all welfare and transfer programs including Medicare, Medicaid, SSI, SNAP, Social Security, and Veterans Benefits.\footnote{Program payments imputed using OSPC C-TAM model. A full description of the model can be found in the appendix.} We also repealed unemployment insurance, housing assistance, and student aid; related public assistance; and most other individual payment programs.\footnote{A full list of the programs repealed and their costs can be found in the appendix.} We account for decreased tax revenue from the repeal of Social Security benefits, which are taxed under the current system. Repealing these programs yields \axag{}trillion dollars in funds that can be used to fund the UBI.\footnote{Author's calculations using C-TAM, Tax-Calculator, and \href{https://obamawhitehouse.archives.gov/omb/budget/Historicals}{Office of Management and Budget data (\textit{Table 3.2—Outlays by Function and Subfunction: 1962–2021} and \textit{Table 11.3—Outlays for Payments for Individuals by Category and Major Program: 1940–2021).}}}
+
+Most of this revenue is taken from the lowest earners -- $20.47\%$ of the burden falls on the bottom $20\%$ of earners while the top $20\%$ account for only 
+Most of this is taken from lower earners — 34 percent of the burden falls on the bottom 20 percent of earners while the top 20 percent account for only 10 percent of the loss.\footnote{C-TAM only models Medicare, Medicaid, SSI, SNAP, Social Security, and Veterans Benefits. The distribution of all non-modeled programs was assumed to reflect the distribution of the modeled benefits.}
 
 \begin{table}[H]
-\caption{Effects of Welfare and Transfer Program Repeal}
+\caption{Welfare and Transfer Program Repeal Effect on Benefits}
 \begin{center}
 \begin{adjustbox}{max width=\textwidth}
 \input{a1_df.txt}
@@ -75,28 +78,28 @@ Most of this is taken from lower earners — 34 percent of the burden falls on t
 \begin{figure}[H]
 %\centering
 \begin{center}
-\caption{Average Dollar Change by Percentile of AGI}
-\includegraphics[scale=0.750]{a1}
+\caption{Average Benefit Change by Percentile of AGI}
+\includegraphics[scale=0.650]{a1}
 \end{center}
 %\floatfoot{A note}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\caption{Total Revenue Impact by Percentile of AGI}
-\includegraphics[scale=0.750]{a2}
+\caption{Total Benefit Change by Percentile of AGI}
+\includegraphics[scale=0.650]{a2}
 %\floatfoot{A note}
 \end{figure}
 
 These reforms have similar effects for both primary and secondary earners, raising the MTR for those with lower income and lowering the MTR for those with middle incomes. Those with higher incomes are unaffected by the repeal of welfare and transfer programs. One benefit of the reforms is it removes the disincentive to work associated with welfare "notches." These form when the MTR is such that the additional income from an extra dollar earned through work will result in the loss of significant welfare benefits.
 
-\section{B: Tax component}
+\section{Tax Exemption and Deduction Repeal}
 The current tax code is littered with numerous provisions, exemptions, and deductions designed to give certain segments of the population tax breaks. These carve outs are applied and various stages of calculating total tax liabilities and will benefit segments of the population differently. As an additional source of funding for the UBI, we have repealed all above-the-line, standard, and itemized deductions excluding the charitable deduction; all tax credits; the personal exemption; and the earned income tax credit.
 
 With the repeal of the aforementioned tax provisions, roughly $92\%$ of tax units will face a tax increase resulting in $\$708$ billion in new liabilities, nearly half of that falling on the top twenty percent of earners.\footnote{Author’s calculations using OSPC Tax-Calculator.}
 
 \begin{table}[H]
-\caption{Effects of Tax Reform by Percentile of AGI}
+\caption{Tax Liability by Percentile of AGI}
 \begin{center}
 \begin{adjustbox}{max width=\textwidth}
 \input{b1_df.txt}
@@ -107,15 +110,15 @@ With the repeal of the aforementioned tax provisions, roughly $92\%$ of tax unit
 
 \begin{figure}[H]
 \centering
-\caption{Average Dollar Change by Percentile of AGI}
-\includegraphics[scale=1.0]{b1}
+\caption{Average Tax Liability by Percentile of AGI}
+\includegraphics[scale=0.650]{b1}
 %\floatfoot{A note}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\caption{Total Revenue Impact by Percentile of AGI}
-\includegraphics[scale=1.0]{b2}
+\caption{Total Tax Liability by Percentile of AGI}
+\includegraphics[scale=0.650]{b2}
 %\floatfoot{A note}
 \end{figure}
 
@@ -124,15 +127,15 @@ The reforms lead to almost across the board marginal tax rate (MTR) increases, t
 
 \begin{figure}[H]
 \centering
-\caption{Average Primary Earner MTR Change by Percentile}
-\includegraphics[scale=1.0]{b3}
+\caption{Average Primary Earner MTR by Percentile}
+\includegraphics[scale=0.650]{b3}
 %\floatfoot{A note}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\caption{Average Secondary Earner MTR Change by Percentile}
-\includegraphics[scale=1.0]{b4}
+\caption{Average Secondary Earner MTR by Percentile}
+\includegraphics[scale=0.650]{b4}
 %\floatfoot{A note}
 \end{figure}
 
@@ -140,12 +143,11 @@ With the repeal of the aforementioned tax provisions, roughly $89$ percent of ta
 
 The reforms lead to almost across the board marginal tax rate (MTR) increases, the largest of which are seen at the lower end of the income spectrum. The bottom quarter of earners see their marginal net-of-tax rate ($1$ - MTR) decrease by as much as $18$ percent for primary earners and $20$ percent for secondary earners.\footnote{Author's calculations using OSPC Tax-Calculator} The following graphs illustrate the distributional impact of these reforms.
 
-\section{C: Tax and Welfare/Transfer}
+\section{Tax and Welfare/Transfer Repeal}
 Combining the welfare repeals and tax reform, the burden of the changes is still largely progressive. Coupling the loss in welfare benefits and increase in tax liabilities, the top ten percent of earners see and average negative impact of just over $\$30,000$ compared to slightly more than $\$15,000$ in the bottom $10$ percent.
 
 \begin{table}[H]
-\caption{Combined Benefit Loss and Tax Increase}
-
+\caption{Revenue Effect of Benefit and Tax Repeal}
 \begin{center}
 \begin{adjustbox}{max width=\textwidth}
 \input{c1_df.txt}
@@ -158,15 +160,15 @@ In total, reforming the tax code to remove deductions, exemptions, and other pro
 
 \begin{figure}[H]
 \centering
-\caption{Average Dollar Change by Percentile of AGI}
-\includegraphics[scale=1.0]{c1}
+\caption{Average Revenue Effect of Benefit and Tax Repeal by Percentile of AGI}
+\includegraphics[scale=0.650]{c1}
 %\floatfoot{A note}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\caption{Total Revenue Impact by Percentile of AGI}
-\includegraphics[scale=1.0]{c2}
+\caption{Total Revenue Effect of Benefit and Tax Repeal by Percentile of AGI}
+\includegraphics[scale=0.650]{c2}
 %\floatfoot{A note}
 \end{figure}
 
@@ -174,23 +176,23 @@ In total, reforming the tax code to remove deductions, exemptions, and other pro
 %\begin{figure}[H]
 %\centering
 %\caption{Average Primary Earner MTR Change by Percentileof AGI}
-%\includegraphics[scale=1.0]{c3}
+%\includegraphics[scale=0.650]{c3}
 %\floatfoot{A note}
 %\end{figure}
 
 %\begin{figure}[H]
 %\centering
 %\caption{Average Secondary Earner MTR Change by Percentile of AGI}
-%\includegraphics[scale=1.0]{c4}
+%\includegraphics[scale=0.650]{c4}
 %\floatfoot{A note}
 %\end{figure}
 
-\section{D: Tax, Welfare/Transfer, and UBI all}
+\section{Tax and Welfare/Transfer Repeal with UBI for All}
 
 Rather than set and arbitrary amount as a UBI and then search for cuts and reforms in order to pay for it, we took the savings from the previously discussed welfare and tax reforms, as well as the additional tax revenues that would be gained by making the UBI taxable, and used our models to determine how much could be given to each person while keeping the policy revenue neutral.
 
 \begin{table}[H]
-\caption{Effects of Tax Reform, Welfare Programs, and UBI by Percentile of AGI}
+\caption{Increase in Tax Liabilities by Percentile of AGI}
 \begin{center}
 \begin{adjustbox}{max width=\textwidth}
 \input{d1_df.txt}
@@ -206,15 +208,15 @@ Despite this, There are a handful of tax-units who do see a tax cut. This is lik
 
 \begin{figure}[H]
 \centering
-\caption{Average Primary Earner MTR Change by Percentileof AGI}
-\includegraphics[scale=1.0]{d3}
+\caption{Average Primary Earner MTR Change by Percentile of AGI}
+\includegraphics[scale=0.650]{d3}
 %\floatfoot{A note}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \caption{Average Secondary Earner MTR Change by Percentile of AGI}
-\includegraphics[scale=1.0]{d4}
+\includegraphics[scale=0.650]{d4}
 %\floatfoot{A note}
 \end{figure}
 
@@ -224,43 +226,43 @@ As a whole, the tax effects of a UBI are largely progressive, with the top twent
 
 \begin{figure}[H]
 \centering
-\caption{Average Dollar Change by Percentile of AGI}
-\includegraphics[scale=1.0]{d1}
+\caption{Average Change in Tax Liabilities by Percentile of AGI}
+\includegraphics[scale=0.650]{d1}
 %\floatfoot{A note}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\caption{Total Revenue Impact by Percentile of AGI}
-\includegraphics[scale=1.0]{d2}
+\caption{Total Change in Tax Liabilities by Percentile of AGI}
+\includegraphics[scale=0.650]{d2}
 %\floatfoot{A note}
 \end{figure}
 
 Because everyone, regardless of age, receives a basic income, this policy is friendly to families with children compared to the other two options simulated which exclude anyone under eighteen initially and then all those under twenty-one.
 
-\section{E: Tax, Welfare/Transfer, and UBI Eighteen Plus}
+\section{Tax and Welfare/Transfer Repeal with UBI for 18 Plus}
 Our second UBI implementation gives a basic income only to individuals above eighteen. Shrinking the targeted population allowed for a much larger UBI given to those who still received it. Using the same criteria to determine the first UBI, revenue neutral after accounting for taxes generated by the UBI, we found that each person above eighteen could be given $\$14,262.99$ annually.\ospc
 
 Again, nearly every tax-unit sees an increase in total tax liability. As with the initial UBI policy, there are a small number of tax-units who actually saw their total liability decrease of $\$1,436$ on average. This is again likely due to the removal of taxable Social Security benefits from these tax units, as on average they received $\$41,117$ compared to $\$18,611$ in UBI.\ospc
 
 \begin{figure}[H]
 \centering
-\caption{Average Primary Earner MTR Change by Percentileof AGI}
-\includegraphics[scale=1.0]{e3}
+\caption{Average Primary Earner MTR Change by Percentile of AGI}
+\includegraphics[scale=0.650]{e3}
 %\floatfoot{A note}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \caption{Average Secondary Earner MTR Change by Percentile of AGI}
-\includegraphics[scale=1.0]{e4}
+\includegraphics[scale=0.650]{e4}
 %\floatfoot{A note}
 \end{figure}
 
 As with our first UBI policy, the largest changes in marginal tax rates are seen in the lower end of the income spectrum as those who earn the least are pushed into higher tax brackets by the UBI and tax benefits from the standard deduction and personal exemptions are removed.
 
 \begin{table}[H]
-\caption{Effects of Tax Reform, Welfare Programs, and UBI by Percentile of AGI}
+\caption{Increase in Tax Liabilities by Percentile of AGI}
 \begin{center}
 \begin{adjustbox}{max width=\textwidth}
 \input{e1_df.txt}
@@ -271,21 +273,21 @@ As with our first UBI policy, the largest changes in marginal tax rates are seen
 
 \begin{figure}[H]
 \centering
-\caption{Average Dollar Change by Percentile of AGI}
-\includegraphics[scale=1.0]{e1}
+\caption{Average Change in Tax Liabilities by Percentile of AGI}
+\includegraphics[scale=0.650]{e1}
 %\floatfoot{A note}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\caption{Total Revenue Impact by Percentile of AGI}
-\includegraphics[scale=1.0]{e2}
+\caption{Total Change in Tax Liabilities by Percentile of AGI}
+\includegraphics[scale=0.650]{e2}
 %\floatfoot{A note}
 \end{figure}
 
 In dollar terms, most of the new tax burden still falls on the shoulders of higher earners. Those in the top ten percent would be responsible for more than a quarter of new liabilities compared to the three percent increase in the bottom percentile.
 
-\section{F: Tax, Welfare/Transfer, and UBI Twenty one Plus}
+\section{Tax and Welfare/Transfer Repeal with UBI for 21 Plus}
 Our final UBI is limited to only those above twenty-one. Again using the goal of revenue neutrality after accounting for taxes on the additional income, we found that a UBI of $\$15,068$ could be given to all above twenty-one. 
 
 Unlike when the UBI was given to all above eighteen, in this policy, the additional tax liabilities offset any drop in liabilities resulting from the loss of taxable benefits so no tax-units see a drop in taxes. As with the previously discussed reforms, the progressivity of the tax effects is still maintained despite large marginal tax rate increases in the bottom percentiles.
@@ -303,33 +305,33 @@ Unlike when the UBI was given to all above eighteen, in this policy, the additio
 
 \begin{figure}[H]
 \centering
-\caption{Average Dollar Change by Percentile of AGI}
-\includegraphics[scale=1.0]{f1}
+\caption{Average Change in Tax Liabilities by Percentile of AGI}
+\includegraphics[scale=0.650]{f1}
 %\floatfoot{A note}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\caption{Total Revenue Impact by Percentile of AGI}
-\includegraphics[scale=1.0]{f2}
+\caption{Total Change in Tax Liabilities by Percentile of AGI}
+\includegraphics[scale=0.650]{f2}
 %\floatfoot{A note}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \caption{Average Primary Earner MTR Change by Percentileof AGI}
-\includegraphics[scale=1.0]{f3}
+\includegraphics[scale=0.650]{f3}
 %\floatfoot{A note}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \caption{Average Secondary Earner MTR Change by Percentile of AGI}
-\includegraphics[scale=1.0]{f4}
+\includegraphics[scale=0.650]{f4}
 %\floatfoot{A note}
 \end{figure}
 
-\section{G: Tax, Welfare/Transfer, and UBI all -- Dynamic}
+\section{Tax and Welfare/Transfer Repeal with UBI for All (Dynamic)}
 To this point, we have assumed no change in behavior stemming from either tax reform or UBI implementation. Using Tax-Calculator’s behavioral analysis capabilities, we repeated simulations of a UBI for all, for those above $18$, and those above $21$. These simulations are accompanied by an income effect of $-0.05$ and a substitution effect of $0.24$.\footnote{Our elasticities are based on Harris (2015). Both the tax reform package and UBI policies specified in this paper increase marginal and average tax rates. By itself, the substitution effect dictates this result in a decrease in the labor supply, while the offsetting income effect implies an increase in labor supply.}
 
 \begin{table}[H]
@@ -348,33 +350,33 @@ Implement a taxable UBI for 21 and over that neutralizes the revenue impact on a
 
 \begin{figure}[H]
 \centering
-\caption{Average Dollar Change by Percentile of AGI}
-\includegraphics[scale=1.0]{g1}
+\caption{Average Change in Tax Liabilities by Percentile of AGI}
+\includegraphics[scale=0.650]{g1}
 %\floatfoot{A note}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\caption{Total Revenue Impact by Percentile of AGI}
-\includegraphics[scale=1.0]{g2}
+\caption{Total Change in Tax Liabilities by Percentile of AGI}
+\includegraphics[scale=0.650]{g2}
 %\floatfoot{A note}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \caption{Average Primary Earner MTR Change by Percentileof AGI}
-\includegraphics[scale=1.0]{g3}
+\includegraphics[scale=0.650]{g3}
 %\floatfoot{A note}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \caption{Average Secondary Earner MTR Change by Percentile of AGI}
-\includegraphics[scale=1.0]{g4}
+\includegraphics[scale=0.650]{g4}
 %\floatfoot{A note}
 \end{figure}
 
-\section{H: Tax, Welfare/Transfer, and UBI Eighteen Plus -- Dynamic}
+\section{Tax and Welfare/Transfer Repeal with UBI for 18 Plus (Dynamic)}
 This section implements a taxable UBI of $\$11,490$ for individuals $18$ years of age and performs a dynamic simulation. Increases in tax liability are similar in both static and dynamic simulations: the static simulation raises total tax liabilities by $\$1.364$ trillion while the dynamic simulation raises tax liabilities by $\$1.371$ trillion. Of this increase in tax liability, $26.09\%$ is borne by those in the highest AGI percentile. Those in the lowest AGI percentile only face $3.66\%$ of the total increase in tax liability. This amounts to an average $\$3,081$ increase for tax units in the lowest income percentile. The following table shows the complete impact of these reforms on liability by AGI percentile.
 
 \begin{table}[H]
@@ -392,15 +394,15 @@ The impact of these reforms on tax liability are also shown in the following bar
 
 \begin{figure}[H]
 \centering
-\caption{Average Dollar Change by Percentile of AGI}
-\includegraphics[scale=1.0]{h1}
+\caption{Average Change in Tax Liabilities by Percentile of AGI}
+\includegraphics[scale=0.650]{h1}
 %\floatfoot{A note}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\caption{Total Revenue Impact by Percentile of AGI}
-\includegraphics[scale=1.0]{h2}
+\caption{Total Change in Tax Liabilities by Percentile of AGI}
+\includegraphics[scale=0.650]{h2}
 %\floatfoot{A note}
 \end{figure}
 
@@ -408,23 +410,23 @@ These reforms do have a regressive impact on the MTR, raising the MTR for low an
 
 \begin{figure}[H]
 \centering
-\caption{Average Primary Earner MTR Change by Percentileof AGI}
-\includegraphics[scale=1.0]{h3}
+\caption{Average Primary Earner MTR Change by Percentile of AGI}
+\includegraphics[scale=0.650]{h3}
 %\floatfoot{A note}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \caption{Average Secondary Earner MTR Change by Percentile of AGI}
-\includegraphics[scale=1.0]{h4}
+\includegraphics[scale=0.650]{h4}
 %\floatfoot{A note}
 \end{figure}
 
-\section{I: Tax, Welfare/Transfer, and UBI Twenty one Plus -- Dynamic}
+\section{Tax and Welfare/Transfer Repeal with UBI for 21 Plus (Dynamic)}
 This section implements a taxable UBI of $\$12,126$ for those over $21$ years of age and performs a dynamic simulation. These reforms increased total tax liabilities by $\$1.375$ trillion. The increase in tax liability is largest for those with the highest incomes. Of the total increase in tax liabilities, $26.21\%$ are paid by those in the top income percentile. Those with the lowest incomes face a comparatively smaller increase in the tax liability, accounting for $3.45\%$ of the total increase in tax liabilities. This equates to an average increase in $\$2,914$ for those with the lowest incomes. The following table shows complete results.
 
 \begin{table}[H]
-\caption{Tax Liability by Percentile of AGI}
+\caption{Change in Tax Liabilities by Percentile of AGI}
 
 \begin{center}
 \begin{adjustbox}{max width=\textwidth}
@@ -438,15 +440,15 @@ The impact of these reforms on tax liabilities are also illustrated in the follo
 
 \begin{figure}[H]
 \centering
-\caption{Average Dollar Change by Percentile of AGI}
-\includegraphics[scale=1.0]{i1}
+\caption{Average Change in Tax Liabilities by Percentile of AGI}
+\includegraphics[scale=0.650]{i1}
 %\floatfoot{A note}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\caption{Total Revenue Impact by Percentile of AGI}
-\includegraphics[scale=1.0]{i2}
+\caption{Total Change in Tax Liabilities by Percentile of AGI}
+\includegraphics[scale=0.650]{i2}
 %\floatfoot{A note}
 \end{figure}
 
@@ -456,18 +458,18 @@ Primary earners with low incomes experience a large increase in MTR of between $
 \begin{figure}[H]
 \centering
 \caption{Average Primary Earner MTR Change by Percentileof AGI}
-\includegraphics[scale=1.0]{i3}
+\includegraphics[scale=0.650]{i3}
 %\floatfoot{A note}
 \end{figure}
 
 \begin{figure}[H]
 \centering
 \caption{Average Secondary Earner MTR Change by Percentile of AGI}
-\includegraphics[scale=1.0]{i4}
+\includegraphics[scale=0.650]{i4}
 %\floatfoot{A note}
 \end{figure}
 
-\section{J: Tax, Welfare/Transfer, UBI, and Behavior}
+\section{Adjusted Welfare Calculations}
 This section evaluates the welfare effects of a UBI for all using dollar-welfare and adjusted baseline welfare calculations. A dollar-welfare measure sets the value of a welfare or transfer program per tax unit equal to the average cost. This method is inaccurate if the recipients do not receive a benefit worth the program’s per capita cost because of deadweight loss.\footnote{ O'Higgins (1981) provides the example of educational benefits, which when measured by the cost per capita method would inflate if teachers received increased wages. This would lead to a higher estimated value to students despite the wage increase having no actual impact on education provision. The corollary can also be true when economies of scale are considered: a government may be able to purchase a good or service in bulk and demand a lower price, despite the services being valued more. To avoid these problems, in-kind health care provision should be valued a risk-related insurance approach. Individuals are assigned a dollar benefit (the actuarily fair premium price) based upon average spending according to their age and sex. Callan (2008) explains that consumption of health services is not considered, as this would suggest those most sick and in need of medical treatment have greater resources. Smeeding (1993) writes that the average cost of the benefit may overstate it, as recipients may prefer to spend corresponding cash on other goods and services.} The size of the deadweight loss depends on the recipient’s infra-marginality with respect to the program’s benefit. If the recipient is infra-marginal, meaning they will spend more than a given program’s benefit on a good or service, there is little to no welfare loss. In this case, the benefit recipient is going to spend at least as much as the welfare program provides, leaving them to make marginal consumption decisions. If the value of the program exceeds the amount the recipient would pay for a good or service (the recipient is not infra-marginal), a deadweight loss results from the recipient consuming more than they otherwise would. In this case, the recipient would be better off with cash for the value of the benefit exceeding their desired consumption level.\footnote{Example: A household receives a heating fuel subsidy for an amount in excess of their desired heating fuel consumption. The household is best off consuming the maximum amount of heating fuel provided by the program although they may be better off restricting their consumption and receiving the remainder of the subsidy in cash (which they could spend on other goods).} This deadweight loss is partially offset by the improved targeting of beneficiaries.
 
 To account for these deadweight losses, we employ welfare multiples that can be applied to each dollar spent on a specific program to approximate the value to recipients. These multiples are derived from the literature.\footnote{See the appendix for a table of welfare multiples from the literature.} These multiples allow for a more accurate calculation of welfare programs' benefits to individuals.
@@ -525,7 +527,7 @@ The following three tables show the average and total welfare resulting from rem
 
 
 \begin{table}[H]
-\caption{Average Welfare}
+\caption{Average Welfare by Percentile}
 \begin{center}
 \begin{adjustbox}{max width=\textwidth}
 \input{j6_df.txt}
@@ -536,7 +538,7 @@ The following three tables show the average and total welfare resulting from rem
 
 
 \begin{table}[H]
-\caption{Total Welfare}
+\caption{Total Welfare by Percentile}
 \begin{center}
 \begin{adjustbox}{max width=\textwidth}
 \input{j7_df.txt}
@@ -550,7 +552,7 @@ The following bar chart illustrates the welfare effects of implementing a range 
 \begin{figure}[H]
 \centering
 \caption{Welfare Effects of UBI}
-\includegraphics[scale=1.0]{j1}
+\includegraphics[scale=0.650]{j1}
 \floatfoot{Welfare only includes government transfer and transfer programs.}
 \end{figure}
 
@@ -590,6 +592,20 @@ The following bar chart illustrates the welfare effects of implementing a range 
 \subsection{OSPC's Tax Calculator}
 OSPC’s Tax-Calculator is an open source microsimulation tax model that can be used to simulate changes to federal tax policy to conduct revenue scoring, distributional impact, and, as seen in this paper, the implementation of a universal basic income. The model is continually being updated as contributions are made, so the results from the calculations seen in this paper may change as improvements are merged in.
 
+\subsection{Data}
+This paper utilizes two sets of data: the 2009 IRS Public Use File (PUF) and the 2014 Current Population Survey (CPS). The CPS was modified to include the imputed welfare benefit data used in Part A so we can assess the benefits paid out for specific programs.
+
+Part A uses only the modified CPS data after it has undergone a procedure to create tax unit equivalents. At a high level, it is assumed that there is at least one tax unit per household in the CPS, and each household can be categorized in one of three ways: single persons living alone, individuals living in group quarters, and all other family structures.
+
+In the first two structures, each individual is assumed to be one tax unit. For all other household types, the program iterates through each individual in the household, building a tax unit from the relationships implied by the data.
+
+The code for the tax unit creation process is available on \href{https://github.com/open-source-economics/taxdata}{GitHub}.
+
+After the CPS based tax units are created, a fully constrained, predictive mean matching process is performed between the CPS file and the PUF to create a final matched-PUF file. The matching procedure partitions the CPS and PUF files across several dimensions and matches the two files within each dimension to create fully representative tax units. The dataset is then extrapolated in three stages.
+
+Stage one uses per capita adjustment factors derived from the CBO economic outlook to ensure the aggregated variables match macroeconomic growth rate projections. In stage two, a a linear programming algorithm is applied to adjust the weights on each record so that specified variables sum up to their targets. Stage three applies adjustment ratios to targeted variables to fine-tune their distribution so that it is consistent with that found in publicly available IRS data.
+
+\pagebreak
 \subsection{Welfare and Transfer Programs}
 The following table shows the welfare and transfer programs programs were cut as part of the reforms. 
 
@@ -602,7 +618,7 @@ The following table shows the welfare and transfer programs programs were cut as
 \toprule
 Program & Cost (million \$) \\
 \midrule
-Railroad retirement (excl. social security) & 8,803 \\
+Railroad retirement (excl. social security ) & 8,803 \\
 Unemployment Assistance & 43,504 \\
 Children's health insurance & 9,317 \\
 Indian health & 4,510 \\
@@ -628,12 +644,12 @@ Aging services programs & 1,462 \\
 Energy employees compensation fund & 1,052 \\
 September 11th victim compensation & 49 \\
 Refugee assistance and other & 4,403 \\
-351 Farm income stabilization & 20,012 \\
-352 Agricultural research and services & 4,374 \\
-451 Community development & 7,896 \\
-452 Area and regional development & 3,027 \\
-453 Disaster relief and insurance & 9,747 \\
-506 Social services & 17,299 \\
+Farm income stabilization (351) & 20,012 \\
+Agricultural research and services (352) & 4,374 \\
+Community development (451) & 7,896 \\
+Area and regional development (452) & 3,027 \\
+Disaster relief and insurance (453) & 9,747 \\
+Social services (506) & 17,299 \\
 Medicare & 505,053 \\
 Medicaid & 401,201 \\
 SSI & 56,068 \\
@@ -647,19 +663,6 @@ Veterans' Benefits & 134,672 \\
 %\floatfoot{Source: Literature and author's calculations.}
 \end{table}
 \doublespacing 
-
-\subsection{Data}
-This paper utilizes two sets of data: the 2009 IRS Public Use File (PUF) and the 2014 Current Population Survey (CPS). The CPS was modified to include the imputed welfare benefit data used in Part A so we can assess the benefits paid out for specific programs.
-
-Part A uses only the modified CPS data after it has undergone a procedure to create tax unit equivalents. At a high level, it is assumed that there is at least one tax unit per household in the CPS, and each household can be categorized in one of three ways: single persons living alone, individuals living in group quarters, and all other family structures.
-
-In the first two structures, each individual is assumed to be one tax unit. For all other household types, the program iterates through each individual in the household, building a tax unit from the relationships implied by the data.
-
-The code for the tax unit creation process is available on \href{https://github.com/open-source-economics/taxdata}{GitHub}.
-
-After the CPS based tax units are created, a fully constrained, predictive mean matching process is performed between the CPS file and the PUF to create a final matched-PUF file. The matching procedure partitions the CPS and PUF files across several dimensions and matches the two files within each dimension to create fully representative tax units. The dataset is then extrapolated in three stages.
-
-Stage one uses per capita adjustment factors derived from the CBO economic outlook to ensure the aggregated variables match macroeconomic growth rate projections. In stage two, a a linear programming algorithm is applied to adjust the weights on each record so that specified variables sum up to their targets. Stage three applies adjustment ratios to targeted variables to fine-tune their distribution so that it is consistent with that found in publicly available IRS data.
 
 \subsection{Benefit Data Imputation}
 Benefit and participation levels for welfare and transfer programs are consistently underreported in the Current Population Survey, making it difficult to get a true dollar figure for the cost of each program. To account for this, individual benefit levels for Supplemental Security Income (SSI), Supplemental Nutrition Assistance Program (SNAP), Veterans’ Benefits, Social Security, Medicare, and Medicaid were imputed using the open-source CPS Transfer Augmentation Model (C-TAM). C-TAM corrects for under-reported benefit use, imputes benefit payments where they are excluded, and imputes the marginal tax rate of these welfare and transfer programs. C-TAM can be found on \href{http://www.github.com/open-source-economics/benefits}{GitHub}.
