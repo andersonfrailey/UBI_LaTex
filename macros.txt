@@ -14,3 +14,5 @@ UBI for those above 18 (part G),              gxaa,       9885.10
 UBI for those below 18 (part G),              gxab,       4942.55 
 UBI for those above 18 (part H),              hxaa,       11678.65 
 UBI for those above 21 (part I),              ixaa,       12325.70
+
+inserts fotnote citing TaxCalc                \ospc       Author's calculations using OSPC Tax-Calculator.
