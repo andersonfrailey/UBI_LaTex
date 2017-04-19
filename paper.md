@@ -188,12 +188,14 @@ These reforms result in $\$2.9$ trillion that can be used to fund a UBI.
 %\floatfoot{A note}
 %\end{figure}
 
+% Section 5
 \section{Tax and Welfare/Transfer Repeal with UBI for All}
 
-Rather than set and arbitrary amount as a UBI and then search for cuts and reforms in order to pay for it, we took the savings from the previously discussed welfare and tax reforms, as well as the additional tax revenues that would be gained by making the UBI taxable, and used our models to determine how much could be given to each person while keeping the policy revenue neutral.
+This section uses the \axag{}trillion dollars saved from the reforms outlined in section four to a UBI for all individuals. This UBI is designed to be taxable, revenue neutral, and provide $50$ percent of the adult UBI to those under the age of $18$. When accounting for the section four reforms and the additional revenue from taxing the UBI, it is possible to impliment a revenue neutral UBI of \dxaa{}dollars for those above the age of 18 and \dxab{}dollars for those under the age of 18.\footnote{Author's calculations using OSPC Tax-Calculator.} The effect of this policy on tax liabilities can be see in table \ref{table:d1}.  
 
 \begin{table}[H]
 \caption{Increase in Tax Liabilities by Percentile of AGI}
+\label{table:d1}
 \begin{center}
 \begin{adjustbox}{max width=\textwidth}
 \input{d1_df.txt}
@@ -202,9 +204,9 @@ Rather than set and arbitrary amount as a UBI and then search for cuts and refor
 \floatfoot{Source: Author's calculations using OSPC calculator.}
 \end{table}
 
-The first UBI policy we modeled was programmed to provide a basic income for the entire population, with those below eighteen receiving half of what those above eighteen did. We found that a UBI of $\$12,068.06$ for all those above $18$ and $\$6,034.03$ for all below is feasible.\footnote{Author's calculations using OSPC Tax-Calculator.} The combination of ending policies that lower tax liability and making the UBI taxable increase tax liabilities across the board. Income received through the UBI by itself moves all non-head-of-household filers from the ten to the fifteen percent tax bracket. The increase is apparent when analyzing the marginal tax rate faced by each income percentile compared to the baseline.
+The combination of repealing tax deductions and exemptions which lower tax liability and taxing the UBI results in greater tax liabilities for all income earners. UBI income moves all non-head-of-household filers from the ten to the $15$ percent tax bracket. Total increased tax liabilities of $\$1.36$ trillion are paid largely by high income earners. The bottom $20$ percent pays $9.66$ percent of the increased tax liabilities while the top $20$ percent pays $41.71$ percent of the increased tax liabilities. 
 
-Despite this, There are a handful of tax-units who do see a tax cut. This is likely due to a lack of taxable Social Security income. Of the tax-units receiving a tax cut, their average Social Security income before repeal was $\$38,407$, compared to an average UBI benefit of $\$16,180$ and less than one tenth of one percent of all tax-units would see their tax liabilities decrease.
+There are a handful of tax-units who do see a tax cut: this is due to the repeal of the Social Security and thereforce Social Security income. Of the tax-units receiving a tax cut, their average Social Security income before repeal was $\$38,407$, compared to an average UBI benefit of $\$16,180$ and less than one tenth of one percent of all tax-units would see their tax liabilities decrease.
 
 
 \begin{figure}[H]
