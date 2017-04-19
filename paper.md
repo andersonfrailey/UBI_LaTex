@@ -143,7 +143,7 @@ The reforms lead to almost across the board marginal tax rate (MTR) increases, t
 % Section 4
 \section{Tax and Welfare/Transfer Repeal}
 
-This section combines the welfare and transfer repeal from section two and tax reform from section three to examine the joint distributional impact. The top ten percent of earners see an average negative impact of just over $\$30,000$ compared to slightly more than $\$15,000$ in the bottom ten percent. The top $20$ percent experiences $30.21$ percent of the increase in tax liabilities, while the lowest $20$ percent pay $16.28$ percent of the increase in tax liabilities. 
+This section combines the welfare and transfer repeal from section two and tax reform from section three to examine the joint distributional impact. The top ten percent of earners see an average negative impact of just over $\$30,000$ compared to slightly more than $\$15,000$ in the bottom ten percent. The top $20$ percent experiences $30.21$ percent of the increase in tax liabilities, while the lowest $20$ percent pay $16.28$ percent of the increase in tax liabilities (Question: is this supposed to refer to the % of the negative impact rather than the tax liabilities?-Anderson). 
 
 \begin{table}[H]
 \caption{Revenue Effect of Benefit and Tax Repeal}
@@ -155,7 +155,7 @@ This section combines the welfare and transfer repeal from section two and tax r
 \floatfoot{Source: Author's calculations using OSPC calculator.}
 \end{table}
 
-Reforming the tax code to remove deductions, exemptions, and other provisions that narrow the base as well as repealing most programs that distribute payment to individuals, $\$2.9$ trillion was freed to apply to a UBI.
+Combined, reforming the tax code to remove deductions, exemptions, and other provisions that narrow the base as well as repealing most programs that distribute payment to individuals, freed $\$2.9$ trillion to apply to a UBI.
 
 \begin{figure}[H]
 \centering
@@ -171,19 +171,17 @@ Reforming the tax code to remove deductions, exemptions, and other provisions th
 %\floatfoot{A note}
 \end{figure}
 
-These reforms result in $\$2.9$ trillion that can be used to fund a UBI.  
-
 % the following tables DO NOT EXIST as of 4-11-2017
 %\begin{figure}[H]
 %\centering
-%\caption{Average Primary Earner MTR Change by Percentileof AGI}
+%\caption{Average Primary Earner MTR by Percentileof AGI}
 %\includegraphics[scale=0.650]{c3}
 %\floatfoot{A note}
 %\end{figure}
 
 %\begin{figure}[H]
 %\centering
-%\caption{Average Secondary Earner MTR Change by Percentile of AGI}
+%\caption{Average Secondary Earner MTR by Percentile of AGI}
 %\includegraphics[scale=0.650]{c4}
 %\floatfoot{A note}
 %\end{figure}
@@ -191,7 +189,7 @@ These reforms result in $\$2.9$ trillion that can be used to fund a UBI.
 % Section 5
 \section{Tax and Welfare/Transfer Repeal with UBI for All}
 
-This section uses the \$\axag{}trillion saved from the reforms outlined in section four to a UBI for all individuals. This UBI is designed to be taxable, revenue neutral, and provide $50$ percent of the adult UBI to those under the age of $18$. When accounting for the section four reforms and the additional revenue from taxing the UBI, it is possible to impliment a revenue neutral UBI of \$\dxaa{}for those above the age of 18 and \$\dxab{}for those under the age of 18.\ospc The effect of this policy on tax liabilities can be see in table \ref{table:d1}.  
+The first UBI policy modeled provides a UBI to all individuals with those under the age of eighteen receiving half of what those above do. We programmed the model to set a UBI that would be revenue neutral after accounting for all of the reforms in section four and the new tax revenue that results from making the UBI taxable. We found that we could achieve revenue neutrality with a UBI of \$\dxaa{}for those above the age of 18 and \$\dxab{}for those under the age of 18.\ospc The effect of this policy on tax liabilities can be see in table \ref{table:d1}.  
 
 \begin{table}[H]
 \caption{Increase in Tax Liabilities by Percentile of AGI}
@@ -204,21 +202,21 @@ This section uses the \$\axag{}trillion saved from the reforms outlined in secti
 \floatfoot{Source: Author's calculations using OSPC calculator.}
 \end{table}
 
-The combination of repealing tax deductions and exemptions which lower tax liability and taxing the UBI results in greater tax liabilities for all income earners. UBI income moves all non-head-of-household filers from the ten to the $15$ percent tax bracket. Total increased tax liabilities of $\$1.36$ trillion are paid largely by high income earners. The bottom $20$ percent pays $9.66$ percent of the increased tax liabilities while the top $20$ percent pays $41.71$ percent of the increased tax liabilities. 
+The combination of repealing tax deductions and exemptions which lower tax liability and taxing the UBI results in greater tax liabilities for all income earners. The UBI alone moves all non-head-of-household filers from the $10$ to the $15$ percent tax bracket. Total increased tax liabilities of $\$1.36$ trillion are paid largely by high income earners. The bottom $20$ percent pays $9.66$ percent of the increased tax liabilities while the top $20$ percent pays $41.71$ percent of the increased tax liabilities. 
 
-There are a handful of tax-units who do see a tax cut: this is due to the repeal of the Social Security and thereforce Social Security income. Of the tax-units receiving a tax cut, their average Social Security income before repeal was $\$38,407$, compared to an average UBI benefit of $\$16,180$ and less than one tenth of one percent of all tax-units would see their tax liabilities decrease.
+There are a handful of tax-units who do see a tax cut: this is due to the repeal of the Social Security and therefore taxable Social Security income. Of the tax-units receiving a tax cut, less than one tenth of one percent of all units, their average Social Security income before repeal was $\$38,407$, compared to an average UBI benefit of $\$16,180$.
 
 
 \begin{figure}[H]
 \centering
-\caption{Average Primary Earner MTR Change by Percentile of AGI}
+\caption{Average Primary Earner MTR by Percentile of AGI}
 \includegraphics[scale=0.650]{d3}
 %\floatfoot{A note}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\caption{Average Secondary Earner MTR Change by Percentile of AGI}
+\caption{Average Secondary Earner MTR by Percentile of AGI}
 \includegraphics[scale=0.650]{d4}
 %\floatfoot{A note}
 \end{figure}
@@ -241,7 +239,7 @@ As a whole, the tax effects of a UBI are largely progressive, with the top twent
 %\floatfoot{A note}
 \end{figure}
 
-Because everyone, regardless of age, receives a basic income, this policy is friendly to families with children compared to the other two options simulated which exclude anyone under eighteen initially and then all those under twenty-one.
+Because everyone, regardless of age, receives a basic income, this policy is most friendly to families with children of our three options simulated, one of which excludes anyone under eighteen initially and the other all those under twenty-one.
 
 % Section 6
 \section{Tax and Welfare/Transfer Repeal with UBI for 18 Plus}
