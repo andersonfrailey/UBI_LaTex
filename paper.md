@@ -585,8 +585,7 @@ The following bar chart illustrates the welfare effects of implementing a range 
 
 \bibitem{bib09} Smeeding, Timothy M. and Peter Saunders, John Coder, Stephen Jenkins, Johan Fritzell, Aldi J. M. Hagenaars, Richard Hauser, and Michael Wolfson. "Poverty, Inequality, and Family Living Standards Impacts Across Seven Nations: The Effect of Noncash Subsidies for Health, Education and Housing." \textit{Review of Income and Wealth}. Vol. 39, No. 3. (1993), pp. 229-256.\\ \texttt{http://www.roiw.org/1993/229.pdf}
 
-\bibitem{bib10} Harris, Edward and Shannon Mok, "How CBO Estimates the Effects of the Affordable Care Act on the Labor Market." Congressional Budget Office. Working Paper 2015-09 (December, 2015).\\ 
-\texttt{$http://www.cbo.gov/sites/default/files/114th-congress-2015-2016/workingpaper/51065-ACA_Labor_Market_Effects_WP.pdf$}
+\bibitem{bib10} Harris, Edward and Shannon Mok, "How CBO Estimates the Effects of the Affordable Care Act on the Labor Market." Congressional Budget Office. Working Paper 2015-09 (December, 2015).\\ \texttt{https://www.cbo.gov/publication/51065}
 
 \end{thebibliography}
  
