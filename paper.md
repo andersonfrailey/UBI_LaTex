@@ -246,7 +246,7 @@ As a whole, the tax effects of a UBI are largely progressive, with the top twent
 %\floatfoot{A note}
 \end{figure}
 
-Because everyone, regardless of age, receives a basic income, this policy is most friendly to families with children of our three options simulated, one of which excludes anyone under eighteen initially and the other all those under twenty-one.
+Because everyone, regardless of age, receives a basic income, this policy is most friendly to families with children of our three options simulated, one of which excludes anyone under eighteen and the other all those under twenty-one.
 
 \begin{figure}[H]
 \centering
