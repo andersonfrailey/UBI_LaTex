@@ -352,8 +352,6 @@ To this point, we have assumed no change in behavior stemming from either tax re
 
 Implement a taxable UBI for 21 and over that neutralizes the revenue impact on a static basis. Combine with (C). Include the same descriptions/plots/tables as above.
 
-
-
 \begin{figure}[H]
 \centering
 \caption{Average Change in Tax Liabilities by Percentile of AGI}
@@ -382,12 +380,12 @@ Implement a taxable UBI for 21 and over that neutralizes the revenue impact on a
 %\floatfoot{A note}
 \end{figure}
 
+% Section 9
 \section{Tax and Welfare/Transfer Repeal with UBI for 18 Plus (Dynamic)}
-This section implements a taxable UBI of $\$11,490$ for individuals $18$ years of age and performs a dynamic simulation. Increases in tax liability are similar in both static and dynamic simulations: the static simulation raises total tax liabilities by $\$1.364$ trillion while the dynamic simulation raises tax liabilities by $\$1.371$ trillion. Of this increase in tax liability, $26.09\%$ is borne by those in the highest AGI percentile. Those in the lowest AGI percentile only face $3.66\%$ of the total increase in tax liability. This amounts to an average $\$3,081$ increase for tax units in the lowest income percentile. The following table shows the complete impact of these reforms on liability by AGI percentile.
+This section implements a taxable UBI of \$\hxaa{}for individuals at least $18$ years and performs a dynamic simulation. Increases in tax liability are similar in both static and dynamic simulations: the static simulation raises total tax liabilities by $\$1.364$ trillion while the dynamic simulation raises tax liabilities by $\$1.371$ trillion. Of this increase in tax liability, $26.09$ percent is borne by those in the highest AGI percentile. Those in the lowest AGI percentile only face $3.66$ percent of the total increase in tax liability. This amounts to an average $\$3,081$ increase for tax units in the lowest income percentile. The following table shows the complete impact of these reforms on liability by AGI percentile.
 
 \begin{table}[H]
 \caption{Tax Liability by Percentile of AGI}
-
 \begin{center}
 \begin{adjustbox}{max width=\textwidth}
 \input{h1_df.txt}
@@ -412,7 +410,7 @@ The impact of these reforms on tax liability are also shown in the following bar
 %\floatfoot{A note}
 \end{figure}
 
-These reforms do have a regressive impact on the MTR, raising the MTR for low and medium income earners while leaving the MTR largely unchanged for high income earners. This results in an increase in the MTR of approximately $10$ percentage points for primary income earners in the l lowest two income percentiles. Primary earners with medium incomes experience an average increase in the MTR of approximately $5$ percentage points. Secondary income earners experience an even larger increase in MTR, with an increase of $20$ percentage points for the lowest two income percentiles and an increase of approximately $10$ percentage points for those with medium incomes. Those in the $30\%$ to $40\%$ income percentile see little change in their MTR, as the baseline rapidly increases for these individuals. These results are illustrated in the following charts. 
+These reforms have a regressive impact on the MTR, raising it for low and medium income earners while leaving it largely unchanged for high income earners. This results in an increase in the MTR of approximately $10$ percentage points for primary income earners in the l lowest two income percentiles. Primary earners with medium incomes experience an average increase in the MTR of approximately $5$ percentage points. Secondary income earners experience an even larger increase in MTR, with an increase of $20$ percentage points for the lowest two income percentiles and an increase of approximately $10$ percentage points for those with medium incomes. Those in the $30\%$ to $40\%$ income percentile see little change in their MTR, as the baseline rapidly increases for these individuals. These results are illustrated in the following charts. 
 
 \begin{figure}[H]
 \centering
