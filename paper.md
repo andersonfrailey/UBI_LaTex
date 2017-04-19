@@ -97,7 +97,7 @@ These reforms have similar tax effects for both primary and secondary earners, r
 \section{Tax Exemption and Deduction Repeal}
 The current tax code is littered with numerous exemptions and deductions designed to give certain segments of the population tax breaks. These provisions narrow the tax base, distort tax unit consumption decisions, and have disperate effects across the income distribution.  In addition to repealing all welfare and transfer programs, we repeal all above-the-line, standard, and itemized deductions (excluding the charitable deduction); all tax credits; the personal exemption; and the earned income tax credit.
 
-With the repeal of the aforementioned tax provisions, roughly $92$ percent of tax units will face a tax increase resulting in $\$708$ billion in new liabilities, nearly half of that falling on the top twenty percent of earners.\footnote{Author’s calculations using OSPC Tax-Calculator.} The bottom $20$ percent of income earners face $3.68$ percent of the increase in tax liabilities, while the top $20$ percent experience face $49.01$ percent of the increase in liabilities. 
+With the repeal of the aforementioned tax provisions, roughly $92$ percent of tax units will face a tax increase resulting in $\$708$ billion in new liabilities, nearly half of that falling on the top twenty percent of earners -- $49.01$ percent -- compared to the $3.68$ percent borne by the bottom twenty percent.\footnote{Author’s calculations using OSPC Tax-Calculator.}
 
 \begin{table}[H]
 \caption{Tax Liability by Percentile of AGI}
@@ -123,7 +123,7 @@ With the repeal of the aforementioned tax provisions, roughly $92$ percent of ta
 %\floatfoot{A note}
 \end{figure}
 
-The reforms lead to almost across the board marginal tax rate (MTR) increases, the largest of which are seen at the lower end of the income spectrum. The bottom quarter of earners see their marginal net-of-tax rate $(1 - MTR)$ increase 17 percentage points for both primary and secondary earners.\footnote{Author’s calculations using OSPC Tax-Calculator.}
+The reforms lead to almost across the board marginal tax rate (MTR) increases, the largest of which are seen at the lower end of the income spectrum. The bottom quarter of earners see their marginal net-of-tax rate $(1 - MTR)$ decrease by 17 percentage points for both primary and secondary earners.\footnote{Author’s calculations using OSPC Tax-Calculator.}
 
 
 \begin{figure}[H]
