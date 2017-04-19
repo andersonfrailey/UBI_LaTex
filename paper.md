@@ -60,7 +60,7 @@ Widening inequality and increasing job disruption due to technology have increas
 
 % Section 2
 \section{Welfare/Transfer Program Repeal}
-We begin by repealing all welfare and transfer programs including Medicare, Medicaid, SSI, SNAP, Social Security, and Veterans Benefits.\footnote{Program payments imputed using OSPC C-TAM model. A full description of the model can be found in the appendix.} We also repealed unemployment insurance, housing assistance, and student aid; related public assistance; and most other individual payment programs.\footnote{A full list of the programs repealed and their costs can be found in the appendix.} We account for decreased tax revenue from the repeal of Social Security benefits, which are taxed under the current system. Repealing these programs yields \axag{}trillion dollars in funds that can be used to fund the UBI.\footnote{Author's calculations using C-TAM, Tax-Calculator, and \href{https://obamawhitehouse.archives.gov/omb/budget/Historicals}{Office of Management and Budget data (\textit{Table 3.2—Outlays by Function and Subfunction: 1962–2021} and \textit{Table 11.3—Outlays for Payments for Individuals by Category and Major Program: 1940–2021).}}} The effects of repealing the welfare and transfer programs are shown in the following table. 
+We begin by repealing all welfare and transfer programs including Medicare, Medicaid, SSI, SNAP, Social Security, and Veterans Benefits.\footnote{Program payments imputed using OSPC C-TAM model. A full description of the model can be found in the appendix.} We also repealed unemployment insurance, housing assistance, and student aid; related public assistance; and most other individual payment programs.\footnote{A full list of the programs repealed and their costs can be found in the appendix.} We account for decreased tax revenue from the repeal of Social Security benefits, which are taxed under the current system. Repealing these programs yields \$\axag{}trillion in funds that can be used to fund the UBI.\footnote{Author's calculations using C-TAM, Tax-Calculator, and \href{https://obamawhitehouse.archives.gov/omb/budget/Historicals}{Office of Management and Budget data (\textit{Table 3.2—Outlays by Function and Subfunction: 1962–2021} and \textit{Table 11.3—Outlays for Payments for Individuals by Category and Major Program: 1940–2021).}}} The effects of repealing the welfare and transfer programs are shown in the following table. 
 
 \begin{table}[H]
 \caption{Welfare and Transfer Program Repeal Effect on Benefits}
@@ -191,7 +191,7 @@ These reforms result in $\$2.9$ trillion that can be used to fund a UBI.
 % Section 5
 \section{Tax and Welfare/Transfer Repeal with UBI for All}
 
-This section uses the \axag{}trillion dollars saved from the reforms outlined in section four to a UBI for all individuals. This UBI is designed to be taxable, revenue neutral, and provide $50$ percent of the adult UBI to those under the age of $18$. When accounting for the section four reforms and the additional revenue from taxing the UBI, it is possible to impliment a revenue neutral UBI of \dxaa{}dollars for those above the age of 18 and \dxab{}dollars for those under the age of 18.\ospc The effect of this policy on tax liabilities can be see in table \ref{table:d1}.  
+This section uses the \$\axag{}trillion saved from the reforms outlined in section four to a UBI for all individuals. This UBI is designed to be taxable, revenue neutral, and provide $50$ percent of the adult UBI to those under the age of $18$. When accounting for the section four reforms and the additional revenue from taxing the UBI, it is possible to impliment a revenue neutral UBI of \$\dxaa{}for those above the age of 18 and \$\dxab{}for those under the age of 18.\ospc The effect of this policy on tax liabilities can be see in table \ref{table:d1}.  
 
 \begin{table}[H]
 \caption{Increase in Tax Liabilities by Percentile of AGI}
@@ -245,9 +245,9 @@ Because everyone, regardless of age, receives a basic income, this policy is fri
 
 % Section 6
 \section{Tax and Welfare/Transfer Repeal with UBI for 18 Plus}
-In this section we provide a basic income to individuals $18$ and older. Shrinking the targeted population allows for a larger UBI -- \exaa{}dollars instead of the \dxaa{}dollars outlined in section five.\ospc As in section five, this UBI is taxed and is ultimatley revenue neutral.
+In this section we provide a basic income to individuals $18$ and older. Shrinking the targeted population allows for a larger UBI -- \$\exaa{}instead of the \$\dxaa{} outlined in section five.\ospc As in section five, this UBI is taxed and is ultimatley revenue neutral.
 
-With the introduction of a \exaa{}dollar UBI, most tax units see a rise in tax liability and marginal tax rates. As with the initial UBI policy, there are a small number of tax-units who actually saw their total liability decrease of $\$1,436$ on average. This is again likely due to the removal of taxable Social Security benefits from these tax units, as on average they received $\$41,117$ compared to $\$18,611$ in UBI.\ospc
+With the introduction of a \$\exaa{}UBI, most tax units see a rise in tax liability and marginal tax rates. As with the initial UBI policy, there are a small number of tax-units who actually saw their total liability decrease of $\$1,436$ on average. This is again likely due to the removal of taxable Social Security benefits from these tax units, as on average they received $\$41,117$ compared to $\$18,611$ in UBI.\ospc
 
 \begin{figure}[H]
 \centering
@@ -293,7 +293,7 @@ In dollar terms, most of the new tax burden still falls on the shoulders of high
 
 % Section 7
 \section{Tax and Welfare/Transfer Repeal with UBI for 21 Plus}
-This section impliments a UBI limited to those 21 and above. Using the goal of revenue neutrality after accounting for taxes on the additional income, we found that a UBI of \fxaa{}dollars could be given to all 21 and above.
+This section impliments a UBI limited to those 21 and above. Using the goal of revenue neutrality after accounting for taxes on the additional income, we found that a UBI of \$\fxaa{} could be given to all 21 and above.
 
 Unlike when the UBI was given to all above $18$, the additional tax liabilities offset any drop in liabilities resulting from the loss of taxable benefits, so no tax units see a drop in taxes. As with the previously discussed reforms, the progressivity of the tax effects is still maintained despite large marginal tax rate increases in the bottom percentiles.
 
