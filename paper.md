@@ -162,7 +162,7 @@ This section combines the welfare and transfer repeal from section two and tax r
 \floatfoot{Source: Author's calculations using OSPC calculator.}
 \end{table}
 
-Combined, reforming the tax code to remove deductions, exemptions, and other provisions that narrow the base as well as repealing most programs that distribute payment to individuals, freed $\$2.9$ trillion to apply to a UBI.
+Combined, reforming the tax code to remove deductions, exemptions, and other provisions that narrow the base as well as repealing most programs that distribute payment to individuals freed $\$2.9$ trillion to apply to a UBI.
 
 \begin{figure}[H]
 \centering
