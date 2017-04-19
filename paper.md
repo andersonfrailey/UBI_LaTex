@@ -426,8 +426,9 @@ These reforms have a regressive impact on the MTR, raising it for low and medium
 %\floatfoot{A note}
 \end{figure}
 
+% Section 10
 \section{Tax and Welfare/Transfer Repeal with UBI for 21 Plus (Dynamic)}
-This section implements a taxable UBI of $\$12,126$ for those over $21$ years of age and performs a dynamic simulation. These reforms increased total tax liabilities by $\$1.375$ trillion. The increase in tax liability is largest for those with the highest incomes. Of the total increase in tax liabilities, $26.21\%$ are paid by those in the top income percentile. Those with the lowest incomes face a comparatively smaller increase in the tax liability, accounting for $3.45\%$ of the total increase in tax liabilities. This equates to an average increase in $\$2,914$ for those with the lowest incomes. The following table shows complete results.
+This section implements a taxable UBI of $\$12,126$ for those $21$ years of age and performs a dynamic simulation. These reforms increased total tax liabilities by $\$1.375$ trillion. The increase in tax liability is largest for those with the highest incomes. Of the total increase in tax liabilities, $26.21$ percent are paid by those in the top income percentile. Those with the lowest incomes face a comparatively smaller increase in the tax liability, accounting for $3.45$ percent of the total increase in tax liabilities. This equates to an average increase in $\$2,914$ for those with the lowest incomes. The following table shows complete results.
 
 \begin{table}[H]
 \caption{Change in Tax Liabilities by Percentile of AGI}
@@ -456,8 +457,8 @@ The impact of these reforms on tax liabilities are also illustrated in the follo
 %\floatfoot{A note}
 \end{figure}
 
-These reforms do substantially raise the MTR for low and medium earners while high income earners see their MTR largely unaffected.
-Primary earners with low incomes experience a large increase in MTR of between $10$ and $5$ percentage points. Those in the highest income percentile see little to no change in their MTR. Secondary income earners experience similar effects as those seen in the UBI above 18 dynamic simulation, with those in the first two income percentiles experiencing a $20$ percentage point MTR increase. Those in the $30\%$ to $40\%$ income percentile range experience little change in their MTR. Those with middle incomes experience $10$ percentage point increases in MTR rates.
+These reforms substantially raise the MTR for low and medium earners while the MTR for high income earners are largely unaffected.
+Primary earners with low incomes experience a large increase in MTR of between $10$ and $5$ percentage points. Those in the highest income percentile see little to no change in their MTR. Secondary income earners experience similar effects as those seen in the UBI $18$ plus dynamic simulation, with those in the first two income percentiles experiencing a $20$ percentage point MTR increase. Those in the $30\%$ to $40\%$ income percentile range experience little change in their MTR. Those with middle incomes experience $10$ percentage point increases in MTR rates.
 
 \begin{figure}[H]
 \centering
