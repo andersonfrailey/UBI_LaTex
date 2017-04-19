@@ -140,6 +140,13 @@ The reforms lead to almost across the board marginal tax rate (MTR) increases, t
 %\floatfoot{A note}
 \end{figure}
 
+\begin{figure}[H]
+\centering
+\caption{Average Pct. Change in (1-MTR) by Percentile}
+\includegraphics[scale=0.650]{b5}
+%\floatfoot{A note}
+\end{figure}
+
 % Section 4
 \section{Tax and Welfare/Transfer Repeal}
 
@@ -241,6 +248,13 @@ As a whole, the tax effects of a UBI are largely progressive, with the top twent
 
 Because everyone, regardless of age, receives a basic income, this policy is most friendly to families with children of our three options simulated, one of which excludes anyone under eighteen initially and the other all those under twenty-one.
 
+\begin{figure}[H]
+\centering
+\caption{Average Pct. Change in (1-MTR) by Percentile}
+\includegraphics[scale=0.650]{d5}
+%\floatfoot{A note}
+\end{figure}
+
 % Section 6
 \section{Tax and Welfare/Transfer Repeal with UBI for 18 Plus}
 In this section we provide a basic income to individuals $18$ and older. Shrinking the targeted population allows for a larger UBI -- \$\exaa{}instead of the \$\dxaa{} outlined in section five.\ospc As in section five, this UBI is taxed and is ultimatley revenue neutral.
@@ -284,6 +298,13 @@ As with our first UBI policy, the largest changes in marginal tax rates are seen
 \centering
 \caption{Total Change in Tax Liabilities by Percentile of AGI}
 \includegraphics[scale=0.650]{e2}
+%\floatfoot{A note}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\caption{Average Pct. Change in (1-MTR) by Percentile}
+\includegraphics[scale=0.650]{e5}
 %\floatfoot{A note}
 \end{figure}
 
@@ -332,6 +353,13 @@ Unlike when the UBI was given to all above $18$, the additional tax liabilities 
 \caption{Average Secondary Earner MTR Change by Percentile of AGI}
 \includegraphics[scale=0.650]{f4}
 %\floatfoot{A note}
+\end{figurf}
+
+\begin{figure}[H]
+\centering
+\caption{Average Pct. Change in (1-MTR) by Percentile}
+\includegraphics[scale=0.650]{f5}
+%\floatfoot{A note}
 \end{figure}
 
 % Section 8
@@ -375,6 +403,13 @@ Implement a taxable UBI for 21 and over that neutralizes the revenue impact on a
 \centering
 \caption{Average Secondary Earner MTR Change by Percentile of AGI}
 \includegraphics[scale=0.650]{g4}
+%\floatfoot{A note}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\caption{Average Pct. Change in (1-MTR) by Percentile}
+\includegraphics[scale=0.650]{g5}
 %\floatfoot{A note}
 \end{figure}
 
@@ -424,6 +459,13 @@ These reforms have a regressive impact on the MTR, raising it for low and medium
 %\floatfoot{A note}
 \end{figure}
 
+\begin{figure}[H]
+\centering
+\caption{Average Pct. Change in (1-MTR) by Percentile}
+\includegraphics[scale=0.650]{h5}
+%\floatfoot{A note}
+\end{figure}
+
 % Section 10
 \section{Tax and Welfare/Transfer Repeal with UBI for 21 Plus (Dynamic)}
 This section implements a taxable UBI of $\$12,126$ for those $21$ years of age and performs a dynamic simulation. These reforms increased total tax liabilities by $\$1.375$ trillion. The increase in tax liability is largest for those with the highest incomes. Of the total increase in tax liabilities, $26.21$ percent are paid by those in the top income percentile. Those with the lowest incomes face a comparatively smaller increase in the tax liability, accounting for $3.45$ percent of the total increase in tax liabilities. This equates to an average increase in $\$2,914$ for those with the lowest incomes. The following table shows complete results.
@@ -469,6 +511,13 @@ Primary earners with low incomes experience a large increase in MTR of between $
 \centering
 \caption{Average Secondary Earner MTR Change by Percentile of AGI}
 \includegraphics[scale=0.650]{i4}
+%\floatfoot{A note}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\caption{Average Pct. Change in (1-MTR) by Percentile}
+\includegraphics[scale=0.650]{i5}
 %\floatfoot{A note}
 \end{figure}
 
