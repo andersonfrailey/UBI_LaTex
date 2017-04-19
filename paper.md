@@ -255,6 +255,13 @@ Because everyone, regardless of age, receives a basic income, this policy is mos
 %\floatfoot{A note}
 \end{figure}
 
+\begin{figure}[H]
+\centering
+\caption{Average Pct. Change in (1-MTR) by Percentile}
+\includegraphics[scale=0.650]{d5}
+%\floatfoot{A note}
+\end{figure}
+
 % Section 6
 \section{Tax and Welfare/Transfer Repeal with UBI for 18 Plus}
 In this section we provide a basic income to individuals $18$ and older. Shrinking the targeted population allows for a larger UBI -- \$\exaa{}instead of the \$\dxaa{} outlined in section five.\ospc As in section five, this UBI is taxed and is ultimatley revenue neutral.
