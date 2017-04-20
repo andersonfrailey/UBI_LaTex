@@ -321,7 +321,7 @@ In dollar terms, most of the new tax burden still falls on the shoulders of high
 \section{Tax and Welfare/Transfer Repeal with UBI for 21 Plus}
 This section impliments a UBI limited to those 21 and above. Using the goal of revenue neutrality after accounting for taxes on the additional income, we found that a UBI of \$\fxaa{} could be given to all 21 and above.
 
-Unlike when the UBI was given to all above $18$, the additional tax liabilities offset any drop in liabilities resulting from the loss of taxable benefits, so no tax units see a drop in taxes. As with the previously discussed reforms, the progressivity of the tax effects is still maintained despite large marginal tax rate increases in the bottom percentiles.
+Unlike when the UBI was given to all above $18$, the additional tax liabilities offset any drop in liabilities resulting from the loss of taxable benefits, so no tax units see a cut in taxes. As with the previously discussed reforms, the progressivity of the tax effects is still maintained despite large marginal tax rate increases in the bottom percentiles.
 
 \begin{table}[H]
 \caption{Tax Liability by Percentile of AGI}
@@ -350,14 +350,14 @@ Unlike when the UBI was given to all above $18$, the additional tax liabilities 
 
 \begin{figure}[H]
 \centering
-\caption{Average Primary Earner MTR Change by Percentileof AGI}
+\caption{Average Primary Earner MTR by Percentileof AGI}
 \includegraphics[scale=0.650]{f3}
 %\floatfoot{A note}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\caption{Average Secondary Earner MTR Change by Percentile of AGI}
+\caption{Average Secondary Earner MTR by Percentile of AGI}
 \includegraphics[scale=0.650]{f4}
 %\floatfoot{A note}
 \end{figurf}
