@@ -507,14 +507,14 @@ Primary earners with low incomes experience a large increase in MTR of between $
 
 \begin{figure}[H]
 \centering
-\caption{Average Primary Earner MTR Change by Percentileof AGI}
+\caption{Average Primary Earner MTR by Percentileof AGI}
 \includegraphics[scale=0.650]{i3}
 %\floatfoot{A note}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\caption{Average Secondary Earner MTR Change by Percentile of AGI}
+\caption{Average Secondary Earner MTR by Percentile of AGI}
 \includegraphics[scale=0.650]{i4}
 %\floatfoot{A note}
 \end{figure}
