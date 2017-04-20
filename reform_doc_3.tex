@@ -31,13 +31,13 @@
 % Bib Code
 %\usepackage[style=authoryear-ibid,sorting=ynt]{biblatex}
 %\usepackage[backend=biber]{biblatex}
-
+\begin{document}
 % define macros
 \input{macros.txt}
 
 \newcommand{\ospc}{\footnote{Author’s calculations using OSPC Tax-Calculator.}}
 
-\begin{document}
+%\begin{document}
 \begin{titlepage}
 
 \title{Universal Basic Income Reform}
@@ -56,7 +56,7 @@
 % Section 1
 \section{Introduction}
 
-Widening inequality and increasing job disruption due to technology have increased discussion of an universal basic income (UBI) in academic circles. The concept of an UBI is simple -- every person, above a certain age, receives a lump sum of cash from the government regardless of income, employment status, or any other requirement typically used in welfare programs. This income is then taxed, along with any additional earnings, as normal income. Using the American Enterprise Institute's Open Source Policy Center's (OSPC) modeling suite, this report simulates the repeal of major welfare and transfer programs, the elimination of tax provisions and deductions to broaden the tax base, and three potential UBI policies that would neutralize the revenue impact of the aforementioned reforms on a static and dynamic basis. The paper also evaluates the welfare consequences of these reforms, accounting for the inefficiency costs of welfare programs. Analysis is performed by separating tax units by percentiles of average gross income (AGI). All calculations are performed using 2014 data.
+Widening inequality and increasing job disruption due to technology have increased discussion of an universal basic income (UBI) in academic circles. The concept of an UBI is simple -- every person, above a certain age, receives a lump sum of cash from the government regardless of income, employment status, or any other requirement typically used in welfare programs. Using the American Enterprise Institute's Open Source Policy Center's (OSPC) modeling suite, this report simulates the repeal of major welfare and transfer programs, the elimination of tax provisions and deductions to broaden the tax base, and three potential UBI policies that would neutralize the revenue impact of the aforementioned reforms on a static and dynamic basis. The paper also evaluates the welfare consequences of these reforms, accounting for the inefficiency costs of welfare programs. Analysis is performed by separating tax units by percentiles of average gross income (AGI). All calculations are performed using 2014 data.
 
 % Section 2
 \section{Welfare/Transfer Program Repeal}
@@ -94,7 +94,7 @@ The repeal of benefit and transfer programs appears to have a homogenous effect 
 These reforms have similar tax effects for both primary and secondary earners, raising the marginal tax rate (MTR) for those with lower income and lowering the MTR for those with middle incomes. The MTRs of those with higher incomes are reletively unaffected by the repeal of welfare and transfer programs. One benefit of the reforms is it removes the disincentive to work associated with welfare "notches." These form when the MTR is such that the additional income from an extra dollar earned through work will result in the loss of significant welfare benefits.
 
 % Section 3
-\section{Tax Exemption and Deduction Repeal}
+\section{Tax Reform}
 The current tax code is littered with numerous exemptions and deductions designed to give certain segments of the population tax breaks. These provisions narrow the tax base, distort tax unit consumption decisions, and have disperate effects across the income distribution.  In addition to repealing all welfare and transfer programs, we repeal all above-the-line, standard, and itemized deductions (excluding the charitable deduction); all tax credits; the personal exemption; and the earned income tax credit.
 
 With the repeal of the aforementioned tax provisions, roughly $92$ percent of tax units will face a tax increase resulting in $\$708$ billion in new liabilities, nearly half of that falling on the top twenty percent of earners -- $49.01$ percent -- compared to the $3.68$ percent borne by the bottom twenty percent.\footnote{Author’s calculations using OSPC Tax-Calculator.}
@@ -246,7 +246,7 @@ As a whole, the tax effects of a UBI are largely progressive, with the top twent
 %\floatfoot{A note}
 \end{figure}
 
-Because everyone, regardless of age, receives a basic income, this policy is most friendly to families with children of our three options simulated, one of which excludes anyone under eighteen and the other all those under twenty-one.
+Because everyone, regardless of age, receives a basic income, this policy is most friendly to families with children of our three simulated options, one of which excludes anyone under eighteen and the other all those under twenty-one.
 
 \begin{figure}[H]
 \centering
@@ -266,18 +266,18 @@ Because everyone, regardless of age, receives a basic income, this policy is mos
 \section{Tax and Welfare/Transfer Repeal with UBI for 18 Plus}
 In this section we provide a basic income to individuals $18$ and older. Shrinking the targeted population allows for a larger UBI -- \$\exaa{}instead of the \$\dxaa{} outlined in section five.\ospc As in section five, this UBI is taxed and is ultimatley revenue neutral.
 
-With the introduction of a \$\exaa{}UBI, most tax units see a rise in tax liability and marginal tax rates. As with the initial UBI policy, there are a small number of tax-units who actually saw their total liability decrease of $\$1,436$ on average. This is again likely due to the removal of taxable Social Security benefits from these tax units, as on average they received $\$41,117$ compared to $\$18,611$ in UBI.\ospc
+With the introduction of a \$\exaa{}UBI, most tax units see a rise in tax liability and marginal tax rates. As with the initial UBI policy though, there are a small number of tax-units who actually saw their total liability decrease $\$1,436$ on average. This is again likely due to the removal of taxable Social Security benefits from these tax units, as on average they received $\$41,117$ compared to $\$18,611$ in UBI.\ospc
 
 \begin{figure}[H]
 \centering
-\caption{Average Primary Earner MTR Change by Percentile of AGI}
+\caption{Average Primary Earner MTR by Percentile of AGI}
 \includegraphics[scale=0.650]{e3}
 %\floatfoot{A note}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\caption{Average Secondary Earner MTR Change by Percentile of AGI}
+\caption{Average Secondary Earner MTR by Percentile of AGI}
 \includegraphics[scale=0.650]{e4}
 %\floatfoot{A note}
 \end{figure}
