@@ -371,7 +371,7 @@ Unlike when the UBI was given to all above $18$, the additional tax liabilities 
 
 % Section 8
 \section{Tax and Welfare/Transfer Repeal with UBI for All (Dynamic)}
-To this point, we have assumed no change in behavior stemming from either tax reform or UBI implementation. Using Tax-Calculator’s behavioral analysis capabilities, we repeated simulations of a UBI for all, for those $18$ and above, and those above $21$ and above. These simulations are accompanied by an income effect of $-0.05$ and a substitution effect of $0.24$.\footnote{Our elasticities are based on Harris (2015). Both the tax reform package and UBI policies specified in this paper increase marginal and average tax rates. By itself, the substitution effect dictates this result in a decrease in the labor supply, while the offsetting income effect implies an increase in labor supply.} This allows for dynamic responses to labor and leisure choices made by UBI recipients. 
+To this point, we have assumed no change in behavior stemming from either tax reform or UBI implementation. Using Tax-Calculator’s behavioral analysis capabilities, we repeated simulations of the three UBI policies above, this time applying an income effect of $-0.05$ and a substitution effect of $0.24$.\footnote{Our elasticities are based on Harris (2015). Both the tax reform package and UBI policies specified in this paper increase marginal and average tax rates. By itself, the substitution effect dictates this result in a decrease in the labor supply, while the offsetting income effect implies an increase in labor supply.} This allows for dynamic responses to labor and leisure choices made by UBI recipients. 
 
 \begin{table}[H]
 \caption{Tax Liability by Percentile of AGI}
@@ -382,8 +382,6 @@ To this point, we have assumed no change in behavior stemming from either tax re
 \end{center}
 \floatfoot{Source: Author's calculations using OSPC calculator.}
 \end{table}
-
-Implement a taxable UBI for 21 and over that neutralizes the revenue impact on a static basis. Combine with (C). Include the same descriptions/plots/tables as above.
 
 \begin{figure}[H]
 \centering
@@ -401,14 +399,14 @@ Implement a taxable UBI for 21 and over that neutralizes the revenue impact on a
 
 \begin{figure}[H]
 \centering
-\caption{Average Primary Earner MTR Change by Percentileof AGI}
+\caption{Average Primary Earner MTR by Percentileof AGI}
 \includegraphics[scale=0.650]{g3}
 %\floatfoot{A note}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\caption{Average Secondary Earner MTR Change by Percentile of AGI}
+\caption{Average Secondary Earner MTR by Percentile of AGI}
 \includegraphics[scale=0.650]{g4}
 %\floatfoot{A note}
 \end{figure}
