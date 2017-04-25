@@ -231,7 +231,7 @@ There are a handful of tax-units who do see a tax cut: this is due to the repeal
 
 Those in the lower spectrum of earners see their net-of-tax rate drop by as nineteen percent after the reforms and UBI are accounted for.
 
-As a whole, the tax effects of a UBI are largely progressive, with the top twenty percent of earners shouldering over forty percent of the increase in liabilities.
+As a whole, the tax effects of a UBI are largely progressive, with the top ten percent of earners shouldering over \dtmax{} forty percent of the increase in liabilities.
 
 \begin{figure}[H]
 \centering
@@ -267,7 +267,7 @@ Because everyone, regardless of age, receives a basic income, this policy is mos
 \section{Tax and Welfare/Transfer Repeal with UBI for 18 Plus}
 In this section we provide a basic income to individuals $18$ and older. Shrinking the targeted population allows for a larger UBI -- \$\exaa{}instead of the \$\dxaa{} outlined in section five.\ospc As in section five, this UBI is taxed and is ultimatley revenue neutral.
 
-With the introduction of a \$\exaa{}UBI, most tax units see a rise in tax liability and marginal tax rates. As with the initial UBI policy though, there are a small number of tax-units who actually saw their total liability decrease $\$1,436$ on average. This is again likely due to the removal of taxable Social Security benefits from these tax units, as on average they received $\$41,117$ compared to $\$18,611$ in UBI.\ospc
+With the introduction of a \$\exaa{}UBI, most tax units see a rise in tax liability and marginal tax rates. As with the initial UBI policy though, there are a small number of tax-units who actually saw their total liability decrease \alert{[MACRO]} $\$1,436$ on average. This is again likely due to the removal of taxable Social Security benefits from these tax units, as on average they received $\$41,117$ compared to $\$18,611$ in UBI.\ospc
 
 \begin{figure}[H]
 \centering
@@ -421,7 +421,7 @@ To this point, we have assumed no change in behavior stemming from either tax re
 
 % Section 9 (H)
 \section{Tax and Welfare/Transfer Repeal with UBI for 18 Plus (Dynamic)}
-This section implements a taxable UBI of \$\hxaa{}for individuals at least $18$ years old and performs a dynamic simulation. Increases in tax liability are similar in both static and dynamic simulations: the static simulation raises total tax liabilities by $\$1.364$ trillion while the dynamic simulation raises tax liabilities by $\$1.371$ trillion. Of this increase in tax liability, $26.09$ percent is borne by those in the highest AGI percentile. Those in the lowest AGI percentile only face $3.66$ percent of the total increase in tax liability. This amounts to an average $\$3,081$ increase for tax units in the lowest income percentile. The following table shows the complete impact of these reforms on liability by AGI percentile.
+This section implements a taxable UBI of \$\hxaa{}for individuals at least $18$ years old and performs a dynamic simulation. Increases in tax liability are similar in both static and dynamic simulations: the static simulation raises total tax liabilities by \alert{[MACRO]} $\$1.364$ trillion while the dynamic simulation raises tax liabilities by \alert{[MACRO]} $\$1.371$ trillion. Of this increase in tax liability, \hsmax{} $26.09$ percent is borne by those in the highest AGI percentile. Those in the lowest AGI percentile only face \hsmin{} $3.66$ percent of the total increase in tax liability. This amounts to an average \hamin{} $\$3,081$ increase for tax units in the lowest income percentile. The following table shows the complete impact of these reforms on liability by AGI percentile.
 
 \begin{table}[H]
 \caption{Tax Liability by Percentile of AGI}
@@ -474,7 +474,7 @@ These reforms have a regressive impact on the MTR, raising it for low and medium
 
 % Section 10 (I)
 \section{Tax and Welfare/Transfer Repeal with UBI for 21 Plus (Dynamic)}
-This section implements a taxable UBI of $\$12,126$ for those $21$ years of age and performs a dynamic simulation. These reforms increased total tax liabilities by $\$1.375$ trillion. The increase in tax liability is largest for those with the highest incomes. Of the total increase in tax liabilities, $26.21$ percent are paid by those in the top income percentile. Those with the lowest incomes face a comparatively smaller increase in the tax liability, accounting for $3.45$ percent of the total increase in tax liabilities. This equates to an average increase in $\$2,914$ for those with the lowest incomes. The following table shows complete results.
+This section implements a taxable UBI of \alert{[MACRO]} $\$12,126$ for those $21$ years of age and performs a dynamic simulation. These reforms increased total tax liabilities by \alert{[MACRO]} $\$1.375$ trillion. The increase in tax liability is largest for those with the highest incomes. Of the total increase in tax liabilities, \ismax{} $26.21$ percent are paid by those in the top income percentile. Those with the lowest incomes face a comparatively smaller increase in the tax liability, accounting for \ismin{} $3.45$ percent of the total increase in tax liabilities. This equates to an average increase in \iamin $\$2,914$ for those with the lowest incomes. The following table shows complete results.
 
 \begin{table}[H]
 \caption{Change in Tax Liabilities by Percentile of AGI}
