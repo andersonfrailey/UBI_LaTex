@@ -56,11 +56,11 @@
 % Section 1
 \section{Introduction}
 
-Widening inequality and increasing job disruption due to technology have increased discussion of an universal basic income (UBI) in academic circles. The concept of an UBI is simple -- every person, above a certain age, receives a lump sum of cash from the government regardless of income, employment status, or any other requirement typically used in welfare programs. Using the American Enterprise Institute's Open Source Policy Center's (OSPC) modeling suite, this report simulates the repeal of major welfare and transfer programs, the elimination of tax provisions and deductions to broaden the tax base, and three potential UBI policies that would neutralize the revenue impact of the aforementioned reforms on a static and dynamic basis. The paper also evaluates the welfare consequences of these reforms, accounting for the inefficiency costs of welfare programs. Analysis is performed by separating tax units by percentiles of average gross income (AGI). All calculations are performed using 2014 data.
+Widening inequality and increasing job disruption due to technology have increased discussion of an universal basic income (UBI) in academic circles. The concept of an UBI is simple -- every person, above a certain age, receives a lump sum of cash from the government regardless of income, employment status, or any other means test in other welfare programs. Using the American Enterprise Institute's Open Source Policy Center's (OSPC) modeling suite, this report simulates the repeal of major welfare and transfer programs, the elimination of tax provisions and deductions to broaden the tax base, and three potential UBI policies that would neutralize the revenue impact of the aforementioned reforms on a static and dynamic basis. The paper also evaluates the welfare consequences of these reforms, accounting for the inefficiency costs of welfare programs. We perform this analysis by separating tax units by percentiles of average gross income (AGI). All calculations are performed using 2014 data.
 
 % Section 2
 \section{Welfare/Transfer Program Repeal}
-We begin by repealing all major welfare and transfer programs including Medicare, Medicaid, SSI, SNAP, Social Security, and Veterans Benefits.\footnote{Program payments imputed using OSPC C-TAM model. A full description of the model can be found in the appendix.} We also repealed unemployment, housing, and student assistance; other public assistance; and most individual payment programs.\footnote{A full list of the programs repealed and their costs can be found in the appendix.} We account for decreased tax revenue from the repeal of Social Security benefits, which are taxed under the current system. Afeter accounting for the decrease in tax revenue from the repeal of taxable Social Security benefits, repealing these programs yields \$\axag{}trillion in funds that can be used to put toward the UBI.\footnote{Author's calculations using C-TAM, Tax-Calculator, and \href{https://obamawhitehouse.archives.gov/omb/budget/Historicals}{Office of Management and Budget data (\textit{Table 3.2—Outlays by Function and Subfunction: 1962–2021} and \textit{Table 11.3—Outlays for Payments for Individuals by Category and Major Program: 1940–2021).}}} The effects of repealing the welfare and transfer programs are shown in the following table. 
+We begin by repealing all major welfare and transfer programs including Medicare, Medicaid, SSI, SNAP, Social Security, and Veterans Benefits.\footnote{Program payments imputed using OSPC C-TAM model. A full description of the model can be found in the appendix.} We also repealed unemployment, housing, and student assistance; other public assistance; and most individual payment programs.\footnote{A full list of the programs repealed and their costs can be found in the appendix.} We account for decreased tax revenue from the repeal of Social Security benefits, which are taxed under the current system. After accounting for the decrease in tax revenue from the repeal of taxable Social Security benefits, repealing these programs yields \$\axag{}trillion that can be used to put toward the UBI.\footnote{Author's calculations using C-TAM, Tax-Calculator, and \href{https://obamawhitehouse.archives.gov/omb/budget/Historicals}{Office of Management and Budget data (\textit{Table 3.2—Outlays by Function and Subfunction: 1962–2021} and \textit{Table 11.3—Outlays for Payments for Individuals by Category and Major Program: 1940–2021).}}} The effects of repealing the welfare and transfer programs are shown in the following table.
 
 \begin{table}[H]
 \caption{Welfare and Transfer Program Repeal Effect on Benefits}
@@ -91,13 +91,13 @@ The repeal of benefit and transfer programs appears to have a homogenous effect 
 %\floatfoot{A note}
 \end{figure}
 
-These reforms have similar tax effects for both primary and secondary earners, raising the marginal tax rate (MTR) for those with lower income and lowering the MTR for those with middle incomes. The MTRs of those with higher incomes are reletively unaffected by the repeal of welfare and transfer programs. One benefit of the reforms is it removes the disincentive to work associated with welfare "notches." These form when the MTR is such that the additional income from an extra dollar earned through work will result in the loss of significant welfare benefits.
+These reforms have similar tax effects for both primary and secondary earners, raising the marginal tax rate (MTR) for those with lower income and lowering the MTR for those with middle incomes. The MTRs of those with higher incomes are relatively unaffected by the repeal of welfare and transfer programs. One benefit of the reforms is it removes the disincentive to work associated with welfare "notches." These form when the MTR is such that the additional income from an extra dollar earned through work will result in the loss of significant welfare benefits.
 
 % Section 3
 \section{Tax Reform}
 The current tax code is littered with numerous exemptions and deductions designed to give certain segments of the population tax breaks. These provisions narrow the tax base, distort tax unit consumption decisions, and have disperate effects across the income distribution.  In addition to repealing all welfare and transfer programs, we repeal all above-the-line, standard, and itemized deductions (excluding the charitable deduction); all tax credits; the personal exemption; and the earned income tax credit.
 
-With the repeal of the aforementioned tax provisions, roughly $92$ percent of tax units will face a tax increase resulting in $\$708$ billion in new liabilities, nearly half of that falling on the top twenty percent of earners -- $49.01$ percent -- compared to the $3.68$ percent borne by the bottom twenty percent.\footnote{Author’s calculations using OSPC Tax-Calculator.}
+With the repeal of the aforementioned tax provisions, roughly $92$ percent of tax units will face a tax increase resulting in $\$708$ billion in new liabilities, nearly half of that falling on the top twenty percent of earners -- $49.01$ percent -- compared to the $3.68$ percent borne by the bottom twenty percent.\ospc
 
 \begin{table}[H]
 \caption{Tax Liability by Percentile of AGI}
@@ -123,7 +123,7 @@ With the repeal of the aforementioned tax provisions, roughly $92$ percent of ta
 %\floatfoot{A note}
 \end{figure}
 
-The reforms lead to almost across the board marginal tax rate (MTR) increases, the largest of which are seen at the lower end of the income spectrum. The bottom quarter of earners see their marginal net-of-tax rate $(1 - MTR)$ decrease by 17 percentage points for both primary and secondary earners.\footnote{Author’s calculations using OSPC Tax-Calculator.}
+The reforms lead to almost across the board marginal tax rate (MTR) increases, the largest of which are seen at the lower end of the income spectrum. The bottom quarter of earners see their marginal net-of-tax rate $(1 - MTR)$ decrease by $17$ percentage points for both primary and secondary earners.\footnote{Author’s calculations using OSPC Tax-Calculator.}
 
 
 \begin{figure}[H]
@@ -360,7 +360,7 @@ Unlike when the UBI was given to all above $18$, the additional tax liabilities 
 \caption{Average Secondary Earner MTR by Percentile of AGI}
 \includegraphics[scale=0.650]{f4}
 %\floatfoot{A note}
-\end{figurf}
+\end{figure}
 
 \begin{figure}[H]
 \centering
