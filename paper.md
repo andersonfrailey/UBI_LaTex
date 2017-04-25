@@ -56,14 +56,15 @@
 % Section 1 (into)
 \section{Introduction}
 
-Widening inequality and increasing job disruption due to technology have increased discussion of an universal basic income (UBI) in academic circles. The concept of an UBI is simple -- every person, above a certain age, receives a lump sum of cash from the government regardless of income, employment status, or any other means test in other welfare programs. Using the American Enterprise Institute's Open Source Policy Center's (OSPC) modeling suite, this report simulates the repeal of major welfare and transfer programs, the elimination of tax provisions and deductions to broaden the tax base, and three potential UBI policies that would neutralize the revenue impact of the aforementioned reforms on a static and dynamic basis. The paper also evaluates the welfare consequences of these reforms, accounting for the inefficiency costs of welfare programs. We perform this analysis by separating tax units by percentiles of average gross income (AGI). All calculations are performed using 2014 data.
+Widening inequality and increasing job disruption due to technology have increased discussion of an universal basic income (UBI) in academic circles. The concept of an UBI is simple -- every person, above a certain age, receives a lump sum of cash from the government regardless of income, employment status, or any other means test. Using the American Enterprise Institute's Open Source Policy Center (OSPC) modeling suite, this report simulates the repeal of major welfare and transfer programs, the elimination of tax provisions and deductions to broaden the tax base, and the implimentation of three potential UBI policies that would neutralize the revenue impact of the aforementioned reforms on a static and dynamic basis. The paper also evaluates the welfare consequences of these reforms, using welfare multiples to account for the deadweight losses from current welfare programs. We use percentiles of average gross income (AGI) to evaluate the distributional impacts of these reforms. All calculations are performed using 2014 data.
 
 % Section 2 (A)
 \section{Welfare/Transfer Program Repeal}
-We begin by repealing all major welfare and transfer programs including Medicare, Medicaid, SSI, SNAP, Social Security, and Veterans Benefits.\footnote{Program payments imputed using OSPC C-TAM model. A full description of the model can be found in the appendix.} We also repealed unemployment, housing, and student assistance; other public assistance; and most individual payment programs.\footnote{A full list of the programs repealed and their costs can be found in the appendix.} We account for decreased tax revenue from the repeal of Social Security benefits, which are taxed under the current system. After accounting for the decrease in tax revenue from the repeal of taxable Social Security benefits, repealing these programs yields \$\axag{} trillion that can be used to put toward the UBI.\footnote{Author's calculations using C-TAM, Tax-Calculator, and \href{https://obamawhitehouse.archives.gov/omb/budget/Historicals}{Office of Management and Budget data (\textit{Table 3.2—Outlays by Function and Subfunction: 1962–2021} and \textit{Table 11.3—Outlays for Payments for Individuals by Category and Major Program: 1940–2021).}}} The effects of repealing the welfare and transfer programs are shown in the following table.
+We begin by repealing all major welfare and transfer programs including Medicare, Medicaid, SSI, SNAP, Social Security, and Veterans Benefits.\footnote{Program payments imputed using OSPC C-TAM model. A full description of the model can be found in the appendix.} We also repealed unemployment, housing, and student assistance; other public assistance; and most individual payment programs.\footnote{A full list of the programs repealed and their costs can be found in section 12.3 under the appendix.} After accounting for the decrease in tax revenue from the repeal of taxable Social Security benefits, repealing these programs yields \$\axag{} trillion that can be used to put toward the UBI.\footnote{Author's calculations using C-TAM, Tax-Calculator, and \href{https://obamawhitehouse.archives.gov/omb/budget/Historicals}{Office of Management and Budget data (\textit{Table 3.2—Outlays by Function and Subfunction: 1962–2021} and \textit{Table 11.3—Outlays for Payments for Individuals by Category and Major Program: 1940–2021).}}} The effects of repealing the welfare and transfer programs are shown in table \ref{table:a1_df}.
 
 \begin{table}[H]
 \caption{Welfare and Transfer Program Repeal Effect on Benefits}
+\label{table:a1_df}
 \begin{center}
 \begin{adjustbox}{max width=\textwidth}
 \input{a1_df.txt}
@@ -79,6 +80,7 @@ The repeal of benefit and transfer programs appears to have a homogenous effect 
 %\centering
 \begin{center}
 \caption{Average Benefit Change by Percentile of AGI}
+\label{figure:a1}
 \includegraphics[scale=0.650]{a1}
 \end{center}
 %\floatfoot{A note}
@@ -87,6 +89,7 @@ The repeal of benefit and transfer programs appears to have a homogenous effect 
 \begin{figure}[H]
 \centering
 \caption{Total Benefit Change by Percentile of AGI}
+\label{figure:a2}
 \includegraphics[scale=0.650]{a2}
 %\floatfoot{A note}
 \end{figure}
@@ -101,6 +104,7 @@ With the repeal of the aforementioned tax provisions, roughly $92$ percent of ta
 
 \begin{table}[H]
 \caption{Tax Liability by Percentile of AGI}
+\label{table:b1}
 \begin{center}
 \begin{adjustbox}{max width=\textwidth}
 \input{b1_df.txt}
@@ -112,6 +116,7 @@ With the repeal of the aforementioned tax provisions, roughly $92$ percent of ta
 \begin{figure}[H]
 \centering
 \caption{Average Tax Liability by Percentile of AGI}
+\label{figure:b1}
 \includegraphics[scale=0.650]{b1}
 %\floatfoot{A note}
 \end{figure}
@@ -119,6 +124,7 @@ With the repeal of the aforementioned tax provisions, roughly $92$ percent of ta
 \begin{figure}[H]
 \centering
 \caption{Total Tax Liability by Percentile of AGI}
+\label{figure:b2}
 \includegraphics[scale=0.650]{b2}
 %\floatfoot{A note}
 \end{figure}
@@ -129,6 +135,7 @@ The reforms lead to almost across the board marginal tax rate (MTR) increases, t
 \begin{figure}[H]
 \centering
 \caption{Average Primary Earner MTR by Percentile}
+\label{figure:b3}
 \includegraphics[scale=0.650]{b3}
 %\floatfoot{A note}
 \end{figure}
@@ -136,6 +143,7 @@ The reforms lead to almost across the board marginal tax rate (MTR) increases, t
 \begin{figure}[H]
 \centering
 \caption{Average Secondary Earner MTR by Percentile}
+\label{figure:b4}
 \includegraphics[scale=0.650]{b4}
 %\floatfoot{A note}
 \end{figure}
@@ -143,6 +151,7 @@ The reforms lead to almost across the board marginal tax rate (MTR) increases, t
 \begin{figure}[H]
 \centering
 \caption{Average Pct. Change in (1-MTR) by Percentile}
+\label{figure:b5}
 \includegraphics[scale=0.650]{b5}
 %\floatfoot{A note}
 \end{figure}
@@ -155,6 +164,7 @@ This section combines the welfare and transfer repeal from section two and tax r
 
 \begin{table}[H]
 \caption{Revenue Effect of Benefit and Tax Repeal}
+\label{table:c1}
 \begin{center}
 \begin{adjustbox}{max width=\textwidth}
 \input{c1_df.txt}
@@ -168,6 +178,7 @@ Combined, reforming the tax code to remove deductions, exemptions, and other pro
 \begin{figure}[H]
 \centering
 \caption{Average Revenue Effect of Benefit and Tax Repeal by Percentile of AGI}
+\label{figure:c1}
 \includegraphics[scale=0.650]{c1}
 %\floatfoot{A note}
 \end{figure}
@@ -175,6 +186,7 @@ Combined, reforming the tax code to remove deductions, exemptions, and other pro
 \begin{figure}[H]
 \centering
 \caption{Total Revenue Effect of Benefit and Tax Repeal by Percentile of AGI}
+\label{figure:c2}
 \includegraphics[scale=0.650]{c2}
 %\floatfoot{A note}
 \end{figure}
@@ -183,6 +195,7 @@ Combined, reforming the tax code to remove deductions, exemptions, and other pro
 %\begin{figure}[H]
 %\centering
 %\caption{Average Primary Earner MTR by Percentileof AGI}
+\label{figure:c3}
 %\includegraphics[scale=0.650]{c3}
 %\floatfoot{A note}
 %\end{figure}
@@ -190,6 +203,7 @@ Combined, reforming the tax code to remove deductions, exemptions, and other pro
 %\begin{figure}[H]
 %\centering
 %\caption{Average Secondary Earner MTR by Percentile of AGI}
+\label{figure:c4}
 %\includegraphics[scale=0.650]{c4}
 %\floatfoot{A note}
 %\end{figure}
@@ -218,6 +232,7 @@ There are a handful of tax-units who do see a tax cut: this is due to the repeal
 \begin{figure}[H]
 \centering
 \caption{Average Primary Earner MTR by Percentile of AGI}
+\label{figure:d3}
 \includegraphics[scale=0.650]{d3}
 %\floatfoot{A note}
 \end{figure}
@@ -225,6 +240,7 @@ There are a handful of tax-units who do see a tax cut: this is due to the repeal
 \begin{figure}[H]
 \centering
 \caption{Average Secondary Earner MTR by Percentile of AGI}
+\label{figure:d4}
 \includegraphics[scale=0.650]{d4}
 %\floatfoot{A note}
 \end{figure}
@@ -236,6 +252,7 @@ As a whole, the tax effects of a UBI are largely progressive, with the top ten p
 \begin{figure}[H]
 \centering
 \caption{Average Change in Tax Liabilities by Percentile of AGI}
+\label{figure:d1}
 \includegraphics[scale=0.650]{d1}
 %\floatfoot{A note}
 \end{figure}
@@ -243,6 +260,7 @@ As a whole, the tax effects of a UBI are largely progressive, with the top ten p
 \begin{figure}[H]
 \centering
 \caption{Total Change in Tax Liabilities by Percentile of AGI}
+\label{figure:d2}
 \includegraphics[scale=0.650]{d2}
 %\floatfoot{A note}
 \end{figure}
@@ -252,13 +270,7 @@ Because everyone, regardless of age, receives a basic income, this policy is mos
 \begin{figure}[H]
 \centering
 \caption{Average Pct. Change in (1-MTR) by Percentile}
-\includegraphics[scale=0.650]{d5}
-%\floatfoot{A note}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\caption{Average Pct. Change in (1-MTR) by Percentile}
+\label{figure:d5}
 \includegraphics[scale=0.650]{d5}
 %\floatfoot{A note}
 \end{figure}
@@ -272,6 +284,7 @@ With the introduction of a \$\exaa{} UBI, most tax units see a rise in tax liabi
 \begin{figure}[H]
 \centering
 \caption{Average Primary Earner MTR by Percentile of AGI}
+\label{figure:e3}
 \includegraphics[scale=0.650]{e3}
 %\floatfoot{A note}
 \end{figure}
@@ -279,6 +292,7 @@ With the introduction of a \$\exaa{} UBI, most tax units see a rise in tax liabi
 \begin{figure}[H]
 \centering
 \caption{Average Secondary Earner MTR by Percentile of AGI}
+\label{figure:e4}
 \includegraphics[scale=0.650]{e4}
 %\floatfoot{A note}
 \end{figure}
@@ -287,6 +301,7 @@ As with our first UBI policy, the largest changes in marginal tax rates are seen
 
 \begin{table}[H]
 \caption{Increase in Tax Liabilities by Percentile of AGI}
+\label{table:e1}
 \begin{center}
 \begin{adjustbox}{max width=\textwidth}
 \input{e1_df.txt}
@@ -298,6 +313,7 @@ As with our first UBI policy, the largest changes in marginal tax rates are seen
 \begin{figure}[H]
 \centering
 \caption{Average Change in Tax Liabilities by Percentile of AGI}
+\label{figure:e1}
 \includegraphics[scale=0.650]{e1}
 %\floatfoot{A note}
 \end{figure}
@@ -305,6 +321,7 @@ As with our first UBI policy, the largest changes in marginal tax rates are seen
 \begin{figure}[H]
 \centering
 \caption{Total Change in Tax Liabilities by Percentile of AGI}
+\label{figure:e2}
 \includegraphics[scale=0.650]{e2}
 %\floatfoot{A note}
 \end{figure}
@@ -312,6 +329,7 @@ As with our first UBI policy, the largest changes in marginal tax rates are seen
 \begin{figure}[H]
 \centering
 \caption{Average Pct. Change in (1-MTR) by Percentile}
+\label{figure:e5}
 \includegraphics[scale=0.650]{e5}
 %\floatfoot{A note}
 \end{figure}
@@ -326,7 +344,7 @@ Unlike when the UBI was given to all above $18$, the additional tax liabilities 
 
 \begin{table}[H]
 \caption{Tax Liability by Percentile of AGI}
-
+\label{table:f1}
 \begin{center}
 \begin{adjustbox}{max width=\textwidth}
 \input{f1_df.txt}
@@ -338,6 +356,7 @@ Unlike when the UBI was given to all above $18$, the additional tax liabilities 
 \begin{figure}[H]
 \centering
 \caption{Average Change in Tax Liabilities by Percentile of AGI}
+\label{figure:f1}
 \includegraphics[scale=0.650]{f1}
 %\floatfoot{A note}
 \end{figure}
@@ -345,6 +364,7 @@ Unlike when the UBI was given to all above $18$, the additional tax liabilities 
 \begin{figure}[H]
 \centering
 \caption{Total Change in Tax Liabilities by Percentile of AGI}
+\label{figure:f2}
 \includegraphics[scale=0.650]{f2}
 %\floatfoot{A note}
 \end{figure}
@@ -359,6 +379,7 @@ Unlike when the UBI was given to all above $18$, the additional tax liabilities 
 \begin{figure}[H]
 \centering
 \caption{Average Secondary Earner MTR by Percentile of AGI}
+\label{figure:f4}
 \includegraphics[scale=0.650]{f4}
 %\floatfoot{A note}
 \end{figure}
@@ -366,6 +387,7 @@ Unlike when the UBI was given to all above $18$, the additional tax liabilities 
 \begin{figure}[H]
 \centering
 \caption{Average Pct. Change in (1-MTR) by Percentile}
+\label{figure:f5}
 \includegraphics[scale=0.650]{f5}
 %\floatfoot{A note}
 \end{figure}
@@ -376,6 +398,7 @@ To this point, we have assumed no change in behavior stemming from either tax re
 
 \begin{table}[H]
 \caption{Tax Liability by Percentile of AGI}
+\label{table:g1}
 \begin{center}
 \begin{adjustbox}{max width=\textwidth}
 \input{g1_df.txt}
@@ -387,6 +410,7 @@ To this point, we have assumed no change in behavior stemming from either tax re
 \begin{figure}[H]
 \centering
 \caption{Average Change in Tax Liabilities by Percentile of AGI}
+\label{figure:g1}
 \includegraphics[scale=0.650]{g1}
 %\floatfoot{A note}
 \end{figure}
@@ -394,6 +418,7 @@ To this point, we have assumed no change in behavior stemming from either tax re
 \begin{figure}[H]
 \centering
 \caption{Total Change in Tax Liabilities by Percentile of AGI}
+\label{figure:g2}
 \includegraphics[scale=0.650]{g2}
 %\floatfoot{A note}
 \end{figure}
@@ -401,6 +426,7 @@ To this point, we have assumed no change in behavior stemming from either tax re
 \begin{figure}[H]
 \centering
 \caption{Average Primary Earner MTR by Percentileof AGI}
+\label{figure:g3}
 \includegraphics[scale=0.650]{g3}
 %\floatfoot{A note}
 \end{figure}
@@ -408,6 +434,7 @@ To this point, we have assumed no change in behavior stemming from either tax re
 \begin{figure}[H]
 \centering
 \caption{Average Secondary Earner MTR by Percentile of AGI}
+\label{figure:g4}
 \includegraphics[scale=0.650]{g4}
 %\floatfoot{A note}
 \end{figure}
@@ -415,6 +442,7 @@ To this point, we have assumed no change in behavior stemming from either tax re
 \begin{figure}[H]
 \centering
 \caption{Average Pct. Change in (1-MTR) by Percentile}
+\label{figure:g5}
 \includegraphics[scale=0.650]{g5}
 %\floatfoot{A note}
 \end{figure}
@@ -425,6 +453,7 @@ This section implements a taxable UBI of \$\hxaa{} for individuals at least $18$
 
 \begin{table}[H]
 \caption{Tax Liability by Percentile of AGI}
+\label{table:h1}
 \begin{center}
 \begin{adjustbox}{max width=\textwidth}
 \input{h1_df.txt}
@@ -438,6 +467,7 @@ The impact of these reforms on tax liability are also shown in the following bar
 \begin{figure}[H]
 \centering
 \caption{Average Change in Tax Liabilities by Percentile of AGI}
+\label{figure:h1}
 \includegraphics[scale=0.650]{h1}
 %\floatfoot{A note}
 \end{figure}
@@ -445,6 +475,7 @@ The impact of these reforms on tax liability are also shown in the following bar
 \begin{figure}[H]
 \centering
 \caption{Total Change in Tax Liabilities by Percentile of AGI}
+\label{figure:h2}
 \includegraphics[scale=0.650]{h2}
 %\floatfoot{A note}
 \end{figure}
@@ -454,6 +485,7 @@ These reforms have a regressive impact on the MTR, raising it for low and medium
 \begin{figure}[H]
 \centering
 \caption{Average Primary Earner MTR by Percentile of AGI}
+\label{figure:h3}
 \includegraphics[scale=0.650]{h3}
 %\floatfoot{A note}
 \end{figure}
@@ -461,6 +493,7 @@ These reforms have a regressive impact on the MTR, raising it for low and medium
 \begin{figure}[H]
 \centering
 \caption{Average Secondary Earner MTR by Percentile of AGI}
+\label{figure:h4}
 \includegraphics[scale=0.650]{h4}
 %\floatfoot{A note}
 \end{figure}
@@ -468,6 +501,7 @@ These reforms have a regressive impact on the MTR, raising it for low and medium
 \begin{figure}[H]
 \centering
 \caption{Average Pct. Change in (1-MTR) by Percentile}
+\label{figure:h5}
 \includegraphics[scale=0.650]{h5}
 %\floatfoot{A note}
 \end{figure}
@@ -478,7 +512,7 @@ This section implements a taxable UBI of \alert{[MACRO]} $\$12,126$ for those $2
 
 \begin{table}[H]
 \caption{Change in Tax Liabilities by Percentile of AGI}
-
+\label{table:i1}
 \begin{center}
 \begin{adjustbox}{max width=\textwidth}
 \input{i1_df.txt}
@@ -492,6 +526,7 @@ The impact of these reforms on tax liabilities are also illustrated in the follo
 \begin{figure}[H]
 \centering
 \caption{Average Change in Tax Liabilities by Percentile of AGI}
+\label{figure:i1}
 \includegraphics[scale=0.650]{i1}
 %\floatfoot{A note}
 \end{figure}
@@ -499,6 +534,7 @@ The impact of these reforms on tax liabilities are also illustrated in the follo
 \begin{figure}[H]
 \centering
 \caption{Total Change in Tax Liabilities by Percentile of AGI}
+\label{figure:i2}
 \includegraphics[scale=0.650]{i2}
 %\floatfoot{A note}
 \end{figure}
@@ -509,6 +545,7 @@ Primary earners with low incomes experience a large increase in MTR of between $
 \begin{figure}[H]
 \centering
 \caption{Average Primary Earner MTR by Percentileof AGI}
+\label{figure:i3}
 \includegraphics[scale=0.650]{i3}
 %\floatfoot{A note}
 \end{figure}
@@ -516,6 +553,7 @@ Primary earners with low incomes experience a large increase in MTR of between $
 \begin{figure}[H]
 \centering
 \caption{Average Secondary Earner MTR by Percentile of AGI}
+\label{figure:i4}
 \includegraphics[scale=0.650]{i4}
 %\floatfoot{A note}
 \end{figure}
@@ -523,6 +561,7 @@ Primary earners with low incomes experience a large increase in MTR of between $
 \begin{figure}[H]
 \centering
 \caption{Average Pct. Change in (1-MTR) by Percentile}
+\label{figure:i5}
 \includegraphics[scale=0.650]{i5}
 %\floatfoot{A note}
 \end{figure}
@@ -537,6 +576,7 @@ The welfare multiples used in this section are shown in the following table.
 
 %\begin{table}[H]
 %\caption{Welfare Multiples by Program}
+%\label{table:j1}
 %\begin{center}
 %\begin{adjustbox}{max width=\textwidth}
 %\begin{tabular}{lr}
@@ -558,6 +598,7 @@ The welfare multiples used in this section are shown in the following table.
 
 \begin{table}[H]
 \caption{Welfare Multiples by Program}
+\label{table:j1}
 \begin{center}
 \begin{adjustbox}{max width=\textwidth}
 \input{j1_df.txt}
@@ -572,6 +613,7 @@ The following tables and charts illustrate the distributional effects of a UBI f
 
 \begin{table}[H]
 \caption{Dollar Welfare and Adjusted Welfare Calculations}
+\label{table:j2}
 \begin{center}
 \begin{adjustbox}{max width=\textwidth}
 \input{j2_df.txt}
@@ -585,6 +627,7 @@ The following table shows the average and total welfare resulting from repealing
 
 \begin{table}[H]
 \caption{Average Welfare by Percentile}
+\label{table:j3}
 \begin{center}
 \begin{adjustbox}{max width=\textwidth}
 \input{j6_df.txt}
@@ -596,6 +639,7 @@ The following table shows the average and total welfare resulting from repealing
 
 \begin{table}[H]
 \caption{Total Welfare by Percentile}
+\label{table:j7}
 \begin{center}
 \begin{adjustbox}{max width=\textwidth}
 \input{j7_df.txt}
@@ -609,6 +653,7 @@ The following bar chart illustrates the welfare effects of implementing a range 
 \begin{figure}[H]
 \centering
 \caption{Welfare Effects of UBI}
+\label{figure:j1}
 \includegraphics[scale=0.650]{j1}
 \floatfoot{Welfare only includes government transfer and transfer programs.}
 \end{figure}
@@ -668,6 +713,7 @@ The following table shows the welfare and transfer programs programs were cut as
 \singlespacing
 \begin{table}[H]
 \caption{Welfare Programs Cut}
+\label{table:programs}
 \begin{center}
 \begin{adjustbox}{max width=\textwidth}
 \begin{tabular}{lr}
@@ -730,6 +776,7 @@ Welfare multiples were drawn from the literature when possible. Little work has 
 
 \begin{table}[H]
 \caption{Total Program Expenditures (2014)}
+\label{table:vb}
 \begin{center}
 \begin{adjustbox}{max width=\textwidth}
 \begin{tabular}{lrrr}
@@ -762,6 +809,7 @@ The remaining sections make up a relatively small portion of VA benefits expendi
 
 \begin{sidewaystable}
 \caption{Welfare Multiples}
+\label{figure:multiples}
 \centering
 \label{Measures of In-kind Program Welfare Effects}
 \begin{tabularx}{\textwidth}{l X l X}
