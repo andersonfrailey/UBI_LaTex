@@ -150,7 +150,7 @@ The reforms lead to almost across the board marginal tax rate (MTR) increases, t
 % Section 4 (C)
 \section{Tax and Welfare/Transfer Repeal}
 
-This section combines the welfare and transfer repeal from section two and tax reform from section three to examine the joint distributional impact. The top ten percent of earners see an average negative impact of just over \camax{} $\$30,000$ compared to slightly more than \camin{} $\$15,000$ in the bottom ten percent. The top ten percent experiences \csmax{} $30.21$ percent of the increase in tax liabilities, while the lowest ten percent pay \csmin $16.28$ percent of the increase in tax liabilities (Question: is this supposed to refer to the % of the negative impact rather than the tax liabilities?-Anderson). 
+This section combines the welfare and transfer repeal from section two and tax reform from section three to examine the joint distributional impact. The top ten percent of earners see an average negative impact of just over \camax{} $\$30,000$ compared to slightly more than \camin{} $\$15,000$ in the bottom ten percent. The top ten percent experiences \csmax{} $30.21$ percent of the increase in tax liabilities, while the lowest ten percent pay \csmin{} $16.28$ percent of the increase in tax liabilities (Question: is this supposed to refer to the % of the negative impact rather than the tax liabilities?-Anderson). 
 (Isn't the negative impact the additional tax liabilities for tax units?)
 
 \begin{table}[H]
@@ -163,7 +163,7 @@ This section combines the welfare and transfer repeal from section two and tax r
 \floatfoot{Source: Author's calculations using OSPC calculator.}
 \end{table}
 
-Combined, reforming the tax code to remove deductions, exemptions, and other provisions that narrow the base as well as repealing most programs that distribute payment to individuals freed $\$2.9$ trillion to apply to a UBI.
+Combined, reforming the tax code to remove deductions, exemptions, and other provisions that narrow the base as well as repealing most programs that distribute payment to individuals freed \alert{[MACRO]} $\$2.9$ trillion to apply to a UBI.
 
 \begin{figure}[H]
 \centering
@@ -194,7 +194,7 @@ Combined, reforming the tax code to remove deductions, exemptions, and other pro
 %\floatfoot{A note}
 %\end{figure}
 
-% Section 5
+% Section 5 (D)
 \section{Tax and Welfare/Transfer Repeal with UBI for All}
 
 The first UBI policy modeled provides a UBI to all individuals with those under the age of eighteen receiving half of what those above do. We programmed the model to set a UBI that would be revenue neutral after accounting for all of the reforms in section four and the new tax revenue that results from making the UBI taxable. We found that we could achieve revenue neutrality with a UBI of \$\dxaa{}for those above the age of 18 and \$\dxab{}for those under the age of 18.\ospc The effect of this policy on tax liabilities can be see in table \ref{table:d1}.  
@@ -210,9 +210,9 @@ The first UBI policy modeled provides a UBI to all individuals with those under 
 \floatfoot{Source: Author's calculations using OSPC calculator.}
 \end{table}
 
-The combination of repealing tax deductions and exemptions which lower tax liability and taxing the UBI results in greater tax liabilities for all income earners. The UBI alone moves all non-head-of-household filers from the $10$ to the $15$ percent tax bracket. Total increased tax liabilities of $\$1.36$ trillion are paid largely by high income earners. The bottom $20$ percent pays $9.66$ percent of the increased tax liabilities while the top $20$ percent pays $41.71$ percent of the increased tax liabilities. 
+The combination of repealing tax deductions and exemptions which lower tax liability and taxing the UBI results in greater tax liabilities for all income earners. The UBI alone moves all non-head-of-household filers from the $10$ to $15$ percent tax bracket. Total increased tax liabilities of \dtmax{} $\$1.36$ trillion are paid largely by high income earners. The bottom ten percent pays \dsmin{} $9.66$ percent of the increased tax liabilities while the top $20$ percent pays $41.71$ percent of the increased tax liabilities. 
 
-There are a handful of tax-units who do see a tax cut: this is due to the repeal of the Social Security and therefore taxable Social Security income. Of the tax-units receiving a tax cut, less than one tenth of one percent of all units, their average Social Security income before repeal was $\$38,407$, compared to an average UBI benefit of $\$16,180$.
+There are a handful of tax-units who do see a tax cut: this is due to the repeal of the Social Security and therefore taxable Social Security income. Of the tax-units receiving a tax cut, less than one tenth of one percent of all units, their average Social Security income before repeal was \alert{[MACRO]} $\$38,407$, compared to an average UBI benefit of \alert{[MACRO]} $\$16,180$.
 
 
 \begin{figure}[H]
@@ -263,7 +263,7 @@ Because everyone, regardless of age, receives a basic income, this policy is mos
 %\floatfoot{A note}
 \end{figure}
 
-% Section 6
+% Section 6 (E)
 \section{Tax and Welfare/Transfer Repeal with UBI for 18 Plus}
 In this section we provide a basic income to individuals $18$ and older. Shrinking the targeted population allows for a larger UBI -- \$\exaa{}instead of the \$\dxaa{} outlined in section five.\ospc As in section five, this UBI is taxed and is ultimatley revenue neutral.
 
@@ -318,7 +318,7 @@ As with our first UBI policy, the largest changes in marginal tax rates are seen
 
 In dollar terms, most of the new tax burden still falls on the shoulders of higher earners. Those in the top ten percent would be responsible for more than a quarter of new liabilities compared to the three percent increase in the bottom percentile.
 
-% Section 7
+% Section 7 (F)
 \section{Tax and Welfare/Transfer Repeal with UBI for 21 Plus}
 This section impliments a UBI limited to those 21 and above. Using the goal of revenue neutrality after accounting for taxes on the additional income, we found that a UBI of \$\fxaa{} could be given to all 21 and above.
 
@@ -370,7 +370,7 @@ Unlike when the UBI was given to all above $18$, the additional tax liabilities 
 %\floatfoot{A note}
 \end{figure}
 
-% Section 8
+% Section 8 (G)
 \section{Tax and Welfare/Transfer Repeal with UBI for All (Dynamic)}
 To this point, we have assumed no change in behavior stemming from either tax reform or UBI implementation. Using Tax-Calculator’s behavioral analysis capabilities, we repeated simulations of the three UBI policies above, this time applying an income effect of $-0.05$ and a substitution effect of $0.24$.\footnote{Our elasticities are based on Harris (2015). Both the tax reform package and UBI policies specified in this paper increase marginal and average tax rates. By itself, the substitution effect dictates this result in a decrease in the labor supply, while the offsetting income effect implies an increase in labor supply.} This allows for dynamic responses to labor and leisure choices made by UBI recipients. 
 
@@ -419,7 +419,7 @@ To this point, we have assumed no change in behavior stemming from either tax re
 %\floatfoot{A note}
 \end{figure}
 
-% Section 9
+% Section 9 (H)
 \section{Tax and Welfare/Transfer Repeal with UBI for 18 Plus (Dynamic)}
 This section implements a taxable UBI of \$\hxaa{}for individuals at least $18$ years old and performs a dynamic simulation. Increases in tax liability are similar in both static and dynamic simulations: the static simulation raises total tax liabilities by $\$1.364$ trillion while the dynamic simulation raises tax liabilities by $\$1.371$ trillion. Of this increase in tax liability, $26.09$ percent is borne by those in the highest AGI percentile. Those in the lowest AGI percentile only face $3.66$ percent of the total increase in tax liability. This amounts to an average $\$3,081$ increase for tax units in the lowest income percentile. The following table shows the complete impact of these reforms on liability by AGI percentile.
 
@@ -472,7 +472,7 @@ These reforms have a regressive impact on the MTR, raising it for low and medium
 %\floatfoot{A note}
 \end{figure}
 
-% Section 10
+% Section 10 (I)
 \section{Tax and Welfare/Transfer Repeal with UBI for 21 Plus (Dynamic)}
 This section implements a taxable UBI of $\$12,126$ for those $21$ years of age and performs a dynamic simulation. These reforms increased total tax liabilities by $\$1.375$ trillion. The increase in tax liability is largest for those with the highest incomes. Of the total increase in tax liabilities, $26.21$ percent are paid by those in the top income percentile. Those with the lowest incomes face a comparatively smaller increase in the tax liability, accounting for $3.45$ percent of the total increase in tax liabilities. This equates to an average increase in $\$2,914$ for those with the lowest incomes. The following table shows complete results.
 
@@ -527,7 +527,7 @@ Primary earners with low incomes experience a large increase in MTR of between $
 %\floatfoot{A note}
 \end{figure}
 
-% Section 11
+% Section 11 (J)
 \section{Adjusted Welfare Calculations}
 This section evaluates the welfare effects of a UBI -- all using dollar-welfare and adjusted baseline welfare calculations. A dollar-welfare measure sets the value of a welfare or transfer program per tax unit equal to the average cost. This method is inaccurate if the recipients do not receive a benefit worth the program’s per capita cost due to deadweight loss.\footnote{ O'Higgins (1981) provides the example of educational benefits, which when measured using the cost per capita method inflates if teachers received increased wages. This leads to a higher estimated value to students, despite the wage increase having no actual impact on education provision. The corollary can also be true when economies of scale are considered: a government may be able to purchase a good or service in bulk and demand a lower price, despite the services being valued more. To avoid these problems, in-kind health care provision should be valued, using a risk-related insurance approach. Individuals are assigned a dollar benefit (the actuarily fair premium price) based upon average spending according to their age and sex. Callan (2008) explains that consumption of health services is not considered, as this would suggest those most sick and in need of medical treatment have greater resources. Smeeding (1993) writes that the average cost of the benefit may overstate it, as recipients may prefer to spend corresponding cash on other goods and services.} The size of the deadweight loss depends on the recipient’s infra-marginality with respect to the program’s benefit. If the recipient is infra-marginal, meaning they will spend more than a given program’s benefit on a good or service, there is little to no welfare loss. In this case, the benefit recipient is going to spend at least as much as the welfare program provides, leaving them to make marginal consumption decisions. If the value of the program exceeds the amount the recipient would pay for a good or service (the recipient is not infra-marginal), a deadweight loss results from the recipient consuming more than they otherwise would. In this case, the recipient would be better off with cash for the value of the benefit exceeding their desired consumption level.\footnote{Example: A household receives a heating fuel subsidy for an amount in excess of their desired heating fuel consumption. The household is best off consuming the maximum amount of heating fuel provided by the program although they may be better off restricting their consumption and receiving the remainder of the subsidy in cash (which they could spend on other goods).} This deadweight loss is partially offset by the improved targeting of beneficiaries.
 
