@@ -53,12 +53,12 @@
 
 \doublespacing
 
-% Section 1
+% Section 1 (into)
 \section{Introduction}
 
 Widening inequality and increasing job disruption due to technology have increased discussion of an universal basic income (UBI) in academic circles. The concept of an UBI is simple -- every person, above a certain age, receives a lump sum of cash from the government regardless of income, employment status, or any other means test in other welfare programs. Using the American Enterprise Institute's Open Source Policy Center's (OSPC) modeling suite, this report simulates the repeal of major welfare and transfer programs, the elimination of tax provisions and deductions to broaden the tax base, and three potential UBI policies that would neutralize the revenue impact of the aforementioned reforms on a static and dynamic basis. The paper also evaluates the welfare consequences of these reforms, accounting for the inefficiency costs of welfare programs. We perform this analysis by separating tax units by percentiles of average gross income (AGI). All calculations are performed using 2014 data.
 
-% Section 2
+% Section 2 (A)
 \section{Welfare/Transfer Program Repeal}
 We begin by repealing all major welfare and transfer programs including Medicare, Medicaid, SSI, SNAP, Social Security, and Veterans Benefits.\footnote{Program payments imputed using OSPC C-TAM model. A full description of the model can be found in the appendix.} We also repealed unemployment, housing, and student assistance; other public assistance; and most individual payment programs.\footnote{A full list of the programs repealed and their costs can be found in the appendix.} We account for decreased tax revenue from the repeal of Social Security benefits, which are taxed under the current system. After accounting for the decrease in tax revenue from the repeal of taxable Social Security benefits, repealing these programs yields \$\axag{} trillion that can be used to put toward the UBI.\footnote{Author's calculations using C-TAM, Tax-Calculator, and \href{https://obamawhitehouse.archives.gov/omb/budget/Historicals}{Office of Management and Budget data (\textit{Table 3.2—Outlays by Function and Subfunction: 1962–2021} and \textit{Table 11.3—Outlays for Payments for Individuals by Category and Major Program: 1940–2021).}}} The effects of repealing the welfare and transfer programs are shown in the following table.
 
@@ -93,11 +93,11 @@ The repeal of benefit and transfer programs appears to have a homogenous effect 
 
 These reforms have similar tax effects for both primary and secondary earners, raising the marginal tax rate (MTR) for those with lower income and lowering the MTR for those with middle incomes. The MTRs of those with higher incomes are relatively unaffected by the repeal of welfare and transfer programs. One benefit of the reforms is it removes the disincentive to work associated with welfare "notches." These form when the MTR is such that the additional income from an extra dollar earned through work will result in the loss of significant welfare benefits.
 
-% Section 3
+% Section 3 (B)
 \section{Tax Reform}
 The current tax code is littered with numerous exemptions and deductions designed to give certain segments of the population tax breaks. These provisions narrow the tax base, distort tax unit consumption decisions, and have disperate effects across the income distribution.  In addition to repealing all welfare and transfer programs, we repeal all above-the-line, standard, and itemized deductions (excluding the charitable deduction); all tax credits; the personal exemption; and the earned income tax credit.
 
-With the repeal of the aforementioned tax provisions, roughly $92$ percent of tax units will face a tax increase resulting in $\$708$ billion in new liabilities, nearly half of that falling on the top ten percent of earners -- \bpmax{} $49.01$ percent -- compared to the \btmin{} $3.68$ percent borne by the bottom ten percent.\ospc
+With the repeal of the aforementioned tax provisions, roughly $92$ percent of tax units will face a tax increase resulting in $\$708$ billion in new liabilities, nearly half of that falling on the top ten percent of earners -- \bsmax{} $49.01$ percent -- compared to the \bsmin{} $3.68$ percent borne by the bottom ten percent.\ospc
 
 \begin{table}[H]
 \caption{Tax Liability by Percentile of AGI}
@@ -147,10 +147,11 @@ The reforms lead to almost across the board marginal tax rate (MTR) increases, t
 %\floatfoot{A note}
 \end{figure}
 
-% Section 4
+% Section 4 (C)
 \section{Tax and Welfare/Transfer Repeal}
 
-This section combines the welfare and transfer repeal from section two and tax reform from section three to examine the joint distributional impact. The top ten percent of earners see an average negative impact of just over $\$30,000$ compared to slightly more than $\$15,000$ in the bottom ten percent. The top $20$ percent experiences $30.21$ percent of the increase in tax liabilities, while the lowest $20$ percent pay $16.28$ percent of the increase in tax liabilities (Question: is this supposed to refer to the % of the negative impact rather than the tax liabilities?-Anderson). 
+This section combines the welfare and transfer repeal from section two and tax reform from section three to examine the joint distributional impact. The top ten percent of earners see an average negative impact of just over \camax{} $\$30,000$ compared to slightly more than \camin{} $\$15,000$ in the bottom ten percent. The top ten percent experiences \csmax{} $30.21$ percent of the increase in tax liabilities, while the lowest ten percent pay \csmin $16.28$ percent of the increase in tax liabilities (Question: is this supposed to refer to the % of the negative impact rather than the tax liabilities?-Anderson). 
+(Isn't the negative impact the additional tax liabilities for tax units?)
 
 \begin{table}[H]
 \caption{Revenue Effect of Benefit and Tax Repeal}
