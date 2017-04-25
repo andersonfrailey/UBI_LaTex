@@ -73,7 +73,7 @@ We begin by repealing all major welfare and transfer programs including Medicare
 \floatfoot{Source: Author's calculations using OSPC calculator.}
 \end{table}
 
-The repeal of benefit and transfer programs appears to have a homogenous effect across AGI percentiles due to the inclusion of Social Security and Medicaid.\footnote{As a result of these reforms, the bottom $10$ percent of income earners lose \asmin{} $20.47$ percent of the benefits, while the top $10$ percent of earners lose \asmax{} $23.74$ percent of the benefits.} Social Security disbursments are tied to an individual's income, compensating for the larger recipt of other benefit and transfer programs by low income earners.
+The repeal of benefit and transfer programs appears to have a homogenous effect across AGI percentiles due to the inclusion of Social Security and Medicaid.\footnote{As a result of these reforms, the bottom $20$ percent of income earners lose [MACRO] $20.47$ percent of the benefits, while the top $20$ percent of earners lose [MACRO] $23.74$ percent of the benefits.} Social Security disbursments are tied to an individual's income, compensating for the larger recipt of other benefit and transfer programs by low income earners.
 \footnote{C-TAM only models Medicare, Medicaid, SSI, SNAP, Social Security, and Veterans Benefits. The distribution of all non-modeled programs was assumed to reflect the distribution of the modeled benefits.}
 
 \begin{figure}[H]
