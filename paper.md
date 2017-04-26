@@ -60,7 +60,7 @@ Widening inequality and increasing job disruption due to technology have increas
 
 % Section 2 (A)
 \section{Welfare/Transfer Program Repeal}
-We begin by repealing all major welfare and transfer programs including Medicare, Medicaid, SSI, SNAP, Social Security, and Veterans Benefits.\footnote{Program payments imputed using OSPC C-TAM model. A full description of the model can be found in the appendix.} We also repealed unemployment, housing, and student assistance; other public assistance; and most individual payment programs.\footnote{A full list of the programs repealed and their costs can be found in section 12.3 under the appendix.} After accounting for the decrease in tax revenue from the repeal of taxable Social Security benefits, repealing these programs yields \aaorod{} trillion that can be used to put toward the UBI.\footnote{Author's calculations using C-TAM, Tax-Calculator, and \href{https://obamawhitehouse.archives.gov/omb/budget/Historicals}{Office of Management and Budget data (\textit{Table 3.2—Outlays by Function and Subfunction: 1962–2021} and \textit{Table 11.3—Outlays for Payments for Individuals by Category and Major Program: 1940–2021).}}} The effects of repealing the welfare and transfer programs are shown in Table \ref{table:a1_df}.
+We begin by repealing all major welfare and transfer programs including Medicare, Medicaid, SSI, SNAP, Social Security, and Veterans Benefits.\footnote{Program payments imputed using OSPC C-TAM model. A full description of the model can be found in the appendix.} We also repealed unemployment, housing, and student assistance; other public assistance; and most individual payment programs.\footnote{A full list of the programs repealed and their costs can be found in section 12.3 under the appendix.} After accounting for the decrease in tax revenue from the repeal of taxable Social Security benefits, repealing these programs yields \aoog{} trillion that can be used to put toward the UBI.\footnote{Author's calculations using C-TAM, Tax-Calculator, and \href{https://obamawhitehouse.archives.gov/omb/budget/Historicals}{Office of Management and Budget data (\textit{Table 3.2—Outlays by Function and Subfunction: 1962–2021} and \textit{Table 11.3—Outlays for Payments for Individuals by Category and Major Program: 1940–2021).}}} The effects of repealing the welfare and transfer programs are shown in Table \ref{table:a1_df}.
 
 \begin{table}[H]
 \caption{Welfare and Transfer Program Repeal Effect on Benefits}
@@ -73,7 +73,7 @@ We begin by repealing all major welfare and transfer programs including Medicare
 \floatfoot{Source: Author's calculations using OSPC calculator.}
 \end{table}
 
-The repeal of benefit and transfer programs appears to have a homogenous effect across AGI percentiles due to the inclusion of Social Security and Medicaid.\footnote{As a result of these reforms, the bottom $20$ percent of income earners lose [MACRO] $20.47$ percent of the benefits, while the top $20$ percent of earners lose [MACRO] $23.74$ percent of the benefits.} Social Security disbursments are tied to an individual's income, compensating for the larger recipt of other benefit and transfer programs by low income earners.
+The repeal of benefit and transfer programs appears to have a homogenous effect across AGI percentiles due to the inclusion of Social Security and Medicaid.\footnote{As a result of these reforms, the bottom ten percent of income earners lose \adsn{} of the benefits, while the top ten percent of earners lose \adsx{} of the benefits.} Social Security disbursments are tied to an individual's income, compensating for the larger recipt of other benefit and transfer programs by low income earners.
 \footnote{C-TAM only models Medicare, Medicaid, SSI, SNAP, Social Security, and Veterans Benefits. The distribution of all non-modeled programs was assumed to reflect the distribution of the modeled benefits.}
 
 \begin{figure}[H]
@@ -100,7 +100,7 @@ These reforms have similar tax effects for both primary and secondary earners, r
 \section{Tax Reform}
 The current tax code is littered with numerous exemptions and deductions designed to give certain segments of the population tax breaks. These provisions narrow the tax base, distort tax unit consumption decisions, and have disperate effects across the income distribution.  In addition to repealing all welfare and transfer programs, we repeal all above-the-line, standard, and itemized deductions (excluding the charitable deduction); all tax credits; the personal exemption; and the earned income tax credit.
 
-With the repeal of the aforementioned tax provisions, roughly $92$ percent of tax units will face a tax increase resulting in $\$708$ billion in new liabilities, nearly half of that falling on the top ten percent of earners -- \bbdsxp{} $49.01$ percent -- compared to the \bbdsnp{} $3.68$ percent borne by the bottom ten percent.\ospc
+With the repeal of the aforementioned tax provisions, roughly $92$ percent of tax units will face a tax increase resulting in \bdtg{} in new liabilities, nearly half of that falling on the top ten percent of earners -- \bdsx{} -- compared to the \bdsn{} borne by the bottom ten percent.\ospc
 
 \begin{table}[H]
 \caption{Tax Liability by Percentile of AGI}
@@ -129,7 +129,7 @@ With the repeal of the aforementioned tax provisions, roughly $92$ percent of ta
 %\floatfoot{A note}
 \end{figure}
 
-The reforms lead to almost across the board marginal tax rate (MTR) increases, the largest of which are seen at the lower end of the income spectrum. The bottom quarter of earners see their marginal net-of-tax rate $(1 - MTR)$ decrease by $17$ percentage points for both primary and secondary earners.\footnote{Author’s calculations using OSPC Tax-Calculator.}
+The reforms lead to almost across the board marginal tax rate (MTR) increases, the largest of which are seen at the lower end of the income spectrum. Primary earners in the lowest income percentile experience an average net-of-tax rate $(1 - MTR)$ increase from \bpbn{} to \bprn{}, or \bpvn{}. These individuals have increased income from the UBI, raising their MTR substantially. This has a smoothing effect on the MTR rate path, removing notches present in the current system. These notches can cause disincentives to work, as additional labor income may cause the loss of other benefits. A great benefit of these reforms are the removal of these effects. Those in the top income percentile experience a less dramatic change, with their MTR increasing by an average \bpvx{}. There is a similar pattern for secondary income earners. Those in the lowest income percentile experience a \bsvn{} change in their MTR, while those in the highest income percentile experience a \bsvx{} change in their MTR.\ospc These results are shown in figures \ref{figure:b3},  \ref{figure:b4}, and \ref{figure:b5}.
 
 \begin{figure}[H]
 \centering
@@ -158,8 +158,7 @@ The reforms lead to almost across the board marginal tax rate (MTR) increases, t
 % Section 4 (C)
 \section{Tax and Welfare/Transfer Repeal}
 
-This section combines the welfare and transfer repeal from section two and tax reform from section three to examine the joint distributional impact. The top ten percent of earners see an average negative impact of just over $\$30,000$ compared to slightly more than $\$15,000$ in the bottom ten percent. The top ten percent experiences $30.21$ percent of the increase in tax liabilities, while the lowest ten percent pay $16.28$ percent of the increase in tax liabilities (Question: is this supposed to refer to the % of the negative impact rather than the tax liabilities?-Anderson). 
-(Isn't the negative impact the additional tax liabilities for tax units?)
+This section combines the welfare and transfer repeal from section two and tax reform from section three to examine the joint distributional impact. These reforms increase tax liabilities across all incomes by \cdtg{}. The top ten percent of earners see an average increase of \cdax{} in tax liabilities compared with a \cdan{} increase for the lowest income percentile.
 
 \begin{table}[H]
 \caption{Revenue Effect of Benefit and Tax Repeal}
@@ -172,7 +171,7 @@ This section combines the welfare and transfer repeal from section two and tax r
 \floatfoot{Source: Author's calculations using OSPC calculator.}
 \end{table}
 
-Combined, reforming the tax code to remove deductions, exemptions, and other provisions that narrow the base as well as repealing most programs that distribute payment to individuals freed [MACRO] $\$2.9$ trillion to apply to a UBI.
+Combined, reforming the tax code to remove deductions, exemptions, and other provisions that narrow the base as well as repealing most programs that distribute payment to individuals freed \cuog{} to apply to a UBI. The distributional effects of these reforms are shown in figures \ref{figure:c1} and \ref{figure:c2}. 
 
 \begin{figure}[H]
 \centering
@@ -210,14 +209,7 @@ Combined, reforming the tax code to remove deductions, exemptions, and other pro
 % Section 5 (D)
 \section{Tax and Welfare/Transfer Repeal with UBI for All}
 
-###########################################################
-As a result of these reforms, primary earners in the lowest income percentile experience an average MTR increase from \dpmbnp{} to \dpmrnp{}, or \dpmvnp{}. These individuals have increased income from the UBI, raising their MTR substantially. This has a smoothing effect on the MTR rate path, removing notches present in the current system. These notches can cause disincentives to work, as additional labor income may cause the loss of other benefits. A great benefit of these reforms are the removal of these effects. Those in the top income percentile experience a less dramatic change, with their MTR increasing by an average \dpmvxp{}. There is a similar pattern for secondary income earners. Those in the lowest income percentile experience a \dsmvnp{} change in their MTR, while those in the highest income percentile experience a \dsmvxp{} change in their MTR.
-
-These reforms increase tax liabilities across all incomes by \dsmvnp{}. Of this total, tax units in the bottom income percentile experience a \dsmvnp{} increase in liabilities, or \dsmvnp{} of the total liability increase. This is an increase of approximately \dsmvnp{} on average, per household. Most of the total increase in liabilities (\dsmvnp{}) falls on those in the top income percentile. These tax units experience an average \dsmvnp{} rise in liabilities.
-###########################################################
-
-
-The first UBI policy modeled provides a UBI to all individuals with those under the age of eighteen receiving half of what those above do. We programmed the model to set a UBI that would be revenue neutral after accounting for all of the reforms in section four and the new tax revenue that results from making the UBI taxable. We found that we could achieve revenue neutrality with a UBI of \ddvrad{} for those above the age of 18 and \ddvrbd{} for those under the age of 18.\ospc The effect of this policy on tax liabilities can be see in Table \ref{table:d1}.  
+The first UBI policy modeled provides a UBI to all individuals with those under the age of eighteen receiving half of what those above do. We programmed the model to set a UBI that would be revenue neutral after accounting for all of the reforms in section four and the new tax revenue that results from making the UBI taxable. We found that we could achieve revenue neutrality with a UBI of \duag{} for those above the age of 18 and \dubg{} for those under the age of 18.\ospc The effect of this policy on tax liabilities can be see in Table \ref{table:d1}.  
 
 \begin{table}[H]
 \caption{Increase in Tax Liabilities by Percentile of AGI}
@@ -230,10 +222,7 @@ The first UBI policy modeled provides a UBI to all individuals with those under 
 \floatfoot{Source: Author's calculations using OSPC calculator.}
 \end{table}
 
-The combination of repealing tax deductions and exemptions which lower tax liability and taxing the UBI results in greater tax liabilities for all income earners. The UBI alone moves all non-head-of-household filers from the $10$ to $15$ percent tax bracket. Total increased tax liabilities of \dddsxp{} $\$1.36$ trillion are paid largely by high income earners. The bottom ten percent pays \dddsnp{} $9.66$ percent of the increased tax liabilities while the top $20$ percent pays $41.71$ percent of the increased tax liabilities. 
-
-There are a handful of tax-units who do see a tax cut: this is due to the repeal of the Social Security and therefore taxable Social Security income. Of the tax-units receiving a tax cut, less than one tenth of one percent of all units, their average Social Security income before repeal was [MACRO] $\$38,407$, compared to an average UBI benefit of [MACRO] $\$16,180$.
-
+The combination of repealing tax deductions and exemptions which lower tax liability and taxing the UBI results in greater tax liabilities for all income earners. The UBI alone moves all non-head-of-household filers from the $10$ to $15$ percent tax bracket. Total increased tax liabilities of \ddtg{} are paid largely by high income earners. The bottom ten percent pays \ddsn{} percent of the increased tax liabilities while the top ten percent pays \ddsx{} percent of the increased tax liabilities. 
 
 \begin{figure}[H]
 \centering
@@ -251,9 +240,9 @@ There are a handful of tax-units who do see a tax cut: this is due to the repeal
 %\floatfoot{A note}
 \end{figure}
 
-Those in the lower spectrum of earners see their net-of-tax rate drop by as nineteen percent after the reforms and UBI are accounted for.
+The reforms lead to almost across the board marginal tax rate (MTR) increases, the largest of which are seen at the lower end of the income spectrum. Primary earners in the lowest income percentile experience an average net-of-tax rate $(1 - MTR)$ increase from \dpbn{} to \dprn{}, or \dpvn{}. These individuals have increased income from the UBI, raising their MTR substantially. This has a smoothing effect on the MTR rate path, removing notches present in the current system. These notches can cause disincentives to work, as additional labor income may cause the loss of other benefits. A great benefit of these reforms are the removal of these effects. Those in the top income percentile experience a less dramatic change, with their MTR increasing by an average \dpvx{}. There is a similar pattern for secondary income earners. Those in the lowest income percentile experience a \dsvn{} change in their MTR, while those in the highest income percentile experience a \dsvx{} change in their MTR.\ospc These results are shown in figures \ref{figure:b3},  \ref{figure:b4}, and \ref{figure:b5}.
 
-As a whole, the tax effects of a UBI are largely progressive, with the top ten percent of earners shouldering over \dddsxp{} forty percent of the increase in liabilities.
+There are a handful of tax-units who do see a tax cut due to the repeal of the Social Security and its taxable income. Of the tax-units receiving a tax cut, less than one tenth of one percent of all units, their average Social Security income before repeal was $\$38,407$, compared to an average UBI benefit of \duag{} for those over 18.
 
 \begin{figure}[H]
 \centering
@@ -283,9 +272,9 @@ Because everyone, regardless of age, receives a basic income, this policy is mos
 
 % Section 6 (E)
 \section{Tax and Welfare/Transfer Repeal with UBI for 18 Plus}
-In this section we provide a basic income to individuals $18$ and older. Shrinking the targeted population allows for a larger UBI -- \eeurad{} instead of the \ddvrad{} outlined in section five.\ospc As in section five, this UBI is taxed and is ultimatley revenue neutral.
+In this section we provide a basic income to individuals $18$ and older. Shrinking the targeted population allows for a larger UBI -- \euog{} instead of the \duag{} outlined in section five.\ospc As in section five, this UBI is taxed and is ultimatley revenue neutral.
 
-With the introduction of a \eeurad{} UBI, most tax units see a rise in tax liability and marginal tax rates. As with the initial UBI policy though, there are a small number of tax-units who actually saw their total liability decrease [MACRO] $\$1,436$ on average. This is again likely due to the removal of taxable Social Security benefits from these tax units, as on average they received $\$41,117$ compared to $\$18,611$ in UBI.\ospc
+With the introduction of a \euog{} UBI, most tax units see a rise in tax liability and marginal tax rates. As with the initial UBI policy though, there are a small number of tax-units who actually saw their total liability decrease by $\$1,436$ on average. This is again likely due to the removal of taxable Social Security benefits from these tax units, as on average they received $\$41,117$ compared to $\$18,611$ in UBI.\ospc
 
 \begin{figure}[H]
 \centering
@@ -316,6 +305,8 @@ As with our first UBI policy, the largest changes in marginal tax rates are seen
 \floatfoot{Source: Author's calculations using OSPC calculator.}
 \end{table}
 
+The reforms lead to almost across the board marginal tax rate (MTR) increases, the largest of which are seen at the lower end of the income spectrum. Primary earners in the lowest income percentile experience an average net-of-tax rate $(1 - MTR)$ increase from \epbn{} to \eprn{}, or \epvn{}. These individuals have increased income from the UBI, raising their MTR substantially. This has a smoothing effect on the MTR rate path, removing notches present in the current system. These notches can cause disincentives to work, as additional labor income may cause the loss of other benefits. A great benefit of these reforms are the removal of these effects. Those in the top income percentile experience a less dramatic change, with their MTR increasing by an average \epvx{}. There is a similar pattern for secondary income earners. Those in the lowest income percentile experience a \esvn{} change in their MTR, while those in the highest income percentile experience a \esvx{} change in their MTR.\ospc These results are shown in figures \ref{figure:e3},  \ref{figure:e4}, and \ref{figure:e5}.
+
 \begin{figure}[H]
 \centering
 \caption{Average Change in Tax Liabilities by Percentile of AGI}
@@ -344,7 +335,7 @@ In dollar terms, most of the new tax burden still falls on the shoulders of high
 
 % Section 7 (F)
 \section{Tax and Welfare/Transfer Repeal with UBI for 21 Plus}
-This section impliments a UBI limited to those 21 and above. Using the goal of revenue neutrality after accounting for taxes on the additional income, we found that a UBI of \ffurad{} could be given to all 21 and above.
+This section impliments a UBI limited to those 21 and above. Using the goal of revenue neutrality after accounting for taxes on the additional income, we found that a UBI of \fuog{} could be given to all 21 and above.
 
 Unlike when the UBI was given to all above $18$, the additional tax liabilities offset any drop in liabilities resulting from the loss of taxable benefits, so no tax units see a cut in taxes. As with the previously discussed reforms, the progressivity of the tax effects is still maintained despite large marginal tax rate increases in the bottom percentiles.
 
