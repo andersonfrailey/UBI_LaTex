@@ -32,22 +32,22 @@
 %\usepackage[style=authoryear-ibid,sorting=ynt]{biblatex}
 %\usepackage[backend=biber]{biblatex}
 \begin{document}
+
 % define macros
 \input{macros.txt}
+\newcommand{\ospc}{\footnote{Author’s calculations using OSPC Tax-Calculator.} }
 
-\newcommand{\ospc}{\footnote{Author’s calculations using OSPC Tax-Calculator.}}
-
-%\begin{document}
+% title page
 \begin{titlepage}
-
 \title{Universal Basic Income Reform}
 \author{Open Source Policy Center \\ American Enterprise Institute}
 \date{\today}
-
 \maketitle
-
+\thispagestyle{empty}
 \end{titlepage}
 
+% table of contents
+\newpage
 \tableofcontents
 \newpage
 
@@ -73,7 +73,7 @@ We begin by repealing all major welfare and transfer programs including Medicare
 \floatfoot{Source: Author's calculations using OSPC calculator.}
 \end{table}
 
-The repeal of benefit and transfer programs appears to have a homogenous effect across AGI percentiles due to the inclusion of Social Security and Medicaid.\footnote{As a result of these reforms, the bottom ten percent of income earners lose \adsn{} of the benefits, while the top ten percent of earners lose \adsx{} of the benefits.} Social Security disbursments are tied to an individual's income, compensating for the larger recipt of other benefit and transfer programs by low income earners.
+The repeal of benefit and transfer programs appears to have a homogeneous effect across AGI percentiles due to the inclusion of Social Security and Medicaid.\footnote{As a result of these reforms, the bottom ten percent of income earners lose \adsn{} of the benefits, while the top ten percent of earners lose \adsx{} of the benefits.} Social Security disbursements are tied to an individual's income, compensating for the larger receipt of other benefit and transfer programs by low income earners.
 \footnote{C-TAM only models Medicare, Medicaid, SSI, SNAP, Social Security, and Veterans Benefits. The distribution of all non-modeled programs was assumed to reflect the distribution of the modeled benefits.} Benefit changes are shown in Figure \ref{figure:a1} and Figure \ref{figure:a2}. 
 
 \begin{figure}[H]
@@ -96,9 +96,9 @@ The repeal of benefit and transfer programs appears to have a homogenous effect 
 
 % Section 3 (B)
 \section{Tax Reform}
-The current tax code is littered with numerous exemptions and deductions designed to give certain segments of the population tax breaks. These provisions narrow the tax base, distort tax unit consumption decisions, and have disperate effects across the income distribution.  In addition to repealing all welfare and transfer programs, we repeal all above-the-line, standard, and itemized deductions (excluding the charitable deduction); all tax credits; the personal exemption; and the earned income tax credit.
+The current tax code is littered with numerous exemptions and deductions designed to give certain segments of the population tax breaks. These provisions narrow the tax base, distort tax unit consumption decisions, and have disparate effects across the income distribution. In addition to repealing all welfare and transfer programs, we repeal all above-the-line, standard, and itemized deductions (excluding the charitable deduction); all tax credits; the personal exemption; and the earned income tax credit.
 
-With the repeal of the aforementioned tax provisions, roughly $92$ percent of tax units will face a tax increase resulting in \bdtg{} in new liabilities, most falling on the top ten percent of earners -- \bdsx{} -- compared to the \bdsn{} borne by the bottom ten percent.\ospc Full results are shown in Table \ref{table:b1}. 
+With the repeal of the aforementioned tax provisions, \bdpp{} of tax units will face a tax increase resulting in \bdtg{} in new liabilities, most falling on the top ten percent of earners -- \bdsx{} -- compared to the \bdsn{} borne by the bottom ten percent.\ospc Full results are shown in Table \ref{table:b1}. 
 
 \begin{table}[H]
 \caption{Tax Liability by Percentile of AGI}
@@ -316,7 +316,7 @@ In dollar terms, most of the new tax burden still falls on the shoulders of high
 % Section 7 (F)
 \section{Tax and Welfare/Transfer Repeal with UBI for 21 Plus}
 
-This section impliments a UBI limited to those 21 and above. Using the goal of revenue neutrality after accounting for taxes on the additional income, we found that a UBI of \fuog{} could be given to all 21 and above. Unlike when the UBI was given to all above $18$, the additional tax liabilities offset any drop in liabilities resulting from the loss of taxable benefits, so no tax units see a cut in taxes. As with the previously discussed reforms, the progressivity of the tax effects is still maintained despite large marginal tax rate increases in the bottom percentiles. The results of this reform are shown in Table \ref{table:f1}. 
+This section implements a UBI limited to those 21 and above. Using the goal of revenue neutrality after accounting for taxes on the additional income, we found that a UBI of \fuog{} could be given to all 21 and above. Unlike when the UBI was given to all above $18$, the additional tax liabilities offset any drop in liabilities resulting from the loss of taxable benefits, so no tax units see a cut in taxes. As with the previously discussed reforms, the progressivity of the tax effects is still maintained despite large marginal tax rate increases in the bottom percentiles. The results of this reform are shown in Table \ref{table:f1}. 
 
 \begin{table}[H]
 \caption{Tax Liability by Percentile of AGI}
@@ -352,6 +352,7 @@ Primary earners in the lowest income percentile experience an average net-of-tax
 \begin{figure}[H]
 \centering
 \caption{Average Primary Earner MTR by Percentileof AGI}
+\label{figure:f3}
 \includegraphics[scale=0.650]{f3}
 %\floatfoot{A note}
 \end{figure}
@@ -375,7 +376,7 @@ Primary earners in the lowest income percentile experience an average net-of-tax
 % Section 8 (G)
 \section{Tax and Welfare/Transfer Repeal with UBI for All (Dynamic)}
 
-To this point, we have assumed no change in behavior stemming from either tax reform or UBI implementation. Using Tax-Calculator’s behavioral analysis capabilities, we repeated simulations of the three UBI policies above, this time applying an income effect of $-0.05$ and a substitution effect of $0.24$.\footnote{Our elasticities are based on Harris (2015). Both the tax reform package and UBI policies specified in this paper increase marginal and average tax rates. By itself, the substitution effect dictates this result in a decrease in the labor supply, while the offsetting income effect implies an increase in labor supply.} This allows for dynamic responses to labor and leisure choices made by UBI recipients. 
+To this point, we have assumed no change in behavior stemming from either tax reform or UBI implementation. Using Tax-Calculator’s behavioral analysis capabilities, we repeated simulations of the three UBI policies above, this time applying an income effect of $-0.05$ and a substitution effect of $0.24$.\footnote{Our elasticities are based on Harris (2015). Both the tax reform package and UBI policies specified in this paper increase marginal and average tax rates. By itself, the substitution effect dictates this result in a decrease in the labor supply, while the offsetting income effect implies an increase in labor supply.} This allows for dynamic labor and leisure responses by UBI recipients. 
 
 \begin{table}[H]
 \caption{Tax Liability by Percentile of AGI}
@@ -388,7 +389,7 @@ To this point, we have assumed no change in behavior stemming from either tax re
 \floatfoot{Source: Author's calculations using OSPC calculator.}
 \end{table}
 
-These reforms increase tax liabilities across all incomes by \gdtg{}. Of this total, tax units in the bottom income percentile experience \gdan{} increase in liabilities, or \gdsn{} of the total liability increase. This is an increase of approximately \gdan{} on average, per household. Most of the total increase in liabilities (\gdsx{}) falls on those in the top income percentile. These tax units experience an average \gdax{} rise in liabilities. These results are illustrated in Figure \ref{figure:g1} and Figure \ref{figure:g2}.
+These reforms increase tax liabilities across all incomes by \gdtg{}. Of this total, tax units in the bottom income percentile experience \gdan{} increase in liabilities, or \gdsn{} of the total liability increase. Most of the total increase in liabilities (\gdsx{}) falls on those in the top income percentile. These tax units experience an average \gdax{} rise in liabilities. These results are illustrated in Figure \ref{figure:g1} and Figure \ref{figure:g2}.
 
 \begin{figure}[H]
 \centering
@@ -448,7 +449,7 @@ This section implements a taxable UBI of \huog{} for individuals at least $18$ y
 \floatfoot{Source: Author's calculations using OSPC calculator.}
 \end{table}
 
-The impact of these reforms on tax liability are also shown in figures \ref{figure:h1} and ref{figure:h2}. The first shows the average increase in tax liability by AGI percentile, while the second shows the total increase in tax liability by AGI percentile.
+The impact of these reforms on tax liability are also shown in figures \ref{figure:h1} and \ref{figure:h2}. The first shows the average increase in tax liability by AGI percentile, while the second shows the total increase in tax liability by AGI percentile.
 
 \begin{figure}[H]
 \centering
@@ -555,9 +556,9 @@ These reforms substantially raise the MTR for low and medium earners while the M
 % Section 11 (J)
 \section{Adjusted Welfare Calculations}
 
-This section evaluates the welfare effects of a UBI -- all using dollar-welfare and adjusted baseline welfare calculations. A dollar-welfare measure sets the value of a welfare or transfer program per tax unit equal to the average cost. This method is inaccurate if the recipients do not receive a benefit worth the program’s per capita cost due to deadweight loss.\footnote{ O'Higgins (1981) provides the example of educational benefits, which when measured using the cost per capita method inflates if teachers received increased wages. This leads to a higher estimated value to students, despite the wage increase having no actual impact on education provision. The corollary can also be true when economies of scale are considered: a government may be able to purchase a good or service in bulk and demand a lower price, despite the services being valued more. To avoid these problems, in-kind health care provision should be valued, using a risk-related insurance approach. Individuals are assigned a dollar benefit (the actuarily fair premium price) based upon average spending according to their age and sex. Callan (2008) explains that consumption of health services is not considered, as this would suggest those most sick and in need of medical treatment have greater resources. Smeeding (1993) writes that the average cost of the benefit may overstate it, as recipients may prefer to spend corresponding cash on other goods and services.} The size of the deadweight loss depends on the recipient’s infra-marginality with respect to the program’s benefit. If the recipient is infra-marginal, meaning they will spend more than a given program’s benefit on a good or service, there is little to no welfare loss. In this case, the benefit recipient is going to spend at least as much as the welfare program provides, leaving them to make marginal consumption decisions. If the value of the program exceeds the amount the recipient would pay for a good or service (the recipient is not infra-marginal), a deadweight loss results from the recipient consuming more than they otherwise would. In this case, the recipient would be better off with cash for the value of the benefit exceeding their desired consumption level.\footnote{Example: A household receives a heating fuel subsidy for an amount in excess of their desired heating fuel consumption. The household is best off consuming the maximum amount of heating fuel provided by the program although they may be better off restricting their consumption and receiving the remainder of the subsidy in cash (which they could spend on other goods).} This deadweight loss is partially offset by the improved targeting of beneficiaries.
+This section evaluates the welfare effects of a UBI -- all using dollar-welfare and adjusted baseline welfare calculations. A dollar-welfare measure sets the value of a welfare or transfer program per tax unit equal to the average cost. This method is inaccurate if the recipients do not receive a benefit worth the program’s per capita cost due to deadweight loss.\footnote{ O'Higgins (1981) provides the example of educational benefits, which when measured using the cost per capita method inflates if teachers received increased wages. This leads to a higher estimated value to students, despite the wage increase having no actual impact on education provision. The corollary can also be true when economies of scale are considered: a government may be able to purchase a good or service in bulk and demand a lower price, despite the services being valued more. To avoid these problems, in-kind health care provision should be valued, using a risk-related insurance approach. Individuals are assigned a dollar benefit (the actuarily fair premium price) based upon average spending according to their age and sex. Callan (2008) explains that consumption of health services is not considered, as this would suggest those most sick and in need of medical treatment have greater resources. Smeeding (1993) writes that the average cost of the benefit may overstate it, as recipients may prefer to spend corresponding cash on other goods and services.} The size of the deadweight loss depends on the recipient’s infra-marginality with respect to the program's benefit. If the recipient is infra-marginal, meaning they will spend more than a given program's benefit on a good or service, there is little to no welfare loss. In this case, the benefit recipient is going to spend at least as much as the welfare program provides, leaving them to make marginal consumption decisions. If the value of the program exceeds the amount the recipient would pay for a good or service (the recipient is not infra-marginal), a deadweight loss results from the recipient consuming more than they otherwise would. In this case, the recipient would be better off with cash for the value of the benefit exceeding their desired consumption level.\footnote{For example, a household receives a heating fuel subsidy for an amount in excess of their desired heating fuel consumption. The household is best off consuming the maximum amount of heating fuel provided by the program although they may be better off restricting their consumption and receiving the remainder of the subsidy in cash (which they could spend on other goods).} This deadweight loss is partially offset by the improved targeting of beneficiaries.
 
-To account for these deadweight losses, we employ welfare multiples that can be applied to each dollar spent on a specific program to approximate the value to recipients. These multiples are derived from the literature when availible, or approximated using simmilar programs.\footnote{See the appendix for a table of welfare multiples from the literature.} These multiples allow for a more accurate calculation of welfare programs' benefits to individuals.
+To account for these deadweight losses, we employ welfare multiples that can be applied to each dollar spent on a specific program to approximate the value to recipients. These multiples are derived from the literature when available, or approximated using similar programs, and allow for a more accurate calculation of welfare programs' benefits to individuals.\footnote{See the appendix for a table of welfare multiples from the literature.}
 
 The welfare multiples used in this section are shown in the following table.
 
@@ -596,7 +597,7 @@ The welfare multiples used in this section are shown in the following table.
 
 The welfare multiples are applied to the dollar value of each transfer program per tax unit. These are then aggregated by percentile of AGI to evaluate the distributional effects of repealing all welfare and transfer programs and implementing a UBI. We assume that the UBI will produce little to no deadweight loss because it is a cash transfer without any means testing. These welfare multiples only account for deadweight losses in the programs themselves and not for any tax effects.\footnote{We hope to include the welfare effects of the tax deduction and exemption repeals in later editions of this paper.}
 
-The following tables and charts illustrate the distributional effects of a UBI for all, accounting for the deadweight loss present in the welfare programs. Compared to the pure dollar-welfare calculation, the adjusted welfare calculation finds $\$5,000$ less in welfare for those in the lowest income percentile.
+The following tables and charts illustrate the distributional effects of a UBI for all, accounting for the deadweight loss present in the welfare programs. Compared to the pure dollar-welfare calculation, the adjusted welfare calculation estimates an average \jwav{} less in welfare for those in the lowest income percentile.
 
 \begin{table}[H]
 \caption{Dollar Welfare and Adjusted Welfare Calculations}
