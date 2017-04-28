@@ -1,32 +1,38 @@
-# The following code generates the data necessary for the paper (as of 4-18-2017 16:11)
-
 
 # coding: utf-8
 
-# In[454]:
+# # Universal Basic Income Reform
 
+# In[1]:
+
+# import packages
 from taxcalc import *
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
+
+
+# In[2]:
+
 from bokeh.plotting import show, output_file, figure
 from bokeh.charts import Scatter, Bar
 from bokeh.io import output_notebook
 output_notebook()
 
 
-# In[455]:
+# In[3]:
 
-import matplotlib.pyplot as plt
+# define utilities
 
 
-# In[456]:
+# In[4]:
 
 in_millions = 1.0e-6
 in_billions = 1.0e-9
 in_trillions = 1.0e-12
 
 
-# In[457]:
+# In[5]:
 
 # define parameters for macro dictionary
 labels = []
@@ -35,13 +41,13 @@ macros = []
 macro_dict = pd.DataFrame()
 
 
-# In[458]:
+# In[6]:
 
 # define agi bins
 agi_bins = ['0-10%', '10-20%', '20-30%', '30-40%', '40-50%', '50-60%', '60-70%', '70-80%', '80-90%', '90-100%']
 
 
-# In[459]:
+# In[7]:
 
 # text_file = open(tab_name, "w")
 # text_file.write(df2.to_latex())
@@ -50,7 +56,159 @@ agi_bins = ['0-10%', '10-20%', '20-30%', '30-40%', '40-50%', '50-60%', '60-70%',
 
 # # ADDED PROGRAMS
 
-# In[460]:
+# In[8]:
+
+millnames = ['',' thousand',' million',' billion',' trillion']
+
+def millify(n):
+    n = float(n)
+    millidx = max(0,min(len(millnames)-1,
+                        int(math.floor(0 if n == 0 else math.log10(abs(n))/3))))
+
+    return '{:.0f}{}'.format(n / 10**(3 * millidx), millnames[millidx])
+
+
+# In[9]:
+
+# replace value if it is blank
+def units(n):
+    millnames = ['',' thousand',' million',' billion',' trillion']
+    n = float(n)
+    if n < 1000000:
+        macro_val_string = '\${:,.0f}'.format(n)
+        return(macro_val_string)
+    if n >= 1000000:
+        millidx = max(0, min(len(millnames)-1,
+                            int(math.floor(o if n == 0 else math.log10(abs(n))/3))))                  
+        macro_val_string = '\${:,.2f}{}'.format(n / 10**(3 * millidx), millnames[millidx])
+        return(macro_val_string)
+
+
+# In[10]:
+
+def dist_macro_old(dataframe, section):
+          
+    brackets = ['0-10%', '90-100%']
+    for bracket in brackets:
+        total = dataframe['Total (dollars)'][bracket]
+        average = dataframe['Average (dollars)'][bracket]
+        increase = dataframe['Increase (percent)'][bracket]
+        share = dataframe['Share (percent)'][bracket]
+        
+        if bracket == '0-10%':
+            rankcode = 'zz'
+        if bracket == '90-100%':
+            rankcode = 'aa'
+
+        total_name = section + 't' + rankcode
+        average_name = section + 'a' + rankcode
+        increase_name = section + 'i' + rankcode
+        share_name = section + 's' + rankcode
+
+        def_macro('Total Tax Liability Change (' + bracket + ') ', '${:,.2f}'.format(total * in_billions) + ' billion', total_name)
+        def_macro('Average Tax Liability Change (' + bracket + ') ', '${:,.0f}'.format(average), average_name)
+        def_macro('Increase in Tax Liability (' + bracket + ') ', increase.strip('%') + ' percent', increase_name)
+        def_macro('Share of Tax Liability (' + bracket + ') ', share.strip('%') + ' percent', share_name)
+
+
+# In[11]:
+
+def dist_macro(dataframe, section):
+             
+    brackets = ['0-10%', '90-100%', 'Sum']
+    for bracket in brackets:
+        for column in dataframe:             
+                macro_val = dataframe[column][bracket]
+                
+                # set rankcode according to distributional characteristic
+                if bracket == '0-10%':
+                    rankcode = 'n'
+                if bracket == '90-100%':
+                    rankcode = 'x'
+                if bracket == 'Sum':
+                    rankcode = 'g'
+                
+                # extract first letter from column for column code
+                letter = column[0:1]
+                letter = letter.lower()
+                
+                # define and print macro
+                macro_name = section + 'd' + letter + rankcode
+                
+                # determine unit type (symbol or string)
+                unit_key = column[-3:]
+                if unit_key[0:1] == '(' and unit_key[2:3] == ')':
+                    unit_type = 'symbol'
+                if unit_key[0:1] != '(' and unit_key[2:3] == ')':
+                    unit_type = 'string'
+                    unit_key2 = column[-9:]
+                
+                # if units are in symbols...
+                if unit_type == 'symbol':
+                    # if column is in dollars
+                    if unit_key == '($)':
+                        # convert to human readable units
+                        millnames = ['',' thousand',' million',' billion',' trillion']
+                        
+                        # replace value if it is blank
+                        if macro_val == '':
+                            macro_val = '0'                        
+                        
+                        n = float(macro_val)
+                        if n < 1000000:
+                            macro_val_string = '\${:,.0f}'.format(n)
+                            display = macro_name + ' ' + macro_val_string
+                            print(display)
+                        if n >= 1000000:
+                            millidx = max(0, min(len(millnames)-1,
+                                                int(math.floor(o if n == 0 else math.log10(abs(n))/3))))                  
+                            macro_val_string = '\${:,.2f}{}'.format(n / 10**(3 * millidx), millnames[millidx])
+                            display = macro_name + ' ' + macro_val_string
+                            print(display)
+                        
+                    # if column is in percentages
+                    if unit_key == '(%)':
+                        macro_val_string = macro_val.strip('%') + ' percent'
+                        display = macro_name + ' ' + macro_val_string
+                        print(display)
+                        
+                # test if units are in strings...
+                if unit_type == 'string':
+                    # if column is in dollars
+                    if unit_key2 == '(dollars)':
+                        # convert to human readable units
+                        millnames = ['',' thousand',' million',' billion',' trillion']
+
+                        # replace value if it is blank
+                        if macro_val == '':
+                            macro_val = '0'
+                        
+                        n = float(macro_val)
+                        if n < 1000000:
+                            macro_val_string = '\${:,.0f}'.format(n)
+                            display = macro_name + ' ' + macro_val_string
+                            print(display)
+                        if n >= 1000000:
+                            millidx = max(0, min(len(millnames)-1,
+                                                int(math.floor(o if n == 0 else math.log10(abs(n))/3))))                  
+                            macro_val_string = '\${:,.2f}{}'.format(n / 10**(3 * millidx), millnames[millidx])
+                            display = macro_name + ' ' + macro_val_string
+                            print(display)
+
+                    # if column is in percent
+                    if unit_key2 == '(percent)':
+                        macro_val_string = macro_val.strip('%') + ' percent'
+                        display = macro_name + ' ' + macro_val_string
+                        print(display)
+
+                
+                # describe macro
+                macro_desc = column + ' (' + bracket + ') (part ' + section + ') '
+
+                def_macro(macro_desc, macro_val_string, macro_name)     
+
+
+# In[12]:
 
 # this program allows defining latex macros for use in document generation
 
@@ -67,22 +225,26 @@ def def_macro(label, value, macro):
     string = string + macro
     string = string + '}{'
     string = string + value
-    string = string + ' }'
+    string = string + '}'
     
     labels.append(label)
     values.append(value)
     macros.append(macro)
     
-    # write macro string to text document
+    # write latex string to macro document
+    f = open('macros.txt','a') #opens file with name of "test.txt"
+    f.write(string + '\n')
+    f.close()    
     
-    f = open("macros.txt","a") #opens file with name of "test.txt"
-    f.write(string + "\n")
+    # write definition to macro dictionary
+    f = open('macro_dict.txt','a') #opens file with name of "test.txt"
+    f.write(macro + ', ' + value + ', ' + label + '\n')
     f.close()    
     
     return(macro)
 
 
-# In[461]:
+# In[13]:
 
 # clear macros
 def clear_macros():
@@ -93,7 +255,7 @@ def clear_macros():
     
 
 
-# In[462]:
+# In[14]:
 
 def restricted_table(df, varlist, lablist, tab_name, reindex = True, na=True):
 
@@ -148,9 +310,9 @@ def restricted_table(df, varlist, lablist, tab_name, reindex = True, na=True):
     return(df2)
 
 
-# In[463]:
+# In[15]:
 
-def makebar(inputdf, plotname = 'xx', x1label = 'AGI Decile', x2label = 'Average AGI by Decile', ylabel = 'Average Benefit Loss'):
+def makebar(inputdf, plotname = 'xx', x1label = 'AGI Percentile', x2label = 'Average AGI by Percentile', ylabel = 'Average Benefit Loss'):
     
     # transform data frame 
     df = pd.DataFrame()
@@ -190,7 +352,7 @@ def makebar(inputdf, plotname = 'xx', x1label = 'AGI Decile', x2label = 'Average
     plt.show()
 
 
-# In[464]:
+# In[16]:
 
 def makeline(calc1, 
              calc2, 
@@ -228,7 +390,260 @@ def makeline(calc1,
         if dollar_weighting:
             weighting_function = agi_weighted
     elif income_measure == 'expanded_income':
-        income_var = '_expanded_income'
+        income_var = 'expanded_income'
+        income_str = 'Expanded Income'
+        if dollar_weighting:
+            weighting_function = expanded_income_weighted
+    else:
+        msg = ('income_measure="{}" is neither '
+               '"wages", "agi", nor "expanded_income"')
+        raise ValueError(msg.format(income_measure))
+    # . . check mars value
+    if isinstance(mars, six.string_types):
+        if mars != 'ALL':
+            msg = 'string value of mars="{}" is not "ALL"'
+            raise ValueError(msg.format(mars))
+    elif isinstance(mars, int):
+        if mars < 1 or mars > 4:
+            msg = 'integer mars="{}" is not in [1,4] range'
+            raise ValueError(msg.format(mars))
+    else:
+        msg = 'mars="{}" is neither a string nor an integer'
+        raise ValueError(msg.format(mars))
+    # . . check mars value if mtr_variable is e00200s
+    if mtr_variable == 'e00200s' and mars != 2:
+        msg = 'mtr_variable == "e00200s" but mars != 2'
+        raise ValueError(msg)
+    # . . check mtr_measure value
+    if mtr_measure == 'itax':
+        mtr_str = 'Income-Tax'
+    elif mtr_measure == 'ptax':
+        mtr_str = 'Payroll-Tax'
+    elif mtr_measure == 'combined':
+        mtr_str = 'Income+Payroll-Tax'
+    else:
+        msg = ('mtr_measure="{}" is neither '
+               '"itax" nor "ptax" nor "combined"')
+        raise ValueError(msg.format(mtr_measure))
+    # calculate marginal tax rates
+    (mtr1_ptax, mtr1_itax,
+     mtr1_combined) = calc1.mtr(variable_str=mtr_variable,
+                                wrt_full_compensation=mtr_wrt_full_compen)
+    (mtr2_ptax, mtr2_itax,
+     mtr2_combined) = calc2.mtr(variable_str=mtr_variable,
+                                wrt_full_compensation=mtr_wrt_full_compen)
+    # extract needed output that is assumed unchanged by reform from calc1
+    record_columns = ['s006']
+    if mars != 'ALL':
+        record_columns.append('MARS')
+    record_columns.append(income_var)
+    output = [getattr(calc1.records, col) for col in record_columns]
+    dfx = pd.DataFrame(data=np.column_stack(output), columns=record_columns)
+    # set mtr given specified mtr_measure
+    if mtr_measure == 'itax':
+        dfx['mtr1'] = mtr1_itax
+        dfx['mtr2'] = mtr2_itax
+    elif mtr_measure == 'ptax':
+        dfx['mtr1'] = mtr1_ptax
+        dfx['mtr2'] = mtr2_ptax
+    elif mtr_measure == 'combined':
+        dfx['mtr1'] = mtr1_combined
+        dfx['mtr2'] = mtr2_combined
+    # select filing-status subgroup, if any
+    if mars != 'ALL':
+        dfx = dfx[dfx['MARS'] == mars]
+
+    # bin data for graphing
+    dfx = add_weighted_income_bins(dfx, num_bins = 100,
+                                   income_measure = income_var,
+                                   weight_by_income_measure = dollar_weighting)
+    # split dfx into groups specified by 'bins' column
+    gdfx = dfx.groupby('bins', as_index = False)
+    # apply the weighting_function to percentile-grouped mtr values
+    mtr1_series = gdfx.apply(weighting_function, 'mtr1')
+    mtr2_series = gdfx.apply(weighting_function, 'mtr2')
+    agi_series = gdfx.apply(weighting_function, 'c00100')
+    decile_series = gdfx.apply(weighting_function, 'bins')
+
+    # construct DataFrame containing the two mtr_series
+    lines = pd.DataFrame()
+    lines['base'] = mtr1_series
+    lines['reform'] = mtr2_series
+    lines['agi'] = agi_series.round()
+    lines['percentiles'] = decile_series
+
+    # generate labels for secondary x-axis
+
+    # create 'bins' column given specified income_var and dollar_weighting
+    dfx = add_weighted_income_bins(dfx, num_bins = 10,
+                                   income_measure = income_var,
+                                   weight_by_income_measure = dollar_weighting)
+    # split dfx into groups specified by 'bins' column
+    gdfx = dfx.groupby('bins', as_index=False)
+
+    # apply the weighting_function to percentile-grouped mtr values
+    agi_series = gdfx.apply(weighting_function, 'c00100')
+    agi_series[agi_series < 0] = 0
+
+    # add a zero to the beginning of 'agi_series'
+    zero = pd.Series(0)
+    agi_series = zero.append(agi_series)
+
+    # begin plot
+    fig = plt.figure(figsize=(10, 5))
+    # legend = ax1.legend(loc='lower right', shadow=False)
+
+    ax1 = fig.add_subplot(111)
+    ax2 = ax1.twiny()
+
+    ax1.set_xlabel(x1label)
+    ax2.set_xlabel(x2label)
+    ax1.set_ylabel(ylabel)
+
+    ax1.set_xticks(np.arange(0, 110, 10))
+    ax2.set_xticks(np.arange(0, 110, 10))
+
+    ax1.set_xticklabels([0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100])
+    ax2.set_xticklabels(agi_series.round())
+
+    ax1.plot(lines['reform'], color='red', label='Reform')
+    ax2.plot(lines['base'], color='blue', label='Baseline')
+    
+    ax1.legend(bbox_to_anchor=(0.999, 0.18), loc=1)
+    ax2.legend(bbox_to_anchor=(0.999, 0.10), loc=1)
+    
+    # save plot
+    plotname = plotname + '.png'
+    fig.savefig(plotname, dpi=800)
+    fig.show()
+
+
+# In[17]:
+
+def create_difference_table(recs1, recs2, groupby,
+                            income_measure='expanded_income',
+                            income_to_present='iitax'):
+    """
+    Get results from two different Records objects for the same year, compare
+    the two results, and return the differences as a Pandas DataFrame that is
+    sorted according to the variable specified by the groupby argument.
+    Parameters
+    ----------
+    recs1 : a Tax-Calculator Records object that refers to the baseline
+    recs2 : a Tax-Calculator Records object that refers to the reform
+    groupby : String object
+        options for input: 'weighted_deciles', 'small_income_bins',
+        'large_income_bins', 'webapp_income_bins'
+        determines how the columns in the resulting Pandas DataFrame are sorted
+    income_measure : String object
+        options for input: '_expanded_income', '_iitax'
+        classifier of income bins/deciles
+    income_to_present : String object
+        options for input: '_iitax', '_payrolltax', '_combined'
+    Returns
+    -------
+    Pandas DataFrame object
+    """
+    # pylint: disable=too-many-locals
+    if recs1.current_year != recs2.current_year:
+        msg = 'recs1.current_year not equal to recs2.current_year'
+        raise ValueError(msg)
+    res1 = results(recs1)
+    res2 = results(recs2)
+    baseline_income_measure = income_measure + 'baseline'
+    res2[baseline_income_measure] = res1[income_measure]
+    income_measure = baseline_income_measure
+    if groupby == 'weighted_deciles':
+        pdf = add_weighted_income_bins(res2, num_bins=10,
+                                       income_measure=income_measure)
+    elif groupby == 'small_income_bins':
+        pdf = add_income_bins(res2, compare_with='soi',
+                              income_measure=income_measure)
+    elif groupby == 'large_income_bins':
+        pdf = add_income_bins(res2, compare_with='tpc',
+                              income_measure=income_measure)
+    elif groupby == 'webapp_income_bins':
+        pdf = add_income_bins(res2, compare_with='webapp',
+                              income_measure=income_measure)
+    else:
+        msg = ("groupby must be either "
+               "'weighted_deciles' or 'small_income_bins' "
+               "or 'large_income_bins' or 'webapp_income_bins'")
+        raise ValueError(msg)
+    # compute difference in results
+    # Positive values are the magnitude of the tax increase
+    # Negative values are the magnitude of the tax decrease
+    res2['avg-agi'] = res2['c00100']
+    diffs = means_and_comparisons('avg-agi',
+                                  pdf.groupby('bins', as_index=False),
+                                  (res2['avg-agi'] * res2['s006']).sum())
+    output = pd.DataFrame()
+    output['avg-agi'] = diffs['mean']
+    res2['tax_diff'] = res2[income_to_present] - res1[income_to_present]    
+    diffs = means_and_comparisons('tax_diff',
+                                  pdf.groupby('bins', as_index=False),
+                                  (res2['tax_diff'] * res2['s006']).sum())
+
+    sum_row = get_sums(diffs)[diffs.columns.values.tolist()]
+    diffs = diffs.append(sum_row)  # pylint: disable=redefined-variable-type
+    pd.options.display.float_format = '{:8,.0f}'.format
+    srs_inc = ['{0:.2f}%'.format(val * 100) for val in diffs['perc_inc']]
+    diffs['perc_inc'] = pd.Series(srs_inc, index=diffs.index)
+
+    srs_cut = ['{0:.2f}%'.format(val * 100) for val in diffs['perc_cut']]
+    diffs['perc_cut'] = pd.Series(srs_cut, index=diffs.index)
+    srs_change = ['{0:.2f}%'.format(val * 100)
+                  for val in diffs['share_of_change']]
+    diffs['share_of_change'] = pd.Series(srs_change, index=diffs.index)
+       
+    # columns containing weighted values relative to the binning mechanism
+    non_sum_cols = [col for col in diffs.columns
+                    if 'mean' in col or 'perc' in col]
+    for col in non_sum_cols:
+        diffs.loc['sums', col] = 'n/a'
+        
+    diffs['avg-agi'] = output['avg-agi']
+    
+    return diffs
+
+
+# In[18]:
+
+# define MTR macros
+def mtr_macro(calc1, 
+              calc2, 
+              section = 'z',
+              mars='ALL', 
+              mtr_measure='combined', 
+              mtr_variable='e00200p', 
+              alt_e00200p_text='', 
+              mtr_wrt_full_compen=False, 
+              income_measure='agi', 
+              dollar_weighting=False):
+    
+    # pylint: disable=too-many-arguments,too-many-statements,
+    # pylint: disable=too-many-locals,too-many-branches
+    # check that two calculator objects have the same current_year
+    if calc1.current_year == calc2.current_year:
+        year = calc1.current_year
+    else:
+        msg = 'calc1.current_year={} != calc2.current_year={}'
+        raise ValueError(msg.format(calc1.current_year, calc2.current_year))
+    # check validity of function arguments
+    # . . check income_measure value
+    weighting_function = weighted_mean
+    if income_measure == 'wages':
+        income_var = 'e00200'
+        income_str = 'Wage'
+        if dollar_weighting:
+            weighting_function = wage_weighted
+    elif income_measure == 'agi':
+        income_var = 'c00100'
+        income_str = 'AGI'
+        if dollar_weighting:
+            weighting_function = agi_weighted
+    elif income_measure == 'expanded_income':
+        income_var = 'expanded_income'
         income_str = 'Expanded Income'
         if dollar_weighting:
             weighting_function = expanded_income_weighted
@@ -309,147 +724,125 @@ def makeline(calc1,
     lines['reform'] = mtr2_series
     lines['agi'] = agi_series.round()
     lines['percentiles'] = decile_series
-
-    # generate labels for secondary x-axis
-
-    # create 'bins' column given specified income_var and dollar_weighting
-    dfx = add_weighted_income_bins(dfx, num_bins=10,
-                                   income_measure=income_var,
-                                   weight_by_income_measure=dollar_weighting)
-    # split dfx into groups specified by 'bins' column
-    gdfx = dfx.groupby('bins', as_index=False)
-
-    # apply the weighting_function to percentile-grouped mtr values
-    agi_series = gdfx.apply(weighting_function, 'c00100')
-    agi_series[agi_series < 0] = 0
-
-    # add a zero to the beginning of 'agi_series'
-    zero = pd.Series(0)
-    agi_series = zero.append(agi_series)
-
-    # begin plot
-    fig = plt.figure(figsize=(10, 5))
-    # legend = ax1.legend(loc='lower right', shadow=False)
-
-    ax1 = fig.add_subplot(111)
-    ax2 = ax1.twiny()
-
-    ax1.set_xlabel(x1label)
-    ax2.set_xlabel(x2label)
-    ax1.set_ylabel(ylabel)
-
-    ax1.set_xticks(np.arange(0, 110, 10))
-    ax2.set_xticks(np.arange(0, 110, 10))
-
-    ax1.set_xticklabels([0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100])
-    ax2.set_xticklabels(agi_series.round())
-
-    ax1.plot(lines['reform'], color='red', label='Reform')
-    ax2.plot(lines['base'], color='blue', label='Baseline')
     
-    ax1.legend(bbox_to_anchor=(0.999, 0.18), loc=1)
-    ax2.legend(bbox_to_anchor=(0.999, 0.10), loc=1)
+    # calculate ten year averages
     
-    # save plot
-    plotname = plotname + '.png'
-    fig.savefig(plotname, dpi=800)
-    fig.show()
+    # average MTR, bottom ten percent, baseline case
+    var1 = (lines['base'][0] + lines['base'][1] + lines['base'][2] + lines['base'][3] 
+    + lines['base'][4] + lines['base'][5] + lines['base'][6] + lines['base'][7] 
+    + lines['base'][8] + lines['base'][9])/10
 
-
-# In[465]:
-
-def create_difference_table(recs1, recs2, groupby,
-                            income_measure='_expanded_income',
-                            income_to_present='_iitax'):
-    """
-    Get results from two different Records objects for the same year, compare
-    the two results, and return the differences as a Pandas DataFrame that is
-    sorted according to the variable specified by the groupby argument.
-    Parameters
-    ----------
-    recs1 : a Tax-Calculator Records object that refers to the baseline
-    recs2 : a Tax-Calculator Records object that refers to the reform
-    groupby : String object
-        options for input: 'weighted_deciles', 'small_income_bins',
-        'large_income_bins', 'webapp_income_bins'
-        determines how the columns in the resulting Pandas DataFrame are sorted
-    income_measure : String object
-        options for input: '_expanded_income', '_iitax'
-        classifier of income bins/deciles
-    income_to_present : String object
-        options for input: '_iitax', '_payrolltax', '_combined'
-    Returns
-    -------
-    Pandas DataFrame object
-    """
-    # pylint: disable=too-many-locals
-    if recs1.current_year != recs2.current_year:
-        msg = 'recs1.current_year not equal to recs2.current_year'
-        raise ValueError(msg)
-    res1 = results(recs1)
-    res2 = results(recs2)
-    baseline_income_measure = income_measure + '_baseline'
-    res2[baseline_income_measure] = res1[income_measure]
-    income_measure = baseline_income_measure
-    if groupby == 'weighted_deciles':
-        pdf = add_weighted_income_bins(res2, num_bins=10,
-                                       income_measure=income_measure)
-    elif groupby == 'small_income_bins':
-        pdf = add_income_bins(res2, compare_with='soi',
-                              income_measure=income_measure)
-    elif groupby == 'large_income_bins':
-        pdf = add_income_bins(res2, compare_with='tpc',
-                              income_measure=income_measure)
-    elif groupby == 'webapp_income_bins':
-        pdf = add_income_bins(res2, compare_with='webapp',
-                              income_measure=income_measure)
-    else:
-        msg = ("groupby must be either "
-               "'weighted_deciles' or 'small_income_bins' "
-               "or 'large_income_bins' or 'webapp_income_bins'")
-        raise ValueError(msg)
-    # compute difference in results
-    # Positive values are the magnitude of the tax increase
-    # Negative values are the magnitude of the tax decrease
-    res2['avg-agi'] = res2['c00100']
-    diffs = means_and_comparisons('avg-agi',
-                                  pdf.groupby('bins', as_index=False),
-                                  (res2['avg-agi'] * res2['s006']).sum())
-    output = pd.DataFrame()
-    output['avg-agi'] = diffs['mean']
-    res2['tax_diff'] = res2[income_to_present] - res1[income_to_present]    
-    diffs = means_and_comparisons('tax_diff',
-                                  pdf.groupby('bins', as_index=False),
-                                  (res2['tax_diff'] * res2['s006']).sum())
-
-    sum_row = get_sums(diffs)[diffs.columns.values.tolist()]
-    diffs = diffs.append(sum_row)  # pylint: disable=redefined-variable-type
-    pd.options.display.float_format = '{:8,.0f}'.format
-    srs_inc = ['{0:.2f}%'.format(val * 100) for val in diffs['perc_inc']]
-    diffs['perc_inc'] = pd.Series(srs_inc, index=diffs.index)
-
-    srs_cut = ['{0:.2f}%'.format(val * 100) for val in diffs['perc_cut']]
-    diffs['perc_cut'] = pd.Series(srs_cut, index=diffs.index)
-    srs_change = ['{0:.2f}%'.format(val * 100)
-                  for val in diffs['share_of_change']]
-    diffs['share_of_change'] = pd.Series(srs_change, index=diffs.index)
+    # average MTR, bottom ten percent, reform case
+    var2 = (lines['reform'][0] + lines['reform'][1] + lines['reform'][2] + lines['reform'][3] 
+    + lines['reform'][4] + lines['reform'][5] + lines['reform'][6] + lines['reform'][7] 
+    + lines['reform'][8] + lines['reform'][9])/10
+ 
+    # spread for bottom ten percent between reform and baseline
+    var3 = ((lines['reform'][0] - lines['base'][0]) 
+    + (lines['reform'][1] - lines['base'][1])
+    + (lines['reform'][2] - lines['base'][2])
+    + (lines['reform'][3] - lines['base'][3])
+    + (lines['reform'][4] - lines['base'][4])
+    + (lines['reform'][5] - lines['base'][5])
+    + (lines['reform'][6] - lines['base'][6])
+    + (lines['reform'][7] - lines['base'][7])
+    + (lines['reform'][8] - lines['base'][8])
+    + (lines['reform'][9] - lines['base'][9]))/10
        
-    # columns containing weighted values relative to the binning mechanism
-    non_sum_cols = [col for col in diffs.columns
-                    if 'mean' in col or 'perc' in col]
-    for col in non_sum_cols:
-        diffs.loc['sums', col] = 'n/a'
-        
-    diffs['avg-agi'] = output['avg-agi']
+    # average MTR, top ten percent, baseline case
+    var4 = (lines['base'][90] + lines['base'][91] + lines['base'][92] + lines['base'][93] 
+    + lines['base'][94] + lines['base'][95] + lines['base'][96] + lines['base'][97] 
+    + lines['base'][98] + lines['base'][99])/10
+
+    # average MTR, top ten percent, reform case
+    var5 = (lines['reform'][90] + lines['reform'][91] + lines['reform'][92] + lines['reform'][93] 
+    + lines['reform'][94] + lines['reform'][95] + lines['reform'][96] + lines['reform'][97] 
+    + lines['reform'][98] + lines['reform'][99])/10
     
-    return diffs
+    # spread for top ten percent between reform and baseline
+    var6 = ((lines['reform'][90] - lines['base'][90]) 
+    + (lines['reform'][91] - lines['base'][91])
+    + (lines['reform'][92] - lines['base'][92])
+    + (lines['reform'][93] - lines['base'][93])
+    + (lines['reform'][94] - lines['base'][94])
+    + (lines['reform'][95] - lines['base'][95])
+    + (lines['reform'][96] - lines['base'][96])
+    + (lines['reform'][97] - lines['base'][97])
+    + (lines['reform'][98] - lines['base'][98])
+    + (lines['reform'][99] - lines['base'][99]))/10
+    
+    # multiply by 100 for formatting
+    var1 = var1 * 100
+    var2 = var2 * 100
+    var3 = var3 * 100
+    var4 = var4 * 100
+    var5 = var5 * 100
+    var6 = var6 * 100
+    
+    # basleine min
+    name1 = section + 'bn'
+    # reform min
+    name2 = section + 'rn'
+    # spread min
+    name3 = section + 'vn'
+    # baseline max
+    name4 = section + 'bx'
+    # reform max
+    name5 = section + 'rx'
+    # spread max
+    name6 = section + 'vx'
+    
+    # set macro descriptions 
+    desc1 = 'Section ' + section + ' baseline MTR (0-10%)'
+    desc2 = 'Section ' + section + ' reform MTR (0-10%)'
+    desc3 = 'Section ' + section + ' spread MTR (0-10%)'
+    desc4 = 'Section ' + section + ' baseline MTR (90-100%)'
+    desc5 = 'Section ' + section + ' reform MTR (90-100%)'
+    desc6 = 'Section ' + section + ' spread MTR (90-100%)'
+    
+    # define macros
+    def_macro(desc1, '{:.2f} percent'.format(var1), name1)
+    def_macro(desc2, '{:.2f} percent'.format(var2), name2)
+    def_macro(desc3, '{:.2f} percentage points'.format(var3), name3)
+    def_macro(desc4, '{:.2f} percent'.format(var4), name4)
+    def_macro(desc5, '{:.2f} percent'.format(var5), name5)
+    def_macro(desc6, '{:.2f} percentage points'.format(var6), name6)
+
+
+# In[19]:
+
+def mtr_macros(c2, sec = 'a'):
+    
+    # perform calculation for primary income earner
+    mtr_macro(calc1 = calc_base, 
+              calc2 = c2,
+              section = sec + 'p',
+              mars='ALL', 
+              mtr_measure='combined', 
+              mtr_variable='e00200p', 
+              alt_e00200p_text='', 
+              mtr_wrt_full_compen=False, 
+              income_measure='agi', 
+              dollar_weighting=False)
+
+    # perform calculation for secondary income earner
+    mtr_macro(calc1 = calc_base, 
+              calc2 = c2,
+              section = sec + 's',
+              mars=2, 
+              mtr_measure='combined', 
+              mtr_variable='e00200p', 
+              alt_e00200p_text='', 
+              mtr_wrt_full_compen=False, 
+              income_measure='agi', 
+              dollar_weighting=False)
 
 
 # ## Baseline Calculations
 
-# In[466]:
+# In[65]:
 
-# Base Calculator
+# perform baseline calculations
 recs_base = Records('puf_benefits.csv', weights='puf_weights_new.csv', adjust_ratios='puf_ratios copy.csv')
 pol_base = Policy()
 calc_base = Calculator(records=recs_base, policy=pol_base, verbose=False)
@@ -457,49 +850,18 @@ calc_base.advance_to_year(2014)
 calc_base.calc_all()
 
 
-# Base Diagnostic Table
+# In[66]:
 
-# In[467]:
+# define baseline marginal tax rates (MTRs) for primary and secondary earners
 
-diag_base = utils.create_diagnostic_table(calc_base)
-# diag_base
-
-
-# In[468]:
-
-print ('Above-the-line deductions: {:.2f}'.format((calc_base.records.c02900 * calc_base.records.s006).sum() * in_billions))
-print ('Standard Deduction: {:.2f}'.format((calc_base.records._standard * calc_base.records.s006).sum() * in_billions))
-print ('Itemized Deductions: {:.2f}'.format((calc_base.records.c04470 * calc_base.records.s006).sum() * in_billions))
-print ('Personal Exemptions: {:.2f}'.format((calc_base.records.c04600 * calc_base.records.s006).sum() * in_billions))
-print ('Nonrefundable Tax Credits: {:.2f}'.format((calc_base.records.c07100 * calc_base.records.s006).sum() * in_billions))
-print ('Refundable Credits: {:.2f}'.format((calc_base.records._refund * calc_base.records.s006).sum() * in_billions))
-
-
-# In[469]:
-
-clear_macros()
-
-
-# In[470]:
-
-def_macro('Above-the-line deductions', '{:.2f}'.format((calc_base.records.c02900 * calc_base.records.s006).sum() * in_billions), 'axaa')
-def_macro('Standard Deduction', '{:.2f}'.format((calc_base.records._standard * calc_base.records.s006).sum() * in_billions), 'axab')
-def_macro('Itemized Deductions', '{:.2f}'.format((calc_base.records.c04470 * calc_base.records.s006).sum() * in_billions), 'axac')
-def_macro('Personal Exemptions', '{:.2f}'.format((calc_base.records.c04600 * calc_base.records.s006).sum() * in_billions), 'axad')
-def_macro('Nonrefundable Tax Credits', '{:.2f}'.format((calc_base.records.c07100 * calc_base.records.s006).sum() * in_billions), 'axae')
-def_macro('Refundable Credits', '{:.2f}'.format((calc_base.records._refund * calc_base.records.s006).sum() * in_billions), 'axaf')
-
-
-# In[471]:
-
-# base MTR
+# baseline MTR for primary earners
 mtrp_base = pd.DataFrame()
 mtrp_base['c00100'] = calc_base.records.c00100
 mtrp_base['s006'] = calc_base.records.s006
 mtrp_base['mtr'] = calc_base.mtr()[2]
 mtrp_base['1 - mtr'] = 1.00 - mtrp_base['mtr']
 
-# secondary earner
+# baseline MTR for secondary earners
 mtrs_base = pd.DataFrame()
 mtrs_base['c00100'] = calc_base.records.c00100
 mtrs_base['s006'] = calc_base.records.s006
@@ -513,31 +875,69 @@ mtrs_base['1 - mtr'] = 1.00 - mtrs_base['mtr']
 
 # Repeal all welfare and transfer programs
 
-# In[472]:
+# In[67]:
 
-# read in MTR data
+# import data
+
+# import snap and ssi MTR data
 snap_ssi = pd.read_csv('snap_ssi_mtr.csv')
+
+# import social security MTR data
 ss_mtr = pd.read_csv('SS_MTR_futurereg_RETS.csv')
 
-
-# In[473]:
-
-# read benefit data for imputed programs
+# import cps benefits data
 cps_benefits = pd.read_csv('cps_benefit.csv', index_col=None)
+
+# read in CSV of non-modeled welfare programs
+otherbenefits = pd.read_csv('benefitprograms.csv')
+otherbenefits['Cost'] *= 1000000
+
+
+# In[68]:
+
+# augment cps benefits data with snap, ssi, and ss data
+
+# calculate total income to approximate average gross income (AGI)
 cps_benefits['tot_inc'] = (cps_benefits['WAS'] + cps_benefits['INTST'] + cps_benefits['DBE'] +
                            cps_benefits['ALIMONY'] + cps_benefits['BIL'] + cps_benefits['PENSIONS'] +
                            cps_benefits['RENTS'] + cps_benefits['FIL'] + cps_benefits['UCOMP'])
+
+# sum all benefits programs 
 cps_benefits['tot_benefits'] = (cps_benefits['MedicareX'] + cps_benefits['MEDICAID'] + cps_benefits['SSI'] +
                                 cps_benefits['SNAP'] + cps_benefits['SS'] + cps_benefits['VB'])
+
+# sum all benefits excluding social security
+cps_benefits['ex_ss'] = (cps_benefits['MedicareX'] + cps_benefits['MEDICAID'] + cps_benefits['SSI'] +
+                                cps_benefits['SNAP'] + cps_benefits['VB'])
+
+# sum all benefits excluding social security, medicare
+cps_benefits['ex_ss_mc'] = (cps_benefits['SSI'] + cps_benefits['MEDICAID'] + 
+                                cps_benefits['SNAP'])
+
+# sum all benefits excluding social security and medicare
 cps_benefits['dist_benefits'] = (cps_benefits['MEDICAID'] + cps_benefits['SSI'] + cps_benefits['SNAP'] +
                                  cps_benefits['VB'])
+
+# add ssi MTR data for primary and secondary earners
 cps_benefits['ssi_p_mtr'] = snap_ssi['ssi_p_mtr']
 cps_benefits['ssi_s_mtr'] = snap_ssi['ssi_s_mtr']
+
+# add snap MTR data for primary and secondary earners
 cps_benefits['snap_p_mtr'] = snap_ssi['snap_p_mtr']
 cps_benefits['snap_s_mtr'] = snap_ssi['snap_s_mtr']
+
+# merge social security MTR data
 cps_benefits = cps_benefits.merge(ss_mtr, on='CPSSEQ')
+
+# sum all benefits excluding social security and medicare
 dist_benefits_total = (cps_benefits['dist_benefits'] * cps_benefits['s006']).sum()
-# Sort and find decile
+
+# cps_benefits
+
+
+# In[69]:
+
+# sort data and find decile
 cps_benefits.sort_values(by='tot_inc', inplace=True)
 cps_benefits['cumsum'] = np.cumsum(cps_benefits['s006'].values)
 cps_benefits['pct'] = cps_benefits['cumsum'] / cps_benefits['cumsum'].values[-1]
@@ -545,16 +945,31 @@ pcts = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
 avgs = {}
 sums = {}
 dist = {}
+ex_ss = {}
+ex_ss_mc = {}
 ppl = {}
 agi = {}
 distben = {}
 for i in range(1,len(pcts)):
+    
     avgs['{}%-{}%'.format(pcts[i - 1] * 100, pcts[i] * 100)] = ((cps_benefits['tot_benefits'][(cps_benefits['pct'] >= pcts[i - 1]) &
                                                                                               (cps_benefits['pct'] < pcts[i])] *
                                                                 cps_benefits['s006'][(cps_benefits['pct'] >= pcts[i - 1]) &
                                                                                      (cps_benefits['pct'] < pcts[i])]).sum() /
                                                                 cps_benefits['s006'][(cps_benefits['pct'] >= pcts[i - 1]) &
                                                                                      (cps_benefits['pct'] < pcts[i])].sum())
+    ex_ss['{}%-{}%'.format(pcts[i - 1] * 100, pcts[i] * 100)] = ((cps_benefits['ex_ss'][(cps_benefits['pct'] >= pcts[i - 1]) &
+                                                                                              (cps_benefits['pct'] < pcts[i])] *
+                                                                cps_benefits['s006'][(cps_benefits['pct'] >= pcts[i - 1]) &
+                                                                                     (cps_benefits['pct'] < pcts[i])]).sum() /
+                                                                cps_benefits['s006'][(cps_benefits['pct'] >= pcts[i - 1]) &
+                                                                                     (cps_benefits['pct'] < pcts[i])].sum())
+    ex_ss_mc['{}%-{}%'.format(pcts[i - 1] * 100, pcts[i] * 100)] = ((cps_benefits['ex_ss_mc'][(cps_benefits['pct'] >= pcts[i - 1]) &
+                                                                                              (cps_benefits['pct'] < pcts[i])] *
+                                                                cps_benefits['s006'][(cps_benefits['pct'] >= pcts[i - 1]) &
+                                                                                     (cps_benefits['pct'] < pcts[i])]).sum() /
+                                                                cps_benefits['s006'][(cps_benefits['pct'] >= pcts[i - 1]) &
+                                                                                     (cps_benefits['pct'] < pcts[i])].sum())  
     sums['{}%-{}%'.format(pcts[i - 1] * 100, pcts[i] * 100)] = ((cps_benefits['tot_benefits'][(cps_benefits['pct'] >= pcts[i - 1]) &
                                                                                               (cps_benefits['pct'] < pcts[i])]) *
                                                                 (cps_benefits['s006'][(cps_benefits['pct'] >= pcts[i - 1]) &
@@ -578,27 +993,27 @@ for i in range(1,len(pcts)):
                                                                                      (cps_benefits['pct'] < pcts[i])]).sum() /
                                                                 cps_benefits['s006'][(cps_benefits['pct'] >= pcts[i - 1]) &
                                                                                      (cps_benefits['pct'] < pcts[i])].sum())
-
     
-ben_df = pd.DataFrame([avgs, sums, dist, ppl, agi, distben])
+    
+ben_df = pd.DataFrame([avgs, sums, dist, ppl, agi, distben, ex_ss, ex_ss_mc])
 ben_df = ben_df.transpose()
-ben_df.columns = ['avg-modeled', 'sum-modeled', 'distribution', 'num units', 'avg-agi', 'distro_benefits']
-ben_df
+ben_df.columns = ['avg-modeled', 
+                  'sum-modeled', 
+                  'distribution', 
+                  'num units', 
+                  'avg-agi', 
+                  'distro_benefits', 
+                  'excluding ss', 'excluding ss, medicare']
+# ben_df
 
 
-# In[474]:
-
-# read in CSV of non-modeled welfare programs
-otherbenefits = pd.read_csv('benefitprograms.csv')
-otherbenefits['Cost'] *= 1000000
-
-
-# In[475]:
+# In[70]:
 
 # combine distribution of non-modeled and modeled reforms
 ben_df['sum-non-modeled'] = ben_df['distribution'] * otherbenefits['Cost'].sum()
 ben_df['modeled + non-modeled'] = ben_df['sum-non-modeled'] + ben_df['sum-modeled']
 ben_df['total avg'] = ben_df['modeled + non-modeled'] / ben_df['num units']
+
 # ben_df = ben_df.append(ben_df.sum(numeric_only=True), ignore_index=True)
 ben_df.index = agi_bins
 ben_df.loc['sums'] = ben_df.sum()
@@ -608,20 +1023,56 @@ ben_df['pct of loss'] = ((ben_df['modeled + non-modeled'] /
 ben_df
 
 
-# In[476]:
+# In[73]:
 
 a1_df = restricted_table(ben_df, 
-                 ['modeled + non-modeled', 'total avg'], 
-                 ['Total Benefits ($ billions)', 'Average Benefits ($)'],
-                 'a1_df',
-                  reindex = True, 
-                  na = False
-                )
-
-a1_df
+                         ['modeled + non-modeled', 'total avg', 'excluding ss'], 
+                         ['Total Benefits ($)', 'Average Benefits ($)', 'Benefits Excluding Social Security ($)'],
+                         'a1_df',
+                          reindex = True, 
+                          na = False)
 
 
-# In[477]:
+# In[74]:
+
+# define macros
+
+# bottom 10 percent of income earners lose this amount of their benefits
+def_macro('Benefit Loss (0-10%) (part A)', 
+          '{:.2f} percent'.format(100*(a1_df['Total Benefits ($)']['0-10%'])/(a1_df['Total Benefits ($)']['Sum'])), 
+          'adsn')
+
+# top 10 percent of income earners lose this amount of their benefits
+def_macro('Benefit Loss (90-100%) (part A)', 
+          '{:.2f} percent'.format(100*(a1_df['Total Benefits ($)']['90-100%'])/(a1_df['Total Benefits ($)']['Sum'])), 
+          'adsx')
+
+# general macro function
+dist_macro(a1_df, 'a')
+
+
+# In[75]:
+
+a1_df_edit = a1_df
+clist = ['Total Benefits ($)', 'Average Benefits ($)', 'Benefits Excluding Social Security ($)']
+rlist = ['0-10%', '10-20%', '20-30%', '30-40%', '40-50%', '50-60%', '60-70%', '70-80%', '80-90%', '90-100%', 'Sum']
+
+for citem in clist:
+    for ritem in rlist:
+        a1_df_edit[citem][ritem] = '{:,.0f}'.format(a1_df[citem][ritem])
+    
+
+a1_df_edit = restricted_table(a1_df, 
+                         ['Total Benefits ($)', 'Average Benefits ($)', 'Benefits Excluding Social Security ($)'], 
+                         ['Total Benefits ($)', 'Average Benefits ($)', 'Benefits Excluding Social Security ($)'],
+                         'a1_df',
+                          reindex = True, 
+                          na = False)
+
+a1_df_edit
+
+
+# In[28]:
 
 # create data frames for average and total change in benefits
 avg_ben_loss = pd.DataFrame()
@@ -635,24 +1086,14 @@ tot_ben_loss['Income Percentile'] = agi_bins
 tot_ben_loss['Average AGI'] = ben_df['avg-agi']
 
 
-# In[478]:
-
-avg_ben_loss
-
-
-# In[479]:
+# In[29]:
 
 # generate bar charts
 makebar(avg_ben_loss, 'a1', x1label = 'AGI Decile', x2label = 'Average AGI by Decile', ylabel = 'Average Benefit Loss')
 makebar(tot_ben_loss, 'a2', x1label = 'AGI Decile', x2label = 'Average AGI by Decile', ylabel = 'Total Benefit Loss (billions)')
 
 
-# In[ ]:
-
-
-
-
-# In[480]:
+# In[30]:
 
 # create decile bins
 ben_mtr = utils.add_weighted_income_bins(cps_benefits, num_bins=100, income_measure='tot_inc')
@@ -669,7 +1110,7 @@ mtr_dta['ss_s'] = ben_mtr_group.apply(utils.weighted_mean, 'SS_MTR_spouse').valu
 mtr_dta['pos'] = [i for i in range(1, 101)]
 
 
-# In[481]:
+# In[31]:
 
 # generate chart showing mtr change by income percentile
 
@@ -684,7 +1125,7 @@ fig.line(mtr_dta['pos'], mtr_dta['ss_s'], color='mediumspringgreen', legend='Soc
 show(fig)
 
 
-# In[482]:
+# In[32]:
 
 # tax calculations with zeroed out social security benefits
 recs_ss = Records('puf_benefits.csv', weights='puf_weights_new.csv', adjust_ratios='puf_ratios copy.csv')
@@ -694,13 +1135,13 @@ calc_ss.records.e02400 = np.zeros(len(calc_ss.records.e02400))
 calc_ss.advance_to_year(2014)
 calc_ss.calc_all()
 ss_diffs = utils.create_difference_table(calc_base.records, calc_ss.records, 'weighted_deciles',
-                                         income_to_present='_combined')
-ss_tax_revloss = ((calc_ss.records._combined - calc_base.records._combined) * calc_ss.records.s006).sum()
-print (ss_tax_revloss)
+                                         income_to_present='combined')
+ss_tax_revloss = ((calc_ss.records.combined - calc_base.records.combined) * calc_ss.records.s006).sum()
+# print (ss_tax_revloss)
 ss_diffs
 
 
-# In[483]:
+# In[33]:
 
 a2_df = restricted_table(ss_diffs, 
                  ['tot_change', 'mean', 'perc_inc', 'share_of_change'], 
@@ -712,19 +1153,19 @@ a2_df = restricted_table(ss_diffs,
 a2_df
 
 
-# In[484]:
+# In[34]:
 
 # holds the total cost of benefit program repeal
 welfare_repeal = ben_df['modeled + non-modeled'].drop('sums').sum() + ss_tax_revloss
 welfare_repeal * in_billions
 
 
-# In[485]:
+# In[35]:
 
-def_macro('Welfare/Transfer Porgram Repeal (trillions)', '{:.2f}'.format(welfare_repeal * in_trillions), 'axag')
+def_macro('Welfare/Transfer Porgram Repeal (trillions)', '\${:,.2f}'.format(welfare_repeal * in_trillions), 'aoog')
 
 
-# In[486]:
+# In[36]:
 
 # calculate the average primary earner MTR change by percentile of AGI
 makeline(calc1 = calc_base, 
@@ -742,7 +1183,7 @@ makeline(calc1 = calc_base,
          plotname = 'a3')
 
 
-# In[487]:
+# In[37]:
 
 # average secondary earner MTR change by percentile of AGI
 makeline(calc1 = calc_base, 
@@ -760,11 +1201,16 @@ makeline(calc1 = calc_base,
          plotname = 'a4')
 
 
+# In[38]:
+
+mtr_macros(calc_ss, sec = 'a')
+
+
 # ## Section 3, Part B: Tax Reform
 
 # Repeal all tax preferences, standard deduction, personal exemption, above the line deduction, itemized deductions, tax credits, etc.
 
-# In[488]:
+# In[39]:
 
 recs_tax = Records('puf_benefits.csv', weights='puf_weights_new.csv', adjust_ratios='puf_ratios copy.csv')
 pol_tax = Policy()
@@ -815,50 +1261,47 @@ pol_tax.implement_reform(tax_reform)
 calc_tax = Calculator(records=recs_tax, policy=pol_tax, verbose=False)
 
 
-# In[489]:
+# In[40]:
 
 calc_tax.advance_to_year(2014)
 calc_tax.calc_all()
 
 
-# In[490]:
+# In[41]:
 
 # diag_tax = utils.create_diagnostic_table(calc_tax)
 # diag_tax
 
 
-# In[491]:
+# In[42]:
 
 # generate difference table 
 diff_table = utils.create_difference_table(calc_base.records, 
                                            calc_tax.records, 
                                            'weighted_deciles', 
-                                           income_to_present='_combined')
+                                           income_to_present='combined')
 diff_table
 
 
-# In[ ]:
-
-
-
-
-# In[492]:
+# In[43]:
 
 # generate difference table 
 diff_table = create_difference_table(calc_base.records, 
-                                           calc_tax.records, 
-                                           'weighted_deciles', 
-                                           income_to_present='_combined')
+                                     calc_tax.records, 
+                                     'weighted_deciles', 
+                                     income_to_present='combined')
 diff_table
 
 
-# In[493]:
+# In[44]:
 
 # percent of tax units facing a tax increase
-diff_table['tax_inc']['sums'] / diff_table['count']['sums']
+pct_inc = (diff_table['tax_inc']['sums'] / diff_table['count']['sums'])*100
+
+def_macro('Percent of tax units facing a tax increase (section B)', '{:,.2f} percent'.format(pct_inc), 'bdpp')
 
 
-# In[494]:
+# In[45]:
 
 b1_df = restricted_table(diff_table, 
                  ['tot_change', 'mean', 'perc_inc', 'share_of_change'], 
@@ -870,14 +1313,15 @@ b1_df = restricted_table(diff_table,
 b1_df
 
 
-# In[ ]:
+# In[46]:
 
-
+# make macros for top and bottom ten percent
+dist_macro(b1_df, 'b')
 
 
 # ### Part B Plots
 
-# In[495]:
+# In[47]:
 
 avg_change_data = pd.DataFrame()
 avg_change_data['Benefit Loss'] = list(diff_table['mean'].drop('sums'))
@@ -893,7 +1337,7 @@ makebar(avg_change_data, 'b1', x1label = 'AGI Decile', x2label = 'Average Tax Li
 # avg_change_data
 
 
-# In[496]:
+# In[48]:
 
 tot_change_data = pd.DataFrame()
 tot_change_data['Benefit Loss'] = list(diff_table['tot_change'].drop('sums') * in_billions)
@@ -910,31 +1354,31 @@ makebar(tot_change_data, 'b2', x1label = 'AGI Decile', x2label = 'Total Tax Liab
 # tot_change_data
 
 
-# In[497]:
+# In[49]:
 
 results_pdf = utils.results(calc_base.records)
 results_pdf['c02900'] = calc_base.records.c02900
 results_pdf = utils.add_weighted_income_bins(results_pdf, num_bins=100)
 
 
-# In[498]:
+# In[50]:
 
 # mtr_tax_primary = utils.mtr_graph_data(calc_base, calc_tax, income_measure='agi')
 
 
-# In[499]:
+# In[51]:
 
 # mtr_primary_plot = utils.xtr_graph_plot(mtr_tax_primary,
 #                                        title='Mean Primary Earner Marginal Tax Rate by Income Percentile')
 # show(mtr_primary_plot)
 
 
-# In[500]:
+# In[52]:
 
 # mtr_tax_secondary = utils.mtr_graph_data(calc_base, calc_tax, mtr_variable='e00200s', mars=2, income_measure='agi')
 
 
-# In[501]:
+# In[53]:
 
 # mtr_secondary_plot = utils.xtr_graph_plot(mtr_tax_secondary,
 #                                           title='Mean Secondary Earner Marginal Tax Rate',
@@ -942,7 +1386,7 @@ results_pdf = utils.add_weighted_income_bins(results_pdf, num_bins=100)
 # show(mtr_secondary_plot)
 
 
-# In[502]:
+# In[54]:
 
 # calculate the average primary earner MTR change by percentile of AGI
 makeline(calc1 = calc_base, 
@@ -975,7 +1419,12 @@ makeline(calc_base,
          plotname = 'b4')
 
 
-# In[503]:
+# In[55]:
+
+mtr_macros(calc_tax, sec = 'b')
+
+
+# In[56]:
 
 # primary earner's MTR Change
 mtrp_df = pd.DataFrame()
@@ -998,7 +1447,7 @@ lines['avg-agi'] = agi
 lines['s006'] = s006
 
 
-# In[504]:
+# In[57]:
 
 # secondary earner
 mtrs_df = pd.DataFrame()
@@ -1017,7 +1466,7 @@ mtr2 = mtrs_.apply(utils.weighted_mean, 'pct change')
 lines['secondary'] = mtr2
 
 
-# In[505]:
+# In[58]:
 
 # generate dataframe for graph
 lines['bins'] = lines.index
@@ -1038,7 +1487,7 @@ dataframe['c00100'] = agi
 dataframe['s006'] = s006
 
 
-# In[506]:
+# In[59]:
 
 # generate labels for secondary x-axis
 dataframe = add_weighted_income_bins(dataframe, num_bins=10,
@@ -1057,7 +1506,7 @@ zero = pd.Series(0)
 agi_series = zero.append(agi_series)
 
 
-# In[507]:
+# In[60]:
 
 # generate a line graph
 
@@ -1065,8 +1514,8 @@ dataframe = dataframe
 series1_label = 'Label 1'
 series2_label = 'Label 2'
 plotname = 'b5'
-x1label = 'Average AGI by Decile'
-x2label = 'AGI Decile'
+x1label = 'Average AGI by Percentile'
+x2label = 'AGI Percentile'
 ylabel = 'Ave. Pct. Change in (1-MTR) after Reform'
 
 # begin plot
@@ -1097,7 +1546,7 @@ plt.savefig(plotname, dpi=1000)
 plt.show()
 
 
-# In[508]:
+# In[61]:
 
 fig = figure(title='Mean Percent Change in 1 - MTR After Tax Reform')
 fig.line(idlines, plines, legend='Primary Earner')
@@ -1110,15 +1559,22 @@ fig.legend.location = 'bottom_right'
 
 # Combine parts A and B
 
-# In[509]:
+# In[62]:
 
 # Revenue from tax and welfare program repeal
-tax_rev = ((calc_tax.records._combined - calc_base.records._combined) * calc_tax.records.s006).sum()
+tax_rev = ((calc_tax.records.combined - calc_base.records.combined) * calc_tax.records.s006).sum()
 revenue = tax_rev + welfare_repeal
 revenue * in_billions
 
+revenue_in_trillions = revenue * in_trillions
 
-# In[510]:
+
+# In[63]:
+
+def_macro('Money freed from Section C for UBI', '\${:,.2f} billions'.format(revenue_in_trillions), 'cuog')
+
+
+# In[64]:
 
 pt_c = pd.DataFrame()
 pt_c['Total Revenue Change'] = (ben_df['modeled + non-modeled'].values + diff_table['tot_change'].values -
@@ -1132,12 +1588,12 @@ pt_c['Average AGI'] = diff_table['avg-agi']
 pt_c.index = agi_bins + ['sums']
 pt_c_plot_data = pt_c.drop('sums')
 pt_c_plot_data['Income Bin'] = pt_c_plot_data.index.values
-pt_c_plot_data['Total Revenue Change'] *= in_billions 
+# pt_c_plot_data['Total Revenue Change'] *= in_billions 
 pt_c_plot_data['Average AGI'] = pt_c['Average AGI'] 
 pt_c_plot_data
 
 
-# In[511]:
+# In[65]:
 
 avg_change_data = pd.DataFrame()
 
@@ -1153,7 +1609,7 @@ avg_change_data['Average AGI'] = pt_c_plot_data['Average AGI']
 avg_change_data
 
 
-# In[512]:
+# In[66]:
 
 tot_change_data = pd.DataFrame()
 
@@ -1169,7 +1625,7 @@ tot_change_data['Average AGI'] = pt_c_plot_data['Average AGI']
 tot_change_data
 
 
-# In[513]:
+# In[67]:
 
 pt_c_plot_data['mean'] = 1
 pt_c_plot_data['perc_inc'] = 1
@@ -1181,22 +1637,57 @@ c1_df = restricted_table(pt_c_plot_data,
                  reindex = False
                 )
 
+# add sum row
+sum1 = (c1_df['Total Revenue Change ($)']['0-10%'] 
+     + c1_df['Total Revenue Change ($)']['10-20%'] 
+     + c1_df['Total Revenue Change ($)']['20-30%'] 
+     + c1_df['Total Revenue Change ($)']['30-40%'] 
+     + c1_df['Total Revenue Change ($)']['40-50%'] 
+     + c1_df['Total Revenue Change ($)']['50-60%'] 
+     + c1_df['Total Revenue Change ($)']['60-70%'] 
+     + c1_df['Total Revenue Change ($)']['70-80%'] 
+     + c1_df['Total Revenue Change ($)']['80-90%'] 
+     + c1_df['Total Revenue Change ($)']['90-100%'])
+
+sum2 = (c1_df['Average Revenue Change ($)']['0-10%'] 
+     + c1_df['Average Revenue Change ($)']['10-20%'] 
+     + c1_df['Average Revenue Change ($)']['20-30%'] 
+     + c1_df['Average Revenue Change ($)']['30-40%'] 
+     + c1_df['Average Revenue Change ($)']['40-50%'] 
+     + c1_df['Average Revenue Change ($)']['50-60%'] 
+     + c1_df['Average Revenue Change ($)']['60-70%'] 
+     + c1_df['Average Revenue Change ($)']['70-80%'] 
+     + c1_df['Average Revenue Change ($)']['80-90%'] 
+     + c1_df['Average Revenue Change ($)']['90-100%'])
+
+c1_sum = pd.DataFrame({'Total Revenue Change ($)':[sum1],
+                    'Average Revenue Change ($)':[sum2]},
+                   index = ['Sum'])
+
+c1_df = pd.concat([c1_df, c1_sum])
+
 
 c1_df
 
 
-# In[514]:
+# In[68]:
+
+# make macros for top and bottom ten percent
+dist_macro(c1_df, 'c')
+
+
+# In[69]:
 
 # generate bar charts
-makebar(avg_change_data, 'c1', x1label = 'AGI Decile', x2label = 'Average AGI by Decile', ylabel = 'Average Loss from Welfare/Transfer and Tax Reforms')
-makebar(tot_change_data, 'c2', x1label = 'AGI Decile', x2label = 'Average AGI by Decile', ylabel = 'Total Loss from Welfare/Transfer and Tax Reforms (billions)')
+makebar(avg_change_data, 'c1', x1label = 'AGI Percentile', x2label = 'Average AGI by Percentile', ylabel = 'Average Loss from Welfare/Transfer and Tax Reforms')
+makebar(tot_change_data, 'c2', x1label = 'AGI Percentile', x2label = 'Average AGI by Percentile', ylabel = 'Total Loss from Welfare/Transfer and Tax Reforms (billions)')
 
 
 # ## Section 5, Part D: Tax and Welfare/Transfer Plus UBI for All
 
 # Tax and welfare reform plus a UBI for the entire population. UBI is X for those above 18 and .5X for those under 18
 
-# In[515]:
+# In[70]:
 
 # Total Population for a UBI
 u18 = (calc_tax.records.nu18 * calc_tax.records.s006).sum()
@@ -1204,7 +1695,7 @@ abv18 = ((calc_tax.records.n1821 + calc_tax.records.n21) * calc_tax.records.s006
 abv21 = (calc_tax.records.n21 * calc_tax.records.s006).sum()
 
 
-# In[516]:
+# In[71]:
 
 # Function to determine UBI levels
 def ubi_amt(revenue):
@@ -1214,7 +1705,7 @@ def ubi_amt(revenue):
     return ubi_18, ubi_u18
 
 
-# In[517]:
+# In[72]:
 
 initial_ubi = ubi_amt(revenue)
 ubi_u18 = initial_ubi[1]
@@ -1223,14 +1714,14 @@ print ('UBI for those above 18: {:.2f}'.format(ubi_18))
 print ('UBI for those bellow 18: {:.2f}'.format(ubi_u18))
 
 
-# In[518]:
+# In[73]:
 
 # define macros
-def_macro('UBI for those above 18 (part D)', '{:.2f}'.format(ubi_18), 'dxaa')
-def_macro('UBI for those bellow 18 (part D)', '{:.2f}'.format(ubi_u18), 'dxab')
+def_macro('UBI for those above 18 (part D)', '\${:,.2f}'.format(ubi_18), 'duag')
+def_macro('UBI for those bellow 18 (part D)', '\${:,.2f}'.format(ubi_u18), 'dubg')
 
 
-# In[519]:
+# In[74]:
 
 # UBI all Calculator - Initial UBI tax revenue
 recs_ubi_all = Records('puf_benefits.csv', weights='puf_weights_new.csv', adjust_ratios='puf_ratios copy.csv')
@@ -1250,11 +1741,11 @@ calc_ubi_all.advance_to_year(2014)
 calc_ubi_all.calc_all()
 
 # Initial UBI tax revenue
-ubi_tax_rev = ((calc_ubi_all.records._combined - calc_tax.records._combined) * calc_ubi_all.records.s006).sum()
+ubi_tax_rev = ((calc_ubi_all.records.combined - calc_tax.records.combined) * calc_ubi_all.records.s006).sum()
 ubi_tax_rev
 
 
-# In[520]:
+# In[75]:
 
 # Function to find total UBI and compare to additional revenue from tax and welfare reform
 def ubi_finder(ubi_18, ubi_u18):
@@ -1274,16 +1765,17 @@ def ubi_finder(ubi_18, ubi_u18):
     calc_finder.records.e02400 = np.zeros(len(calc_finder.records.e02400))
     calc_finder.advance_to_year(2014)
     calc_finder.calc_all()
+    
     # Check if UBI is greater or less than the additional revenue
     # Revenue from tax reform
-    ubi_tax_rev = ((calc_finder.records._combined - calc_tax.records._combined) * calc_finder.records.s006).sum()
+    ubi_tax_rev = ((calc_finder.records.combined - calc_tax.records.combined) * calc_finder.records.s006).sum()
     total_rev = ubi_tax_rev + revenue
     ubi = (calc_finder.records.ubi * calc_finder.records.s006).sum()
     diff = ubi - total_rev
     return diff, ubi_tax_rev
 
 
-# In[521]:
+# In[76]:
 
 # While loop to call ubi_finder function until optimal UBI is found
 diff = 9e99
@@ -1297,12 +1789,12 @@ while abs(diff) >= 0.01:
 print (ubi_18, ubi_u18)
 
 
-# In[522]:
+# In[77]:
 
 calc_ubi_all.records.e00200.sum()
 
 
-# In[523]:
+# In[78]:
 
 # Create actual UBI Calculator
 recs_ubiall = Records('puf_benefits.csv', weights='puf_weights_new.csv', adjust_ratios='puf_ratios copy.csv')
@@ -1322,15 +1814,15 @@ calc_ubiall.advance_to_year(2014)
 calc_ubiall.calc_all()
 
 
-# In[524]:
+# In[79]:
 
 # Check that comparison to be post-tax reform, not the base
 diffs_ubi_all = create_difference_table(calc_base.records, calc_ubiall.records, 'weighted_deciles',
-                                              income_to_present='_combined')
+                                              income_to_present='combined')
 diffs_ubi_all
 
 
-# In[525]:
+# In[80]:
 
 d1_df = restricted_table(diffs_ubi_all, 
                  ['tot_change', 'mean', 'perc_inc', 'share_of_change'], 
@@ -1342,7 +1834,35 @@ d1_df = restricted_table(diffs_ubi_all,
 d1_df
 
 
-# In[526]:
+# In[81]:
+
+# make macros for top and bottom ten percent
+dist_macro(d1_df, 'd')
+
+
+# In[82]:
+
+# Average Social Security from people with falling tax liabilities
+
+# Average tax liability decrease for those who see it
+neg_combined = (calc_ubiall.records.combined - calc_base.records.combined)
+stat1 = ((neg_combined[neg_combined < 0] * calc_ubiall.records.s006[neg_combined < 0]).sum() /
+calc_ubiall.records.s006[neg_combined < 0].sum())
+
+# Average Social Security benefit to those who see tax decrease with UBI
+stat2 = ((calc_base.records.e02400[neg_combined < 0] * calc_base.records.s006[neg_combined < 0]).sum() /
+calc_base.records.s006[neg_combined < 0].sum())
+
+# Average UBI to those who see tax decrease with UBI
+stat3 = ((calc_ubiall.records.ubi[neg_combined < 0] * calc_ubiall.records.s006[neg_combined < 0]).sum() /
+calc_ubiall.records.s006[neg_combined < 0].sum())
+
+def_macro('Average tax liability decrease for those who see it (part D)', units(stat1), 'datd')
+def_macro('Average Social Security benefit to those who see tax decrease with UBI (part D)', units(stat2), 'dasd')
+def_macro('Average UBI to those who see tax decrease with UBI (part D)', units(stat3), 'daud')
+
+
+# In[83]:
 
 avg_change_data = pd.DataFrame()
 avg_change_data['Benefit Loss'] = diffs_ubi_all['mean'].drop('sums')
@@ -1355,7 +1875,7 @@ avg_change_data = avg_change_data.drop('Income Bins', 1)
 del avg_change_data.index.name
 
 
-# In[527]:
+# In[84]:
 
 tot_change_data = pd.DataFrame()
 tot_change_data['Benefit Loss'] = diffs_ubi_all['tot_change'].drop('sums') * in_billions
@@ -1368,52 +1888,14 @@ tot_change_data = tot_change_data.drop('Income Bins', 1)
 del tot_change_data.index.name
 
 
-# In[528]:
+# In[85]:
 
 # generate bar charts
-makebar(avg_change_data, 'd1', x1label = 'AGI Decile', x2label = 'Average AGI by Decile', ylabel = 'Average Change in Tax Liability')
-makebar(tot_change_data, 'd2', x1label = 'AGI Decile', x2label = 'Average AGI by Decile', ylabel = 'Total Change in Tax Liability (billions)')
+makebar(avg_change_data, 'd1', x1label = 'AGI Percentile', x2label = 'Average AGI by Percentile', ylabel = 'Average Change in Tax Liability')
+makebar(tot_change_data, 'd2', x1label = 'AGI Percentile', x2label = 'Average AGI by Percentile', ylabel = 'Total Change in Tax Liability (billions)')
 
 
-# In[529]:
-
-# Anderson
-# Average Social Security benefit to those who see tax decrease with UBI
-((calc_base.records.e02400[neg_combined < 0] * calc_base.records.s006[neg_combined < 0]).sum() /
- calc_base.records.s006[neg_combined < 0].sum()) 
-
-
-# In[530]:
-
-# Anderson
-# Average UBI to those who see tax decrease with UBI
-((calc_ubiall.records.ubi[neg_combined < 0] * calc_ubiall.records.s006[neg_combined < 0]).sum() /
-calc_ubiall.records.s006[neg_combined < 0].sum())
-
-
-# In[531]:
-
-# mtr_ubi_all = utils.mtr_graph_data(calc_base, calc_ubiall)
-
-
-# In[532]:
-
-# mtr_ubi_plot_all = xtr_graph_plot(mtr_ubi_all)
-# show(mtr_ubi_plot_all)
-
-
-# In[533]:
-
-# mtr_ubi_alls = utils.mtr_graph_data(calc_base, calc_ubi_all, mars=2, mtr_variable='e00200s')
-
-
-# In[534]:
-
-# mtr_ubi_plot_alls = xtr_graph_plot(mtr_ubi_alls)
-# show(mtr_ubi_plot_alls)
-
-
-# In[535]:
+# In[86]:
 
 # calculate the average primary earner MTR change by percentile of AGI
 makeline(calc_base, 
@@ -1446,7 +1928,12 @@ makeline(calc_base,
          plotname = 'd4')
 
 
-# In[536]:
+# In[87]:
+
+mtr_macros(calc_ubiall, sec = 'd')
+
+
+# In[88]:
 
 # Primary earner's MTR Change
 mtrp_ubidf = pd.DataFrame()
@@ -1469,7 +1956,7 @@ lines_ubiall['avg-agi'] = agi
 lines_ubiall['s006'] = s006
 
 
-# In[537]:
+# In[89]:
 
 # Secondary earner
 mtrs_ubiall_df = pd.DataFrame()
@@ -1488,7 +1975,7 @@ mtr2ubiall = mtrs_ubiall.apply(utils.weighted_mean, 'pct change')
 lines_ubiall['secondary'] = mtr2ubiall
 
 
-# In[538]:
+# In[90]:
 
 plines_ubiall = lines_ubiall['primary'].values
 slines_ubiall = lines_ubiall['secondary'].values
@@ -1513,7 +2000,7 @@ dataframe['c00100'] = agi
 dataframe['s006'] = s006
 
 
-# In[539]:
+# In[91]:
 
 # generate labels for secondary x-axis
 dataframe = add_weighted_income_bins(dataframe, num_bins=10,
@@ -1532,7 +2019,7 @@ zero = pd.Series(0)
 agi_series = zero.append(agi_series)
 
 
-# In[540]:
+# In[92]:
 
 # generate a line graph
 
@@ -1540,8 +2027,8 @@ dataframe = dataframe
 series1_label = 'Label 1'
 series2_label = 'Label 2'
 plotname = 'd5'
-x1label = 'Average AGI by Decile'
-x2label = 'AGI Decile'
+x1label = 'Average AGI by Percentile'
+x2label = 'AGI Percentile'
 ylabel = 'Ave. Pct. Change in (1-MTR) after Reform'
 
 # begin plot
@@ -1572,7 +2059,7 @@ plt.savefig(plotname, dpi=1000)
 plt.show()
 
 
-# In[541]:
+# In[93]:
 
 fig = figure(title='Mean Percent Change in 1 - MTR')
 fig.line(idlines_ubiall, plines_ubiall, legend='Primary Earner')
@@ -1581,7 +2068,7 @@ fig.legend.location = 'bottom_right'
 # show(fig)
 
 
-# In[542]:
+# In[94]:
 
 # Show, by total amount, the difference between additional taxes and UBI income
 (calc_ubi_all.records.ubi * calc_ubi_all.records.s006).sum() - diffs_ubi_all['tot_change']['sums']
@@ -1591,7 +2078,7 @@ fig.legend.location = 'bottom_right'
 
 # Tax and welfare reform, plus a UBI for all those 18 and over
 
-# In[543]:
+# In[95]:
 
 # Function to determine UBI levels
 def ubi_amt18(revenue):
@@ -1599,19 +2086,19 @@ def ubi_amt18(revenue):
     return ubi_a18
 
 
-# In[544]:
+# In[96]:
 
 ubi_a18 = ubi_amt18(revenue)
 print ('UBI for those above 18: {:.2f}'.format(ubi_a18))
 
 
-# In[545]:
+# In[97]:
 
 # define macros
-def_macro('UBI for those above 18 (part E)', '{:.2f}'.format(ubi_a18), 'exaa')
+def_macro('UBI for those above 18 (part E)', '\${:,.2f}'.format(ubi_a18), 'euog')
 
 
-# In[546]:
+# In[98]:
 
 # UBI above 18 Calculator - Initial UBI tax revenue
 recs_ubi_18 = Records('puf_benefits.csv', weights='puf_weights_new.csv', adjust_ratios='puf_ratios copy.csv')
@@ -1630,11 +2117,11 @@ calc_ubi_18.advance_to_year(2014)
 calc_ubi_18.calc_all()
 
 # Initial UBI tax revenue
-ubi_tax_rev18 = ((calc_ubi_18.records._combined - calc_tax.records._combined) * calc_ubi_18.records.s006).sum()
+ubi_tax_rev18 = ((calc_ubi_18.records.combined - calc_tax.records.combined) * calc_ubi_18.records.s006).sum()
 ubi_tax_rev18
 
 
-# In[ ]:
+# In[99]:
 
 # Function to find total UBI and compare to additional revenue from tax and welfare reform
 def ubi_finder18(ubi_a18):
@@ -1654,14 +2141,14 @@ def ubi_finder18(ubi_a18):
     calc_finder18.advance_to_year(2014)
     calc_finder18.calc_all()
     # Revenue from tax reform
-    ubi_tax_rev18 = ((calc_finder18.records._combined - calc_tax.records._combined) * calc_finder18.records.s006).sum()
+    ubi_tax_rev18 = ((calc_finder18.records.combined - calc_tax.records.combined) * calc_finder18.records.s006).sum()
     total_rev18 = ubi_tax_rev18 + revenue
     ubi18 = (calc_finder18.records.ubi * calc_finder18.records.s006).sum()
     diff18 = ubi18 - total_rev18
     return diff18, ubi_tax_rev18
 
 
-# In[ ]:
+# In[100]:
 
 # While loop to call ubi_finder function until optimal UBI is found
 diff18 = 9e99
@@ -1675,7 +2162,7 @@ while abs(diff18) >= 0.01:
 print (ubi_a18)
 
 
-# In[ ]:
+# In[101]:
 
 # Run calculator with UBI
 recs_ubi18 = Records('puf_benefits.csv', weights='puf_weights_new.csv', adjust_ratios='puf_ratios copy.csv')
@@ -1694,15 +2181,15 @@ calc_ubi18.advance_to_year(2014)
 calc_ubi18.calc_all()
 
 
-# In[ ]:
+# In[102]:
 
 # Create differences table
 diffs_ubi18 = create_difference_table(calc_base.records, calc_ubi18.records, 'weighted_deciles',
-                                            income_to_present='_combined')
+                                      income_to_present='combined')
 diffs_ubi18
 
 
-# In[ ]:
+# In[103]:
 
 e1_df = restricted_table(diffs_ubi18, 
                  ['tot_change', 'mean', 'perc_inc', 'share_of_change'], 
@@ -1713,7 +2200,35 @@ e1_df = restricted_table(diffs_ubi18,
 e1_df
 
 
-# In[ ]:
+# In[104]:
+
+# make macros for top and bottom ten percent
+dist_macro(e1_df, 'e')
+
+
+# In[105]:
+
+# Average Social Security from people with falling tax liabilities
+
+# Average tax liability decrease for those who see it
+neg_combined = (calc_ubi18.records.combined - calc_base.records.combined)
+stat1 = ((neg_combined[neg_combined < 0] * calc_ubi18.records.s006[neg_combined < 0]).sum() /
+calc_ubi18.records.s006[neg_combined < 0].sum())
+
+# Average Social Security benefit to those who see tax decrease with UBI
+stat2 = ((calc_base.records.e02400[neg_combined < 0] * calc_base.records.s006[neg_combined < 0]).sum() /
+calc_base.records.s006[neg_combined < 0].sum())
+
+# Average UBI to those who see tax decrease with UBI
+stat3 = ((calc_ubi18.records.ubi[neg_combined < 0] * calc_ubi18.records.s006[neg_combined < 0]).sum() /
+calc_ubi18.records.s006[neg_combined < 0].sum())
+
+def_macro('Average tax liability decrease for those who see it (part J)', units(stat1), 'eatd')
+def_macro('Average Social Security benefit to those who see tax decrease with UBI (part J)', units(stat2), 'easd')
+def_macro('Average UBI to those who see tax decrease with UBI (part J)', units(stat3), 'eaud')
+
+
+# In[106]:
 
 avg_change_data = pd.DataFrame()
 avg_change_data['Benefit Loss'] = diffs_ubi18['mean'].drop('sums')
@@ -1726,7 +2241,7 @@ avg_change_data = avg_change_data.drop('Income Bins', 1)
 del avg_change_data.index.name
 
 
-# In[ ]:
+# In[107]:
 
 tot_change_data = pd.DataFrame()
 tot_change_data['Benefit Loss'] = diffs_ubi18['tot_change'].drop('sums') * in_billions
@@ -1739,22 +2254,22 @@ tot_change_data = tot_change_data.drop('Income Bins', 1)
 del tot_change_data.index.name
 
 
-# In[ ]:
+# In[108]:
 
 # generate bar charts
-makebar(avg_change_data, 'e1', x1label = 'AGI Decile', x2label = 'Average AGI by Decile', ylabel = 'Average Change in Tax Liability')
-makebar(tot_change_data, 'e2', x1label = 'AGI Decile', x2label = 'Average AGI by Decile', ylabel = 'Total Change in Tax Liability (billions)')
+makebar(avg_change_data, 'e1', x1label = 'AGI Percentile', x2label = 'Average AGI by Percentile', ylabel = 'Average Change in Tax Liability')
+makebar(tot_change_data, 'e2', x1label = 'AGI Percentile', x2label = 'Average AGI by Percentile', ylabel = 'Total Change in Tax Liability (billions)')
 
 
-# In[ ]:
+# In[109]:
 
 # Anderson
-neg_combined = (calc_ubiall.records._combined - calc_base.records._combined)
+neg_combined = (calc_ubiall.records.combined - calc_base.records.combined)
 ((neg_combined[neg_combined < 0] * calc_ubiall.records.s006[neg_combined < 0]).sum() /
  calc_ubi18.records.s006[neg_combined < 0].sum())
 
 
-# In[ ]:
+# In[110]:
 
 # MTR Plots
 # mtr_ubi18 = utils.mtr_graph_data(calc_base, calc_ubi18)
@@ -1762,14 +2277,14 @@ neg_combined = (calc_ubiall.records._combined - calc_base.records._combined)
 # show(mtr_ubi18_plot)
 
 
-# In[ ]:
+# In[111]:
 
 # mtrs_ubi18 = utils.mtr_graph_data(calc_base, calc_ubi18, mars=2, mtr_variable='e00200s')
 # mtrs_ubi18_plot = utils.xtr_graph_plot(mtrs_ubi18)
 # show(mtrs_ubi18_plot)
 
 
-# In[ ]:
+# In[112]:
 
 # calculate the average primary earner MTR change by percentile of AGI
 makeline(calc_base, 
@@ -1802,7 +2317,12 @@ makeline(calc_base,
          plotname = 'e4')
 
 
-# In[ ]:
+# In[113]:
+
+mtr_macros(calc_ubi18, sec = 'e')
+
+
+# In[114]:
 
 # Primary earner's MTR Change
 mtrp_ubidf18 = pd.DataFrame()
@@ -1825,7 +2345,7 @@ lines_ubi18['avg-agi'] = agi
 lines_ubi18['s006'] = s006
 
 
-# In[ ]:
+# In[115]:
 
 # Secondary earner
 mtrs_ubi18_df = pd.DataFrame()
@@ -1844,7 +2364,7 @@ mtr2ubi18 = mtrs_ubi18.apply(utils.weighted_mean, 'pct change')
 lines_ubi18['secondary'] = mtr2ubi18
 
 
-# In[ ]:
+# In[116]:
 
 # generate dataframe for graph
 lines_ubi18['bins'] = lines_ubi18.index
@@ -1865,7 +2385,7 @@ dataframe['c00100'] = agi
 dataframe['s006'] = s006
 
 
-# In[ ]:
+# In[117]:
 
 # generate labels for secondary x-axis
 dataframe = add_weighted_income_bins(dataframe, num_bins=10,
@@ -1884,7 +2404,7 @@ zero = pd.Series(0)
 agi_series = zero.append(agi_series)
 
 
-# In[ ]:
+# In[118]:
 
 # generate a line graph
 
@@ -1892,8 +2412,8 @@ dataframe = dataframe
 series1_label = 'Label 1'
 series2_label = 'Label 2'
 plotname = 'e5'
-x1label = 'Average AGI by Decile'
-x2label = 'AGI Decile'
+x1label = 'Average AGI by Percentile'
+x2label = 'AGI Percentile'
 ylabel = 'Ave. Pct. Change in (1-MTR) after Reform'
 
 # begin plot
@@ -1924,14 +2444,14 @@ plt.savefig(plotname, dpi=1000)
 plt.show()
 
 
-# In[ ]:
+# In[119]:
 
 plines_ubi18 = lines_ubi18['primary'].values
 slines_ubi18 = lines_ubi18['secondary'].values
 idlines_ubi18 = lines_ubi18.index.values
 
 
-# In[ ]:
+# In[120]:
 
 fig = figure(title='Mean Percent Change in 1 - MTR')
 fig.line(idlines_ubi18, plines_ubi18, legend='Primary Earner')
@@ -1944,7 +2464,7 @@ fig.legend.location = 'bottom_right'
 
 # Tax and welfare/transfer reform, plus a UBI for all over 21
 
-# In[ ]:
+# In[121]:
 
 # Function to determine UBI levels
 def ubi_amt21(revenue):
@@ -1952,19 +2472,19 @@ def ubi_amt21(revenue):
     return ubi_a21
 
 
-# In[ ]:
+# In[122]:
 
 ubi_a21 = ubi_amt21(revenue)
 print ('UBI for those above 21: {:.2f}'.format(ubi_a21))
 
 
-# In[ ]:
+# In[123]:
 
 # define macros
-def_macro('UBI for those above 21 (part F)', '{:.2f}'.format(ubi_18), 'fxaa')
+def_macro('UBI for those above 21 (part F)', '\${:,.2f}'.format(ubi_18), 'fuog')
 
 
-# In[ ]:
+# In[124]:
 
 # UBI above 21 Calculator - Initial UBI tax revenue
 recs_ubi_21 = Records('puf_benefits.csv', weights='puf_weights_new.csv', adjust_ratios='puf_ratios copy.csv')
@@ -1983,11 +2503,16 @@ calc_ubi_21.advance_to_year(2014)
 calc_ubi_21.calc_all()
 
 # Initial UBI tax revenue
-ubi_tax_rev21 = ((calc_ubi_21.records._combined - calc_tax.records._combined) * calc_ubi_21.records.s006).sum()
+ubi_tax_rev21 = ((calc_ubi_21.records.combined - calc_tax.records.combined) * calc_ubi_21.records.s006).sum()
 ubi_tax_rev21
 
 
-# In[ ]:
+# In[125]:
+
+def_macro('Tax revenue from UBI for those above 21 (part F)', '\${:,.2f}'.format(ubi_tax_rev21), 'futg')
+
+
+# In[126]:
 
 # Function to find total UBI and compare to additional revenue from tax and welfare reform
 def ubi_finder21(ubi_a21):
@@ -2006,14 +2531,14 @@ def ubi_finder21(ubi_a21):
     calc_finder21.advance_to_year(2014)
     calc_finder21.calc_all()
     # Revenue from tax reform
-    ubi_tax_rev21 = ((calc_finder21.records._combined - calc_tax.records._combined) * calc_finder21.records.s006).sum()
+    ubi_tax_rev21 = ((calc_finder21.records.combined - calc_tax.records.combined) * calc_finder21.records.s006).sum()
     total_rev21 = ubi_tax_rev21 + revenue
     ubi21 = (calc_finder21.records.ubi * calc_finder21.records.s006).sum()
     diff21 = ubi21 - total_rev21
     return diff21, ubi_tax_rev21
 
 
-# In[ ]:
+# In[127]:
 
 # While loop to call ubi_finder function until optimal UBI is found
 diff21 = 9e99
@@ -2027,7 +2552,7 @@ while abs(diff21) >= 0.01:
 print (ubi_a21)
 
 
-# In[ ]:
+# In[128]:
 
 # Create calc for UBI simulations
 recs_ubi21 = Records('puf_benefits.csv', weights='puf_weights_new.csv', adjust_ratios='puf_ratios copy.csv')
@@ -2045,14 +2570,14 @@ calc_ubi21.advance_to_year(2014)
 calc_ubi21.calc_all()
 
 
-# In[ ]:
+# In[129]:
 
 diff_ubi21 = create_difference_table(calc_base.records, calc_ubi21.records, 'weighted_deciles',
-                                           income_to_present='_combined')
+                                           income_to_present='combined')
 diff_ubi21
 
 
-# In[ ]:
+# In[130]:
 
 f1_df = restricted_table(diff_ubi21, 
                  ['tot_change', 'mean', 'perc_inc', 'share_of_change'], 
@@ -2063,7 +2588,35 @@ f1_df = restricted_table(diff_ubi21,
 f1_df
 
 
-# In[ ]:
+# In[131]:
+
+# make macros for top and bottom ten percent
+dist_macro(f1_df, 'f')
+
+
+# In[132]:
+
+# Average Social Security from people with falling tax liabilities
+
+# Average tax liability decrease for those who see it
+neg_combined = (calc_ubi21.records.combined - calc_base.records.combined)
+stat1 = ((neg_combined[neg_combined < 0] * calc_ubi21.records.s006[neg_combined < 0]).sum() /
+calc_ubi21.records.s006[neg_combined < 0].sum())
+
+# Average Social Security benefit to those who see tax decrease with UBI
+stat2 = ((calc_base.records.e02400[neg_combined < 0] * calc_base.records.s006[neg_combined < 0]).sum() /
+calc_base.records.s006[neg_combined < 0].sum())
+
+# Average UBI to those who see tax decrease with UBI
+stat3 = ((calc_ubi21.records.ubi[neg_combined < 0] * calc_ubi21.records.s006[neg_combined < 0]).sum() /
+calc_ubi21.records.s006[neg_combined < 0].sum())
+
+def_macro('Average tax liability decrease for those who see it (part F)', units(stat1), 'fatd')
+def_macro('Average Social Security benefit to those who see tax decrease with UBI (part F)', units(stat2), 'fasd')
+def_macro('Average UBI to those who see tax decrease with UBI (part F)', units(stat3), 'faud')
+
+
+# In[133]:
 
 avg_change_data = pd.DataFrame()
 avg_change_data['Benefit Loss'] = diff_ubi21['mean'].drop('sums')
@@ -2076,7 +2629,7 @@ avg_change_data = avg_change_data.drop('Income Bins', 1)
 del avg_change_data.index.name
 
 
-# In[ ]:
+# In[134]:
 
 tot_change_data = pd.DataFrame()
 tot_change_data['Benefit Loss'] = diff_ubi21['tot_change'].drop('sums') * in_billions
@@ -2089,14 +2642,14 @@ tot_change_data = tot_change_data.drop('Income Bins', 1)
 del tot_change_data.index.name
 
 
-# In[ ]:
+# In[135]:
 
 # generate bar charts
-makebar(avg_change_data, 'f1', x1label = 'AGI Decile', x2label = 'Average AGI by Decile', ylabel = 'Average Change in Tax Liability')
-makebar(tot_change_data, 'f2', x1label = 'AGI Decile', x2label = 'Average AGI by Decile', ylabel = 'Total Change in Tax Liability (billions)')
+makebar(avg_change_data, 'f1', x1label = 'AGI Percentile', x2label = 'Average AGI by Percentile', ylabel = 'Average Change in Tax Liability')
+makebar(tot_change_data, 'f2', x1label = 'AGI Percentile', x2label = 'Average AGI by Percentile', ylabel = 'Total Change in Tax Liability (billions)')
 
 
-# In[ ]:
+# In[136]:
 
 # MTR Plots
 # mtr_ubi21 = utils.mtr_graph_data(calc_base, calc_ubi21)
@@ -2104,14 +2657,14 @@ makebar(tot_change_data, 'f2', x1label = 'AGI Decile', x2label = 'Average AGI by
 # show(mtr_ubi21_plot)
 
 
-# In[ ]:
+# In[137]:
 
 # mtrs_ubi21 = utils.mtr_graph_data(calc_base, calc_ubi21, mars=2, mtr_variable='e00200s')
 # mtrs_ubi21_plot = utils.xtr_graph_plot(mtrs_ubi21)
 # show(mtrs_ubi21_plot)
 
 
-# In[ ]:
+# In[138]:
 
 # calculate the average primary earner MTR change by percentile of AGI
 makeline(calc_base, 
@@ -2144,7 +2697,12 @@ makeline(calc_base,
          plotname = 'f4')
 
 
-# In[ ]:
+# In[139]:
+
+mtr_macros(calc_ubi21, sec = 'f')
+
+
+# In[140]:
 
 # Primary earner's MTR Change
 mtrp_ubidf21 = pd.DataFrame()
@@ -2167,7 +2725,7 @@ lines_ubi21['avg-agi'] = agi
 lines_ubi21['s006'] = s006
 
 
-# In[ ]:
+# In[141]:
 
 # Secondary earner
 mtrs_ubi21_df = pd.DataFrame()
@@ -2186,7 +2744,7 @@ mtr2ubi21 = mtrs_ubi21.apply(utils.weighted_mean, 'pct change')
 lines_ubi21['secondary'] = mtr2ubi21
 
 
-# In[ ]:
+# In[142]:
 
 # generate dataframe for graph
 lines_ubi21['bins'] = lines_ubi21.index
@@ -2207,7 +2765,7 @@ dataframe['c00100'] = agi
 dataframe['s006'] = s006
 
 
-# In[ ]:
+# In[143]:
 
 # generate labels for secondary x-axis
 dataframe = add_weighted_income_bins(dataframe, num_bins=10,
@@ -2226,7 +2784,7 @@ zero = pd.Series(0)
 agi_series = zero.append(agi_series)
 
 
-# In[ ]:
+# In[144]:
 
 # generate a line graph
 
@@ -2234,8 +2792,8 @@ dataframe = dataframe
 series1_label = 'Label 1'
 series2_label = 'Label 2'
 plotname = 'f5'
-x1label = 'Average AGI by Decile'
-x2label = 'AGI Decile'
+x1label = 'Average AGI by Percentile'
+x2label = 'AGI Percentile'
 ylabel = 'Avg. Pct. Change in (1-MTR) after Reform'
 
 # begin plot
@@ -2266,14 +2824,14 @@ plt.savefig(plotname, dpi=1000)
 plt.show()
 
 
-# In[ ]:
+# In[145]:
 
 plines_ubi21 = lines_ubi21['primary'].values
 slines_ubi21 = lines_ubi21['secondary'].values
 idlines_ubi21 = lines_ubi21.index.values
 
 
-# In[ ]:
+# In[146]:
 
 fig = figure(title='Mean Percent Change in 1 - MTR')
 fig.line(idlines_ubi21, plines_ubi21, legend='Primary Earner')
@@ -2282,10 +2840,10 @@ fig.legend.location = 'bottom_right'
 # show(fig)
 
 
-# In[ ]:
+# In[147]:
 
 # Find UBI benefit, net tax increase
-combined_change = calc_ubi21.records._combined - calc_base.records._combined
+combined_change = calc_ubi21.records.combined - calc_base.records.combined
 net_benefit = calc_ubi21.records.ubi - combined_change
 
 # DataFrame that will be sorted and holds net benefit, weight, and AGI
@@ -2298,7 +2856,7 @@ net_ben_df = utils.add_weighted_income_bins(net_ben_df, num_bins=10, income_meas
 
 # # Dynamic Simulations
 
-# In[ ]:
+# In[148]:
 
 # Behavioral reform to be used for all calculators
 behavioral_reform = {
@@ -2309,7 +2867,7 @@ behavioral_reform = {
 }
 
 
-# In[ ]:
+# In[149]:
 
 # Tax reform dynamic calculator
 recs_tax_d = Records('puf_benefits.csv', weights='puf_weights_new.csv', adjust_ratios='puf_ratios copy.csv')
@@ -2322,20 +2880,20 @@ calc_tax_d.advance_to_year(2014)
 calc_tax_d.calc_all()
 
 
-# In[ ]:
+# In[150]:
 
 # Get change in tax revenue for dynamic reform
 calc_dynamic = Behavior.response(calc_base, calc_tax_d)
 
 
-# In[ ]:
+# In[151]:
 
 # Find dynamic tax revenue
-dynamic_tax_rev = ((calc_dynamic.records._combined - calc_base.records._combined) * calc_dynamic.records.s006).sum()
+dynamic_tax_rev = ((calc_dynamic.records.combined - calc_base.records.combined) * calc_dynamic.records.s006).sum()
 dynamic_tax_rev
 
 
-# In[ ]:
+# In[152]:
 
 dynamic_rev = dynamic_tax_rev + welfare_repeal
 
@@ -2344,7 +2902,7 @@ dynamic_rev = dynamic_tax_rev + welfare_repeal
 
 # Tax and welfare reform plus a dynamic simulation of UBI for all
 
-# In[ ]:
+# In[153]:
 
 # Function to determine UBI levels
 def ubi_amtd(revenue):
@@ -2353,7 +2911,7 @@ def ubi_amtd(revenue):
     return ubi_18b, ubi_u18b
 
 
-# In[ ]:
+# In[154]:
 
 initial_ubid = ubi_amtd(dynamic_rev)
 ubi_u18d = initial_ubid[1]
@@ -2362,14 +2920,14 @@ print ('UBI for those above 18: {:.2f}'.format(ubi_18d))
 print ('UBI for those bellow 18: {:.2f}'.format(ubi_u18d))
 
 
-# In[ ]:
+# In[155]:
 
 # define macros
-def_macro('UBI for those above 18 (part G)', '{:.2f}'.format(ubi_18d), 'gxaa')
-def_macro('UBI for those bellow 18 (part G)', '{:.2f}'.format(ubi_u18d), 'gxab')
+def_macro('UBI for those above 18 (part G)', '\${:,.2f}'.format(ubi_18d), 'guag')
+def_macro('UBI for those bellow 18 (part G)', '\${:,.2f}'.format(ubi_u18d), 'gubg')
 
 
-# In[ ]:
+# In[156]:
 
 # UBI all Calculator - Initial UBI tax revenue - behavioral reform
 recs_ubi_allb = Records('puf_benefits.csv', weights='puf_weights_new.csv', adjust_ratios='puf_ratios copy.csv')
@@ -2396,11 +2954,11 @@ calc_ubi_allb.calc_all()
 calc_dynamic_all = Behavior.response(calc_dynamic, calc_ubi_allb)
 
 # Initial UBI tax revenue
-ubi_tax_revb = ((calc_dynamic_all.records._combined - calc_dynamic.records._combined) * calc_dynamic_all.records.s006).sum()
+ubi_tax_revb = ((calc_dynamic_all.records.combined - calc_dynamic.records.combined) * calc_dynamic_all.records.s006).sum()
 ubi_tax_revb
 
 
-# In[ ]:
+# In[157]:
 
 # Function to find total UBI and compare to additional revenue from tax and welfare reform
 def ubi_finderb(ubi_18b, ubi_u18b):
@@ -2429,7 +2987,7 @@ def ubi_finderb(ubi_18b, ubi_u18b):
     calc_dynamic_finder = Behavior.response(calc_base, calc_finderb)
 
     # Revenue from tax reform
-    ubi_tax_revb = ((calc_dynamic_finder.records._combined - calc_dynamic.records._combined) *
+    ubi_tax_revb = ((calc_dynamic_finder.records.combined - calc_dynamic.records.combined) *
                      calc_dynamic_finder.records.s006).sum()
     total_revb = ubi_tax_revb + dynamic_rev
     ubib = (calc_dynamic_finder.records.ubi * calc_dynamic_finder.records.s006).sum()
@@ -2437,7 +2995,7 @@ def ubi_finderb(ubi_18b, ubi_u18b):
     return diffb, ubi_tax_revb
 
 
-# In[ ]:
+# In[158]:
 
 # While loop to call ubi_finder function until optimal UBI is found
 diffb = 9e99
@@ -2452,7 +3010,7 @@ print (ubi_18b, ubi_u18b)
 print ('Remaining Revenue: {:.2f}'.format(diffb))
 
 
-# In[ ]:
+# In[159]:
 
 # Dynamic UBI calculator - UBI for all
 recs_ubi18d = Records('puf_benefits.csv', weights='puf_weights_new.csv', adjust_ratios='puf_ratios copy.csv')
@@ -2476,14 +3034,14 @@ calc_ubi18d.calc_all()
 dynamic_all = Behavior.response(calc_base, calc_ubi18d)
 
 
-# In[ ]:
+# In[160]:
 
 diff_dynamic_all = create_difference_table(calc_base.records, dynamic_all.records, groupby='weighted_deciles',
-                                                 income_to_present='_combined')
+                                                 income_to_present='combined')
 diff_dynamic_all
 
 
-# In[ ]:
+# In[161]:
 
 g1_df = restricted_table(diff_dynamic_all, 
                  ['tot_change', 'mean', 'perc_inc', 'share_of_change'], 
@@ -2494,7 +3052,35 @@ g1_df = restricted_table(diff_dynamic_all,
 g1_df
 
 
-# In[ ]:
+# In[162]:
+
+# make macros for top and bottom ten percent
+dist_macro(g1_df, 'g')
+
+
+# In[163]:
+
+# Average Social Security from people with falling tax liabilities
+
+# Average tax liability decrease for those who see it
+neg_combined = (calc_ubi18d.records.combined - calc_base.records.combined)
+stat1 = ((neg_combined[neg_combined < 0] * calc_ubi18d.records.s006[neg_combined < 0]).sum() /
+calc_ubi18d.records.s006[neg_combined < 0].sum())
+
+# Average Social Security benefit to those who see tax decrease with UBI
+stat2 = ((calc_base.records.e02400[neg_combined < 0] * calc_base.records.s006[neg_combined < 0]).sum() /
+calc_base.records.s006[neg_combined < 0].sum())
+
+# Average UBI to those who see tax decrease with UBI
+stat3 = ((calc_ubi18d.records.ubi[neg_combined < 0] * calc_ubi18d.records.s006[neg_combined < 0]).sum() /
+calc_ubi18d.records.s006[neg_combined < 0].sum())
+
+def_macro('Average tax liability decrease for those who see it (part G)', units(stat1), 'gatd')
+def_macro('Average Social Security benefit to those who see tax decrease with UBI (part G)', units(stat2), 'gasd')
+def_macro('Average UBI to those who see tax decrease with UBI (part G)', units(stat3), 'gaud')
+
+
+# In[164]:
 
 avg_change_data = pd.DataFrame()
 avg_change_data['Benefit Loss'] = diff_dynamic_all['mean'].drop('sums')
@@ -2508,7 +3094,7 @@ avg_change_data = avg_change_data.drop('Income Bins', 1)
 del avg_change_data.index.name
 
 
-# In[ ]:
+# In[165]:
 
 tot_change_data = pd.DataFrame()
 tot_change_data['Benefit Loss'] = diff_dynamic_all['tot_change'].drop('sums') * in_billions
@@ -2521,14 +3107,14 @@ tot_change_data = tot_change_data.drop('Income Bins', 1)
 del tot_change_data.index.name
 
 
-# In[ ]:
+# In[166]:
 
 # generate bar charts
-makebar(avg_change_data, 'g1', x1label = 'AGI Decile', x2label = 'Average AGI by Decile', ylabel = 'Average Change in Tax Liability')
-makebar(tot_change_data, 'g2', x1label = 'AGI Decile', x2label = 'Average AGI by Decile', ylabel = 'Total Change in Tax Liability (billions)')
+makebar(avg_change_data, 'g1', x1label = 'AGI Percentile', x2label = 'Average AGI by Percentile', ylabel = 'Average Change in Tax Liability')
+makebar(tot_change_data, 'g2', x1label = 'AGI Percentile', x2label = 'Average AGI by Percentile', ylabel = 'Total Change in Tax Liability (billions)')
 
 
-# In[ ]:
+# In[167]:
 
 # Primary earner MTR
 # dynamic_mtrp_all = utils.mtr_graph_data(calc_base, dynamic_all)
@@ -2541,7 +3127,7 @@ makebar(tot_change_data, 'g2', x1label = 'AGI Decile', x2label = 'Average AGI by
 # show(dynamic_plot_alls)
 
 
-# In[ ]:
+# In[168]:
 
 # calculate the average primary earner MTR change by percentile of AGI
 makeline(calc_base, 
@@ -2574,7 +3160,12 @@ makeline(calc_base,
          plotname = 'g4')
 
 
-# In[ ]:
+# In[169]:
+
+mtr_macros(calc_ubi_allb, sec = 'g')
+
+
+# In[170]:
 
 # Primary earner's MTR Change
 mtrp_dynamic_all = pd.DataFrame()
@@ -2597,7 +3188,7 @@ lines_dynamic_all['avg-agi'] = agi
 lines_dynamic_all['s006'] = s006
 
 
-# In[ ]:
+# In[171]:
 
 # Secondary earner
 mtrs_dynamic_all = pd.DataFrame()
@@ -2616,7 +3207,7 @@ mtr2dynamicall = mtrs_dynamicall.apply(utils.weighted_mean, 'pct change')
 lines_dynamic_all['secondary'] = mtr2dynamicall
 
 
-# In[ ]:
+# In[172]:
 
 # generate dataframe for graph
 lines_dynamic_all['bins'] = lines_dynamic_all.index
@@ -2637,7 +3228,7 @@ dataframe['c00100'] = agi
 dataframe['s006'] = s006
 
 
-# In[ ]:
+# In[173]:
 
 # generate labels for secondary x-axis
 dataframe = add_weighted_income_bins(dataframe, num_bins=10,
@@ -2656,7 +3247,7 @@ zero = pd.Series(0)
 agi_series = zero.append(agi_series)
 
 
-# In[ ]:
+# In[174]:
 
 # generate a line graph
 
@@ -2664,8 +3255,8 @@ dataframe = dataframe
 series1_label = 'Label 1'
 series2_label = 'Label 2'
 plotname = 'g5'
-x1label = 'Average AGI by Decile'
-x2label = 'AGI Decile'
+x1label = 'Average AGI by Percentile'
+x2label = 'AGI Percentile'
 ylabel = 'Ave. Pct. Change in (1-MTR) after Reform'
 
 # begin plot
@@ -2696,7 +3287,7 @@ plt.savefig(plotname, dpi=1000)
 plt.show()
 
 
-# In[ ]:
+# In[175]:
 
 plines_dynamic_all = lines_dynamic_all['primary'].values
 slines_dynamic_all = lines_dynamic_all['secondary'].values
@@ -2713,7 +3304,7 @@ fig.legend.location = 'bottom_right'
 
 # Tax and welfare reform plus a UBI for all those above 18 - dynamic
 
-# In[ ]:
+# In[176]:
 
 # Function to determine UBI levels
 def ubi_amt18d(revenue):
@@ -2721,20 +3312,20 @@ def ubi_amt18d(revenue):
     return ubi_18d
 
 
-# In[ ]:
+# In[177]:
 
 # Initial UBI
 ubi_18d = ubi_amt18d(dynamic_rev)
 print ('UBI for those above 18: {:.2f}'.format(ubi_18d))
 
 
-# In[ ]:
+# In[178]:
 
 # define macros
-def_macro('UBI for those above 18 (part H)', '{:.2f}'.format(ubi_18d), 'hxaa')
+def_macro('UBI for those above 18 (part H)', '\${:,.2f}'.format(ubi_18d), 'huog')
 
 
-# In[ ]:
+# In[179]:
 
 # UBI all Calculator - Initial UBI tax revenue - behavioral reform
 recs_ubi_18b = Records('puf_benefits.csv', weights='puf_weights_new.csv', adjust_ratios='puf_ratios copy.csv')
@@ -2760,11 +3351,11 @@ calc_ubi_18b.calc_all()
 calc_dynamic_18 = Behavior.response(calc_base, calc_ubi_18b)
 
 # Initial UBI tax revenue
-ubi_tax_revb = ((calc_dynamic_18.records._combined - calc_dynamic.records._combined) * calc_dynamic_18.records.s006).sum()
+ubi_tax_revb = ((calc_dynamic_18.records.combined - calc_dynamic.records.combined) * calc_dynamic_18.records.s006).sum()
 ubi_tax_revb
 
 
-# In[ ]:
+# In[180]:
 
 # Function to find total UBI and compare to additional revenue from tax and welfare reform
 def ubi_finderb(ubi_18b):
@@ -2792,7 +3383,7 @@ def ubi_finderb(ubi_18b):
     calc_dynamic_finder = Behavior.response(calc_base, calc_finderb)
 
     # Revenue from tax reform
-    ubi_tax_revb = ((calc_dynamic_finder.records._combined - calc_dynamic.records._combined) *
+    ubi_tax_revb = ((calc_dynamic_finder.records.combined - calc_dynamic.records.combined) *
                      calc_dynamic_finder.records.s006).sum()
     total_revb = ubi_tax_revb + dynamic_rev
     ubib = (calc_dynamic_finder.records.ubi * calc_dynamic_finder.records.s006).sum()
@@ -2800,7 +3391,7 @@ def ubi_finderb(ubi_18b):
     return diffb, ubi_tax_revb
 
 
-# In[ ]:
+# In[181]:
 
 # While loop to call ubi_finder function until optimal UBI is found
 diffb = 9e99
@@ -2814,7 +3405,7 @@ while abs(diffb) >= 100:
 print (ubi_18b)
 
 
-# In[ ]:
+# In[182]:
 
 # Dynamic UBI calculator - UBI for 18+
 recs_ubi18d = Records('puf_benefits.csv', weights='puf_weights_new.csv', adjust_ratios='puf_ratios copy.csv')
@@ -2837,14 +3428,14 @@ calc_ubi18d.calc_all()
 dynamic_18 = Behavior.response(calc_base, calc_ubi18d)
 
 
-# In[ ]:
+# In[183]:
 
 diff_dynamic_18 = create_difference_table(calc_base.records, dynamic_18.records, groupby='weighted_deciles',
-                                                income_to_present='_combined')
+                                                income_to_present='combined')
 diff_dynamic_18
 
 
-# In[ ]:
+# In[184]:
 
 h1_df = restricted_table(diff_dynamic_18, 
                  ['tot_change', 'mean', 'perc_inc', 'share_of_change'], 
@@ -2854,7 +3445,35 @@ h1_df = restricted_table(diff_dynamic_18,
                 )
 
 
-# In[ ]:
+# In[185]:
+
+# make macros for top and bottom ten percent
+dist_macro(h1_df, 'h')
+
+
+# In[186]:
+
+# Average Social Security from people with falling tax liabilities
+
+# Average tax liability decrease for those who see it
+neg_combined = (calc_ubi18d.records.combined - calc_base.records.combined)
+stat1 = ((neg_combined[neg_combined < 0] * calc_ubi18d.records.s006[neg_combined < 0]).sum() /
+calc_ubi18d.records.s006[neg_combined < 0].sum())
+
+# Average Social Security benefit to those who see tax decrease with UBI
+stat2 = ((calc_base.records.e02400[neg_combined < 0] * calc_base.records.s006[neg_combined < 0]).sum() /
+calc_base.records.s006[neg_combined < 0].sum())
+
+# Average UBI to those who see tax decrease with UBI
+stat3 = ((calc_ubi18d.records.ubi[neg_combined < 0] * calc_ubi18d.records.s006[neg_combined < 0]).sum() /
+calc_ubi18d.records.s006[neg_combined < 0].sum())
+
+def_macro('Average tax liability decrease for those who see it (part H)', units(stat1), 'hatd')
+def_macro('Average Social Security benefit to those who see tax decrease with UBI (part H)', units(stat2), 'hasd')
+def_macro('Average UBI to those who see tax decrease with UBI (part H)', units(stat3), 'haud')
+
+
+# In[187]:
 
 avg_change_data = pd.DataFrame()
 avg_change_data['Benefit Loss'] = diff_dynamic_18['mean'].drop('sums')
@@ -2867,7 +3486,7 @@ avg_change_data = avg_change_data.drop('Income Bins', 1)
 del avg_change_data.index.name
 
 
-# In[ ]:
+# In[188]:
 
 tot_change_data = pd.DataFrame()
 tot_change_data['Benefit Loss'] = diff_dynamic_18['tot_change'].drop('sums') * in_billions
@@ -2880,14 +3499,14 @@ tot_change_data = tot_change_data.drop('Income Bins', 1)
 del tot_change_data.index.name
 
 
-# In[ ]:
+# In[189]:
 
 # generate bar charts
-makebar(avg_change_data, 'h1', x1label = 'AGI Decile', x2label = 'Average AGI by Decile', ylabel = 'Average Change in Tax Liability')
-makebar(tot_change_data, 'h2', x1label = 'AGI Decile', x2label = 'Average AGI by Decile', ylabel = 'Total Change in Tax Liability (billions)')
+makebar(avg_change_data, 'h1', x1label = 'AGI Percentile', x2label = 'Average AGI by Percentile', ylabel = 'Average Change in Tax Liability')
+makebar(tot_change_data, 'h2', x1label = 'AGI Percentile', x2label = 'Average AGI by Percentile', ylabel = 'Total Change in Tax Liability (billions)')
 
 
-# In[ ]:
+# In[190]:
 
 # calculate the average primary earner MTR change by percentile of AGI
 makeline(calc_base, 
@@ -2920,7 +3539,12 @@ makeline(calc_base,
          plotname = 'h4')
 
 
-# In[ ]:
+# In[191]:
+
+mtr_macros(calc_ubi18d, sec = 'h')
+
+
+# In[192]:
 
 # Primary earner's MTR Change
 mtrp_dynamic_18 = pd.DataFrame()
@@ -2943,7 +3567,7 @@ lines_dynamic_18['avg-agi'] = agi
 lines_dynamic_18['s006'] = s006
 
 
-# In[ ]:
+# In[193]:
 
 # Secondary earner
 mtrs_dynamic_18 = pd.DataFrame()
@@ -2962,7 +3586,7 @@ mtr2dynamic18 = mtrs_dynamic18.apply(utils.weighted_mean, 'pct change')
 lines_dynamic_18['secondary'] = mtr2dynamic18
 
 
-# In[ ]:
+# In[194]:
 
 # generate dataframe for graph
 lines_dynamic_18['bins'] = lines_dynamic_18.index
@@ -2983,7 +3607,7 @@ dataframe['c00100'] = agi
 dataframe['s006'] = s006
 
 
-# In[ ]:
+# In[195]:
 
 # generate labels for secondary x-axis
 dataframe = add_weighted_income_bins(dataframe, num_bins=10,
@@ -3002,7 +3626,7 @@ zero = pd.Series(0)
 agi_series = zero.append(agi_series)
 
 
-# In[ ]:
+# In[196]:
 
 # generate a line graph
 
@@ -3010,8 +3634,8 @@ dataframe = dataframe
 series1_label = 'Label 1'
 series2_label = 'Label 2'
 plotname = 'h5'
-x1label = 'Average AGI by Decile'
-x2label = 'AGI Decile'
+x1label = 'Average AGI by Percentile'
+x2label = 'AGI Percentile'
 ylabel = 'Ave. Pct. Change in (1-MTR) after Reform'
 
 # begin plot
@@ -3042,7 +3666,7 @@ plt.savefig(plotname, dpi=1000)
 plt.show()
 
 
-# In[ ]:
+# In[197]:
 
 plines_dynamic_18 = lines_dynamic_18['primary'].values
 slines_dynamic_18 = lines_dynamic_18['secondary'].values
@@ -3052,14 +3676,14 @@ fig = figure(title='Mean Percent Change in 1 - MTR')
 fig.line(idlines_dynamic_18, plines_dynamic_18, legend='Primary Earner')
 fig.line(idlines_dynamic_18, slines_dynamic_18, color='red', legend= 'Secondary Earner')
 fig.legend.location = 'bottom_right'
-# show(fig)
+show(fig)
 
 
 # ## Section 10, Part I: Tax, Welfare/Transer, and UBI 21+ - Dynamic
 
 # Tax and welfare reform along with a UBI for all those above 21 - dynamic
 
-# In[ ]:
+# In[198]:
 
 # Function to determine UBI levels
 def ubi_amt21d(revenue):
@@ -3067,20 +3691,20 @@ def ubi_amt21d(revenue):
     return ubi_21d
 
 
-# In[ ]:
+# In[199]:
 
 # Initial UBI
 ubi_21d = ubi_amt21d(dynamic_rev)
 print ('UBI for those above 21: {:.2f}'.format(ubi_21d))
 
 
-# In[ ]:
+# In[200]:
 
 # define macros
-def_macro('UBI for those above 21 (part I)', '{:.2f}'.format(ubi_21d), 'ixaa')
+def_macro('UBI for those above 21 (part I)', '\${:,.2f}'.format(ubi_21d), 'iuog')
 
 
-# In[ ]:
+# In[201]:
 
 # UBI all Calculator - Initial UBI tax revenue - behavioral reform
 recs_ubi_21b = Records('puf_benefits.csv', weights='puf_weights_new.csv', adjust_ratios='puf_ratios copy.csv')
@@ -3105,11 +3729,11 @@ calc_ubi_21b.calc_all()
 calc_dynamic_21 = Behavior.response(calc_base, calc_ubi_21b)
 
 # Initial UBI tax revenue
-ubi_tax_revb = ((calc_dynamic_21.records._combined - calc_dynamic.records._combined) * calc_dynamic_21.records.s006).sum()
+ubi_tax_revb = ((calc_dynamic_21.records.combined - calc_dynamic.records.combined) * calc_dynamic_21.records.s006).sum()
 ubi_tax_revb
 
 
-# In[ ]:
+# In[202]:
 
 # Function to find total UBI and compare to additional revenue from tax and welfare reform
 def ubi_finderb(ubi_21b):
@@ -3136,7 +3760,7 @@ def ubi_finderb(ubi_21b):
     calc_dynamic_finder = Behavior.response(calc_base, calc_finderb)
 
     # Revenue from tax reform
-    ubi_tax_revb = ((calc_dynamic_finder.records._combined - calc_dynamic.records._combined) *
+    ubi_tax_revb = ((calc_dynamic_finder.records.combined - calc_dynamic.records.combined) *
                      calc_dynamic_finder.records.s006).sum()
     total_revb = ubi_tax_revb + dynamic_rev
     ubib = (calc_dynamic_finder.records.ubi * calc_dynamic_finder.records.s006).sum()
@@ -3144,7 +3768,7 @@ def ubi_finderb(ubi_21b):
     return diffb, ubi_tax_revb
 
 
-# In[ ]:
+# In[203]:
 
 # While loop to call ubi_finder function until optimal UBI is found
 diffb = 9e99
@@ -3158,7 +3782,7 @@ while abs(diffb) >= 100:
 print (ubi_21b)
 
 
-# In[ ]:
+# In[204]:
 
 # Dynamic UBI calculator - UBI for 21+
 recs_ubi21d = Records('puf_benefits.csv', weights='puf_weights_new.csv', adjust_ratios='puf_ratios copy.csv')
@@ -3180,14 +3804,14 @@ calc_ubi21d.calc_all()
 dynamic_21 = Behavior.response(calc_base, calc_ubi21d)
 
 
-# In[ ]:
+# In[205]:
 
 diff_dynamic_21 = create_difference_table(calc_base.records, dynamic_21.records, groupby='weighted_deciles',
-                                                income_to_present='_combined')
+                                                income_to_present='combined')
 diff_dynamic_21
 
 
-# In[ ]:
+# In[206]:
 
 i1_df = restricted_table(diff_dynamic_21, 
                  ['tot_change', 'mean', 'perc_inc', 'share_of_change'], 
@@ -3197,7 +3821,35 @@ i1_df = restricted_table(diff_dynamic_21,
                 )
 
 
-# In[ ]:
+# In[207]:
+
+# make macros for top and bottom ten percent
+dist_macro(i1_df, 'i')
+
+
+# In[208]:
+
+# Average Social Security from people with falling tax liabilities
+
+# Average tax liability decrease for those who see it
+neg_combined = (calc_ubi21d.records.combined - calc_base.records.combined)
+stat1 = ((neg_combined[neg_combined < 0] * calc_ubi21d.records.s006[neg_combined < 0]).sum() /
+calc_ubi21d.records.s006[neg_combined < 0].sum())
+
+# Average Social Security benefit to those who see tax decrease with UBI
+stat2 = ((calc_base.records.e02400[neg_combined < 0] * calc_base.records.s006[neg_combined < 0]).sum() /
+calc_base.records.s006[neg_combined < 0].sum())
+
+# Average UBI to those who see tax decrease with UBI
+stat3 = ((calc_ubi21d.records.ubi[neg_combined < 0] * calc_ubi21d.records.s006[neg_combined < 0]).sum() /
+calc_ubi21d.records.s006[neg_combined < 0].sum())
+
+def_macro('Average tax liability decrease for those who see it (part I)', units(stat1), 'iatd')
+def_macro('Average Social Security benefit to those who see tax decrease with UBI (part I)', units(stat2), 'iasd')
+def_macro('Average UBI to those who see tax decrease with UBI (part I)', units(stat3), 'iaud')
+
+
+# In[209]:
 
 avg_change_data = pd.DataFrame()
 avg_change_data['Benefit Loss'] = diff_dynamic_21['mean'].drop('sums')
@@ -3210,7 +3862,7 @@ avg_change_data = avg_change_data.drop('Income Bins', 1)
 del avg_change_data.index.name
 
 
-# In[ ]:
+# In[210]:
 
 tot_change_data = pd.DataFrame()
 tot_change_data['Benefit Loss'] = diff_dynamic_21['tot_change'].drop('sums') * in_billions
@@ -3223,14 +3875,14 @@ tot_change_data = tot_change_data.drop('Income Bins', 1)
 del tot_change_data.index.name
 
 
-# In[ ]:
+# In[211]:
 
 # generate bar charts
-makebar(avg_change_data, 'i1', x1label = 'AGI Decile', x2label = 'Average AGI by Decile', ylabel = 'Average Change in Tax Liability')
-makebar(tot_change_data, 'i2', x1label = 'AGI Decile', x2label = 'Average AGI by Decile', ylabel = 'Total Change in Tax Liability (billions)')
+makebar(avg_change_data, 'i1', x1label = 'AGI Percentile', x2label = 'Average AGI by Percentile', ylabel = 'Average Change in Tax Liability')
+makebar(tot_change_data, 'i2', x1label = 'AGI Percentile', x2label = 'Average AGI by Percentile', ylabel = 'Total Change in Tax Liability (billions)')
 
 
-# In[ ]:
+# In[212]:
 
 # Primary earner MTR
 # dynamic_mtrp_21 = utils.mtr_graph_data(calc_base, dynamic_21)
@@ -3243,7 +3895,7 @@ makebar(tot_change_data, 'i2', x1label = 'AGI Decile', x2label = 'Average AGI by
 # show(dynamic_plot_21s)
 
 
-# In[ ]:
+# In[213]:
 
 # calculate the average primary earner MTR change by percentile of AGI
 makeline(calc1 = calc_base, 
@@ -3276,7 +3928,12 @@ makeline(calc1 = calc_base,
          plotname = 'i4')
 
 
-# In[ ]:
+# In[214]:
+
+mtr_macros(calc_ubi21d, sec = 'i')
+
+
+# In[215]:
 
 # Primary earner's MTR Change
 mtrp_dynamic_21 = pd.DataFrame()
@@ -3299,7 +3956,7 @@ lines_dynamic_21['avg-agi'] = agi
 lines_dynamic_21['s006'] = s006
 
 
-# In[ ]:
+# In[216]:
 
 # Secondary earner
 mtrs_dynamic_21 = pd.DataFrame()
@@ -3318,7 +3975,7 @@ mtr2dynamic21 = mtrs_dynamic21.apply(utils.weighted_mean, 'pct change')
 lines_dynamic_21['secondary'] = mtr2dynamic21
 
 
-# In[ ]:
+# In[217]:
 
 # generate dataframe for graph
 lines_dynamic_21['bins'] = lines_dynamic_21.index
@@ -3339,7 +3996,7 @@ dataframe['c00100'] = agi
 dataframe['s006'] = s006
 
 
-# In[ ]:
+# In[218]:
 
 # generate labels for secondary x-axis
 dataframe = add_weighted_income_bins(dataframe, num_bins=10,
@@ -3358,7 +4015,7 @@ zero = pd.Series(0)
 agi_series = zero.append(agi_series)
 
 
-# In[ ]:
+# In[219]:
 
 # generate a line graph
 
@@ -3366,8 +4023,8 @@ dataframe = dataframe
 series1_label = 'Label 1'
 series2_label = 'Label 2'
 plotname = 'i5'
-x1label = 'Average AGI by Decile'
-x2label = 'AGI Decile'
+x1label = 'Average AGI by Percentile'
+x2label = 'AGI Percentile'
 ylabel = 'Ave. Pct. Change in (1-MTR) after Reform'
 
 # begin plot
@@ -3398,7 +4055,7 @@ plt.savefig(plotname, dpi=1000)
 plt.show()
 
 
-# In[ ]:
+# In[220]:
 
 plines_dynamic_21 = lines_dynamic_21['primary'].values
 slines_dynamic_21 = lines_dynamic_21['secondary'].values
@@ -3411,9 +4068,9 @@ fig.legend.location = 'bottom_right'
 # show(fig)
 
 
-# In[ ]:
+# In[221]:
 
-max(dynamic_21.records._expanded_income - dynamic_21.records._combined)
+max(dynamic_21.records.expanded_income - dynamic_21.records.combined)
 
 
 # ## Section 11: Welfare Received vs. Benefits Spent
@@ -3421,7 +4078,7 @@ max(dynamic_21.records._expanded_income - dynamic_21.records._combined)
 # Using Will's welfare multiples,find what portion of the benefit is actually spent vs. what is received.
 # Plot this by income percentile
 
-# In[ ]:
+# In[222]:
 
 # Welfare multiples
 welfare_mult = {
@@ -3434,7 +4091,7 @@ welfare_mult = {
                 }
 
 
-# In[ ]:
+# In[223]:
 
 # generate table
 
@@ -3459,7 +4116,7 @@ del wm_df.index.name
 #                 )
 
 
-# In[ ]:
+# In[224]:
 
 # calculate the dollar welfare
 
@@ -3490,10 +4147,10 @@ dollar_welfare_group['Income Bins'] = agi_bins
 dollar_welfare_group = dollar_welfare_group.set_index(dollar_welfare_group['Income Bins'])
 dollar_welfare_group = dollar_welfare_group.drop('Income Bins', 1)
 del dollar_welfare_group.index.name
-dollar_welfare_group
+# dollar_welfare_group
 
 
-# In[ ]:
+# In[225]:
 
 # calculate adjusted welfare
 
@@ -3523,10 +4180,10 @@ adjusted_welfare_group['Income Bins'] = agi_bins
 adjusted_welfare_group = adjusted_welfare_group.set_index(adjusted_welfare_group['Income Bins'])
 adjusted_welfare_group = adjusted_welfare_group.drop('Income Bins', 1)
 del adjusted_welfare_group.index.name
-adjusted_welfare_group
+# adjusted_welfare_group
 
 
-# In[ ]:
+# In[226]:
 
 # compare dollar and adjusted welfare calculations
 
@@ -3535,17 +4192,60 @@ joint_welfare = joint_welfare[['Average Dollar Welfare', 'Average Adjusted Welfa
 joint_welfare['mean'] = 1
 joint_welfare['perc_inc'] = 1
 
-joint_welfare
-
-restricted_table(joint_welfare, 
+joint_welfare = restricted_table(joint_welfare, 
                  ['Average Dollar Welfare', 'Average Adjusted Welfare', 'Total Dollar Welfare', 'Total Adjusted Welfare'], 
                  ['Average Dollar Welfare', 'Average Adjusted Welfare', 'Total Dollar Welfare', 'Total Adjusted Welfare'],
                  'j2_df', 
                  reindex = False
                 )
 
+# add sum row
+sum1 = (joint_welfare['Total Dollar Welfare']['0-10%'] 
+     + joint_welfare['Total Dollar Welfare']['10-20%'] 
+     + joint_welfare['Total Dollar Welfare']['20-30%'] 
+     + joint_welfare['Total Dollar Welfare']['30-40%'] 
+     + joint_welfare['Total Dollar Welfare']['40-50%'] 
+     + joint_welfare['Total Dollar Welfare']['50-60%'] 
+     + joint_welfare['Total Dollar Welfare']['60-70%'] 
+     + joint_welfare['Total Dollar Welfare']['70-80%'] 
+     + joint_welfare['Total Dollar Welfare']['80-90%'] 
+     + joint_welfare['Total Dollar Welfare']['90-100%'])
 
-# In[ ]:
+sum2 = (joint_welfare['Total Adjusted Welfare']['0-10%'] 
+     + joint_welfare['Total Adjusted Welfare']['10-20%'] 
+     + joint_welfare['Total Adjusted Welfare']['20-30%'] 
+     + joint_welfare['Total Adjusted Welfare']['30-40%'] 
+     + joint_welfare['Total Adjusted Welfare']['40-50%'] 
+     + joint_welfare['Total Adjusted Welfare']['50-60%'] 
+     + joint_welfare['Total Adjusted Welfare']['60-70%'] 
+     + joint_welfare['Total Adjusted Welfare']['70-80%'] 
+     + joint_welfare['Total Adjusted Welfare']['80-90%'] 
+     + joint_welfare['Total Adjusted Welfare']['90-100%'])
+
+joint_welfare_sum = pd.DataFrame({'Average Adjusted Welfare':[''],
+                                  'Average Dollar Welfare':[''],
+                                  'Total Dollar Welfare':[sum1],
+                                  'Total Adjusted Welfare':[sum2]},
+                                 index = ['Sum'])
+
+joint_welfare = pd.concat([joint_welfare, joint_welfare_sum])
+joint_welfare
+
+
+# In[227]:
+
+def_macro('Difference between dollar and adjusted welfare (0-10%) (part J)', 
+          units(joint_welfare['Average Dollar Welfare']['0-10%'] - joint_welfare['Average Adjusted Welfare']['0-10%']), 
+          'jwav')
+
+
+# In[228]:
+
+def_macro('Total Adjusted Welfare (part J)', units(joint_welfare['Total Adjusted Welfare']['Sum']), 'jwag')
+def_macro('Total Dollar Welfare (part J)', units(joint_welfare['Total Dollar Welfare']['Sum']), 'jwdg')
+
+
+# In[229]:
 
 # df for dynamic calculator UBI all
 
@@ -3567,7 +4267,7 @@ ubi_group_all['perc_inc'] = 1
 
 ubi_group_all
 
-restricted_table(ubi_group_all, 
+ubi_group_all = restricted_table(ubi_group_all, 
                  ['Average UBI (all) Benefit', 'Total UBI (all) Benefit'], 
                  ['Average UBI (all) Benefit', 'Total UBI (all) Benefit'],
                  'j3_df',
@@ -3575,7 +4275,7 @@ restricted_table(ubi_group_all,
                 )
 
 
-# In[ ]:
+# In[230]:
 
 # df for dynamic calculator 18+
 
@@ -3598,7 +4298,7 @@ ubi_group18['perc_inc'] = 1
 
 ubi_group18
 
-restricted_table(ubi_group18, 
+ubi_group18 = restricted_table(ubi_group18, 
                  ['Average UBI (18+) Benefit', 'Total UBI (18+) Benefit'], 
                  ['Average UBI (18+) Benefit', 'Total UBI (18+) Benefit'],
                  'j4_df',
@@ -3606,7 +4306,7 @@ restricted_table(ubi_group18,
                 )
 
 
-# In[ ]:
+# In[231]:
 
 # df for dynamic calculator 21+
 
@@ -3629,7 +4329,7 @@ ubi_group21['perc_inc'] = 1
 
 ubi_group21
 
-restricted_table(ubi_group21, 
+ubi_group21 = restricted_table(ubi_group21, 
                  ['Average UBI (21+) Benefit', 'Total UBI (21+) Benefit'], 
                  ['Average UBI (21+) Benefit', 'Total UBI (21+) Benefit'],
                  'j5_df',
@@ -3637,7 +4337,7 @@ restricted_table(ubi_group21,
                 )
 
 
-# In[ ]:
+# In[232]:
 
 """
 ========
@@ -3673,7 +4373,7 @@ bar5 = ax.bar(ind+(2*width)+(2*space), ubi_21, width, color='navy')
 
 # add some text for labels, title and axes ticks
 ax.set_ylabel('Mean Benefit')
-ax.set_xlabel('Income Decile')
+ax.set_xlabel('Income Percentile')
 
 # x axis
 ind = np.arange(10)
@@ -3701,7 +4401,7 @@ plt.savefig(plotname)
 plt.show()
 
 
-# In[ ]:
+# In[233]:
 
 # average welfare table
 
@@ -3711,14 +4411,68 @@ avg_comp_df['UBI (all)'] = ubi_group_all['Average UBI (all) Benefit']
 avg_comp_df['UBI (18+)'] = ubi_group18['Average UBI (18+) Benefit']
 avg_comp_df['UBI (21+)'] = ubi_group21['Average UBI (21+) Benefit']
 avg_comp_df.index = agi_bins
-avg_comp_df
+
+# add sum row
+sum1 = (avg_comp_df['Adjusted Welfare']['0-10%'] 
+     + avg_comp_df['Adjusted Welfare']['10-20%'] 
+     + avg_comp_df['Adjusted Welfare']['20-30%'] 
+     + avg_comp_df['Adjusted Welfare']['30-40%'] 
+     + avg_comp_df['Adjusted Welfare']['40-50%'] 
+     + avg_comp_df['Adjusted Welfare']['50-60%'] 
+     + avg_comp_df['Adjusted Welfare']['60-70%'] 
+     + avg_comp_df['Adjusted Welfare']['70-80%'] 
+     + avg_comp_df['Adjusted Welfare']['80-90%'] 
+     + avg_comp_df['Adjusted Welfare']['90-100%'])
+
+sum2 = (avg_comp_df['UBI (all)']['0-10%'] 
+     + avg_comp_df['UBI (all)']['10-20%'] 
+     + avg_comp_df['UBI (all)']['20-30%'] 
+     + avg_comp_df['UBI (all)']['30-40%'] 
+     + avg_comp_df['UBI (all)']['40-50%'] 
+     + avg_comp_df['UBI (all)']['50-60%'] 
+     + avg_comp_df['UBI (all)']['60-70%'] 
+     + avg_comp_df['UBI (all)']['70-80%'] 
+     + avg_comp_df['UBI (all)']['80-90%'] 
+     + avg_comp_df['UBI (all)']['90-100%'])
+
+sum3 = (avg_comp_df['UBI (18+)']['0-10%'] 
+     + avg_comp_df['UBI (18+)']['10-20%'] 
+     + avg_comp_df['UBI (18+)']['20-30%'] 
+     + avg_comp_df['UBI (18+)']['30-40%'] 
+     + avg_comp_df['UBI (18+)']['40-50%'] 
+     + avg_comp_df['UBI (18+)']['50-60%'] 
+     + avg_comp_df['UBI (18+)']['60-70%'] 
+     + avg_comp_df['UBI (18+)']['70-80%'] 
+     + avg_comp_df['UBI (18+)']['80-90%'] 
+     + avg_comp_df['UBI (18+)']['90-100%'])
+
+sum4 = (avg_comp_df['UBI (21+)']['0-10%'] 
+     + avg_comp_df['UBI (21+)']['10-20%'] 
+     + avg_comp_df['UBI (21+)']['20-30%'] 
+     + avg_comp_df['UBI (21+)']['30-40%'] 
+     + avg_comp_df['UBI (21+)']['40-50%'] 
+     + avg_comp_df['UBI (21+)']['50-60%'] 
+     + avg_comp_df['UBI (21+)']['60-70%'] 
+     + avg_comp_df['UBI (21+)']['70-80%'] 
+     + avg_comp_df['UBI (21+)']['80-90%'] 
+     + avg_comp_df['UBI (21+)']['90-100%'])
+
+avg_comp_df_sum = pd.DataFrame({'Adjusted Welfare':[sum1],
+                                  'UBI (all)':[sum2],
+                                  'UBI (18+)':[sum3],
+                                  'UBI (21+)':[sum4]},
+                                 index = ['Sum'])
+
+avg_comp_df = pd.concat([avg_comp_df, avg_comp_df_sum])
 
 text_file = open('j6_df.txt', "w")
 text_file.write(avg_comp_df.to_latex())
 text_file.close()
 
+avg_comp_df
 
-# In[ ]:
+
+# In[234]:
 
 # total welfare table
 
@@ -3728,14 +4482,68 @@ total_comp_df['UBI (all)'] = ubi_group_all['Total UBI (all) Benefit']
 total_comp_df['UBI (18+)'] = ubi_group18['Total UBI (18+) Benefit']
 total_comp_df['UBI (21+)'] = ubi_group21['Total UBI (21+) Benefit']
 total_comp_df.index = agi_bins
-total_comp_df
+
+# add sum row
+sum1 = (total_comp_df['Adjusted Welfare']['0-10%'] 
+     + total_comp_df['Adjusted Welfare']['10-20%'] 
+     + total_comp_df['Adjusted Welfare']['20-30%'] 
+     + total_comp_df['Adjusted Welfare']['30-40%'] 
+     + total_comp_df['Adjusted Welfare']['40-50%'] 
+     + total_comp_df['Adjusted Welfare']['50-60%'] 
+     + total_comp_df['Adjusted Welfare']['60-70%'] 
+     + total_comp_df['Adjusted Welfare']['70-80%'] 
+     + total_comp_df['Adjusted Welfare']['80-90%'] 
+     + total_comp_df['Adjusted Welfare']['90-100%'])
+
+sum2 = (total_comp_df['UBI (all)']['0-10%'] 
+     + total_comp_df['UBI (all)']['10-20%'] 
+     + total_comp_df['UBI (all)']['20-30%'] 
+     + total_comp_df['UBI (all)']['30-40%'] 
+     + total_comp_df['UBI (all)']['40-50%'] 
+     + total_comp_df['UBI (all)']['50-60%'] 
+     + total_comp_df['UBI (all)']['60-70%'] 
+     + total_comp_df['UBI (all)']['70-80%'] 
+     + total_comp_df['UBI (all)']['80-90%'] 
+     + total_comp_df['UBI (all)']['90-100%'])
+
+sum3 = (total_comp_df['UBI (18+)']['0-10%'] 
+     + total_comp_df['UBI (18+)']['10-20%'] 
+     + total_comp_df['UBI (18+)']['20-30%'] 
+     + total_comp_df['UBI (18+)']['30-40%'] 
+     + total_comp_df['UBI (18+)']['40-50%'] 
+     + total_comp_df['UBI (18+)']['50-60%'] 
+     + total_comp_df['UBI (18+)']['60-70%'] 
+     + total_comp_df['UBI (18+)']['70-80%'] 
+     + total_comp_df['UBI (18+)']['80-90%'] 
+     + total_comp_df['UBI (18+)']['90-100%'])
+
+sum4 = (total_comp_df['UBI (21+)']['0-10%'] 
+     + total_comp_df['UBI (21+)']['10-20%'] 
+     + total_comp_df['UBI (21+)']['20-30%'] 
+     + total_comp_df['UBI (21+)']['30-40%'] 
+     + total_comp_df['UBI (21+)']['40-50%'] 
+     + total_comp_df['UBI (21+)']['50-60%'] 
+     + total_comp_df['UBI (21+)']['60-70%'] 
+     + total_comp_df['UBI (21+)']['70-80%'] 
+     + total_comp_df['UBI (21+)']['80-90%'] 
+     + total_comp_df['UBI (21+)']['90-100%'])
+
+total_comp_df_sum = pd.DataFrame({'Adjusted Welfare':[sum1],
+                                  'UBI (all)':[sum2],
+                                  'UBI (18+)':[sum3],
+                                  'UBI (21+)':[sum4]},
+                                 index = ['Sum'])
+
+total_comp_df = pd.concat([total_comp_df, total_comp_df_sum])
 
 text_file = open('j7_df.txt', "w")
 text_file.write(total_comp_df.to_latex())
 text_file.close()
 
+total_comp_df
 
-# In[ ]:
+
+# In[235]:
 
 # assemble macro dictionary
 
@@ -3743,4 +4551,11 @@ macro_dict['labels'] = labels
 macro_dict['values'] = values
 macro_dict['macros'] = macros
 
+macro_dict.to_csv('macro_dict.txt', header=None, index=None, sep=' ', mode='a')
+
 macro_dict
+
+
+# In[ ]:
+
+
